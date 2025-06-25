@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>味美ネットワーク</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">味美ネットワーク</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">会社概要</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>地域に笑顔とつながりを</h2>
+            <p>味美ネットワークは、地域社会を活性化するためのソリューションを提供します。</p>
+            <a href="#contact" class="btn-primary">お問い合わせ</a>
+        </div>
+    </section>
+
+    <section id="about" class="about section">
+        <div class="container">
+            <h2>会社概要</h2>
+            <p>味美ネットワークは、ITを通じて地域の課題を解決し、コミュニティの発展に貢献することを目指しています。</p>
+        </div>
+    </section>
+
+    <section id="services" class="services section">
+        <div class="container">
+            <h2>サービス</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>Web開発</h3>
+                    <p>企業や団体のニーズに合わせた高品質なWebサイトを構築します。</p>
+                </div>
+                <div class="service-item">
+                    <h3>システムコンサルティング</h3>
+                    <p>課題分析から導入・運用までをトータルサポート。</p>
+                </div>
+                <div class="service-item">
+                    <h3>コミュニティ支援</h3>
+                    <p>ITを活用した地域コミュニティの活性化を支援します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2>お問い合わせ</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">お名前</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">メールアドレス</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">メッセージ</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">送信</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 味美ネットワーク</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
