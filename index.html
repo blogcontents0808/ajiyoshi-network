@@ -2,90 +2,96 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>味美ネットワーク</title>
+    <title>味美ネットワーク｜春日井市味美地区の地域コミュニティ</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <!-- アイコン用のライブラリ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <header class="navbar">
+
+    <header class="header">
         <div class="container">
-            <h1 class="logo">味美ネットワーク</h1>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#about">会社概要</a></li>
-                    <li><a href="#services">サービス</a></li>
-                    <li><a href="#contact">お問い合わせ</a></li>
+            <a href="#" class="header-logo">
+                <img src="images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" class="logo-character">
+                <h1>味美ネットワーク</h1>
+            </a>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#">ホーム</a></li>
+                    <li><a href="#intro">味美ネットワークとは</a></li>
+                    <li><a href="#about">私たちについて</a></li>
+                    <li><a href="#">お問い合わせ</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h2>地域に笑顔とつながりを</h2>
-            <p>味美ネットワークは、地域社会を活性化するためのソリューションを提供します。</p>
-            <a href="#contact" class="btn-primary">お問い合わせ</a>
-        </div>
-    </section>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2 class="hero-title">この街が、もっと好きになる。</h2>
+                <p class="hero-subtitle">自分たちが関わる街が、もっと住みよく愛される街になるように。</p>
+            </div>
+        </section>
 
-    <section id="about" class="about section">
-        <div class="container">
-            <h2>会社概要</h2>
-            <p>味美ネットワークは、ITを通じて地域の課題を解決し、コミュニティの発展に貢献することを目指しています。</p>
-        </div>
-    </section>
-
-    <section id="services" class="services section">
-        <div class="container">
-            <h2>サービス</h2>
-            <div class="service-grid">
-                <div class="service-item">
-                    <h3>Web開発</h3>
-                    <p>企業や団体のニーズに合わせた高品質なWebサイトを構築します。</p>
-                </div>
-                <div class="service-item">
-                    <h3>システムコンサルティング</h3>
-                    <p>課題分析から導入・運用までをトータルサポート。</p>
-                </div>
-                <div class="service-item">
-                    <h3>コミュニティ支援</h3>
-                    <p>ITを活用した地域コミュニティの活性化を支援します。</p>
+        <section id="intro" class="section fade-in">
+            <div class="container">
+                <h2 class="section-title">味美ネットワークとは？</h2>
+                <div class="intro-text">
+                    <p>私たち味美ネットワークは、自分たちが関わる街が住みよく愛される街になるように、春日井市南部の味美地区を中心に、平成４年より活動しています。</p>
+                    <p>味美の夏夜を彩るサマーフェスタ味美（味美炭ぬりまつり）をはじめ、春は白山神社さくらまつりと地域の皆様に楽しんでいただける事業を中心に取り組んでいます。</p>
+                    <p>街作りは行政や大企業だけの力ではどうにもなりません。地域に住む人々の想いにこそ大きな可能性があります。そんな想いを発信していく団体が味美ネットワークです。</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contact" class="contact section">
-        <div class="container">
-            <h2>お問い合わせ</h2>
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name">お名前</label>
-                    <input type="text" id="name" name="name" required>
+        <section id="about" class="section section-bg fade-in">
+            <div class="container">
+                <h2 class="section-title">味美ネットワークについて</h2>
+                <div class="card-grid">
+                    <!-- メンバー紹介カード -->
+                    <div class="card fade-in">
+                        <div class="card-icon"><i class="fas fa-users"></i></div>
+                        <div class="card-content">
+                            <h3 class="card-title">参加メンバー紹介</h3>
+                            <p class="card-text">味美ネットワークで活動する、地域を愛する個性豊かなメンバーを紹介します。</p>
+                            <a href="members.html" class="btn">詳しく見る</a>
+                        </div>
+                    </div>
+                    <!-- 沿革カード -->
+                    <div class="card fade-in">
+                        <div class="card-icon"><i class="fas fa-landmark"></i></div>
+                        <div class="card-content">
+                            <h3 class="card-title">これまでの活動（沿革）</h3>
+                            <p class="card-text">平成4年の発足から現在までの、私たちの歩みと主な活動の歴史をご紹介します。</p>
+                            <a href="history.html" class="btn">詳しく見る</a>
+                        </div>
+                    </div>
+                    <!-- 主な活動カード -->
+                    <div class="card fade-in">
+                        <div class="card-icon"><i class="fas fa-star"></i></div>
+                        <div class="card-content">
+                            <h3 class="card-title">主な活動内容</h3>
+                            <p class="card-text">お祭りや清掃活動など、私たちが取り組んでいる具体的な活動内容を紹介します。</p>
+                            <a href="https://www.ajiyoshi-network.com/%E8%A4%87%E8%A3%BD-%E4%B8%BB%E3%81%AA%E6%B4%BB%E5%8B%952022" class="btn" target="_blank">詳しく見る</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">メールアドレス</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">メッセージ</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn-primary">送信</button>
-            </form>
-        </div>
-    </section>
+            </div>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container">
-            <p>© 2025 味美ネットワーク</p>
+            <p>© 2024 味美ネットワーク. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- 動きの魔法をかけるJavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
