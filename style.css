@@ -1,4 +1,4 @@
-/* --- 変数設定（色の魔法） --- */
+    /* --- 変数設定（色の魔法） --- */
 :root {
     --primary-color: #E67E22; /* 温かみのあるオレンジ */
     --secondary-color: #2C3E50; /* 信頼感のある濃いネイビー */
@@ -320,4 +320,149 @@ h1, h2, h3 {
     left: -15px;
     border-right: 15px solid #fff;
     border-left: none;
+}
+
+/* ===================================
+   活動内容ページ用のスタイル 
+====================================== */
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.activity-item.reverse {
+    flex-direction: row-reverse;
+}
+.activity-image {
+    flex: 1 1 50%; /* flex-grow, flex-shrink, flex-basis */
+}
+.activity-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 35px rgba(0,0,0,0.12);
+}
+.activity-text {
+    flex: 1 1 50%;
+}
+.activity-text h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.activity-text p {
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+/* --- スマホ用のスタイル（レスポンシブ対応） --- */
+@media screen and (max-width: 768px) {
+    .activity-item,
+    .activity-item.reverse {
+        flex-direction: column; /* 縦積みに変更 */
+        gap: 20px;
+    }
+    .activity-text {
+        text-align: center;
+    }
+    .activity-text h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ===================================
+   活動ギャラリーページ用のスタイル 
+====================================== */
+
+.gallery-grid {
+    display: grid;
+    /* PCでは3列、タブレットでは2列、スマホでは1列に自動調整 */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.gallery-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+    overflow: hidden; /* 画像のはみ出しを防ぐ */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 35px rgba(0,0,0,0.12);
+}
+
+.gallery-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.gallery-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 画像を歪ませずにトリミングして表示 */
+    transition: transform 0.4s ease;
+}
+
+.gallery-card:hover .gallery-card-image img {
+    transform: scale(1.1); /* マウスを乗せると画像が拡大 */
+}
+
+.gallery-card-content {
+    padding: 20px 25px;
+}
+
+.gallery-card-content h3 {
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.gallery-card-content p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.gallery-card-content p i {
+    color: var(--primary-color);
+    margin-right: 8px;
+    width: 16px; /* アイコンの幅を揃える */
+    text-align: center;
+}
+
+/* ===================================
+   SNSリンク用のスタイル 
+====================================== */
+
+.social-links {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    display: inline-flex; /* アイコンを中央に配置するために flex を使用 */
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    background-color: #fff;
+    color: var(--secondary-color); /* アイコンの色をネイビーに */
+    border-radius: 50%; /* 円形にする */
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color); /* ホバーでオレンジ色に */
+    color: #fff; /* アイコンの色を白に */
+    transform: translateY(-3px); /* 少し上に動かす */
 }
