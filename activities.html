@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <!-- アイコン用のライブラリ -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -22,11 +21,22 @@
             <nav class="header-nav">
                 <ul>
                     <li><a href="index.html">ホーム</a></li>
-                    <li><a href="index.html#intro">味美ネットワークとは</a></li>
-                    <li><a href="index.html#about">私たちについて</a></li>
-                    <li><a href="#">お問い合わせ</a></li>
+                    <li class="dropdown">
+                        <a href="index.html#intro" class="dropdown-toggle">味美ネットワークとは <i class="fas fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="members.html">メンバー紹介</a></li>
+                            <li><a href="history.html">沿革</a></li>
+                            <li><a href="activities.html">活動内容</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
                 </ul>
             </nav>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
@@ -41,96 +51,70 @@
         <section class="section">
             <div class="container">
                 <div class="gallery-grid">
-                    <!-- いただいたデータをカード形式に変換 -->
-
                     <div class="gallery-card fade-in">
-                        <div class="gallery-card-image">
-                            <img src="images/sak_2025.jpg" alt="さくらまつり　2025">
-                        </div>
+                        <div class="gallery-card-image"><img src="images/sak_2025.jpg" alt="さくらまつり　2025"></div>
                         <div class="gallery-card-content">
                             <h3>さくらまつり 2025</h3>
                             <p><i class="fas fa-calendar-alt"></i> 2025年4月5日</p>
                             <p><i class="fas fa-map-marker-alt"></i> 二子山公園</p>
                         </div>
                     </div>
-
                     <div class="gallery-card fade-in">
-                        <div class="gallery-card-image">
-                            <img src="images/osi_2024.jpg" alt="味美推しフェス　2024">
-                        </div>
+                        <div class="gallery-card-image"><img src="images/osi_2024.jpg" alt="味美推しフェス　2024"></div>
                         <div class="gallery-card-content">
                             <h3>味美推しフェス 2024</h3>
                             <p><i class="fas fa-calendar-alt"></i> 2024年11月17日</p>
                             <p><i class="fas fa-map-marker-alt"></i> 東春信用金庫</p>
                         </div>
                     </div>
-
                     <div class="gallery-card fade-in">
-                        <div class="gallery-card-image">
-                            <img src="images/sak_2024.jpg" alt="さくらまつり　2024">
-                        </div>
+                        <div class="gallery-card-image"><img src="images/sak_2024.jpg" alt="さくらまつり　2024"></div>
                         <div class="gallery-card-content">
                             <h3>さくらまつり 2024</h3>
                             <p><i class="fas fa-calendar-alt"></i> 2024年4月6日</p>
                             <p><i class="fas fa-map-marker-alt"></i> 白山神社</p>
                         </div>
                     </div>
-
                     <div class="gallery-card fade-in">
-                        <div class="gallery-card-image">
-                            <img src="images/sme_2023.jpg" alt="しめ縄づくり体験　2023">
-                        </div>
+                        <div class="gallery-card-image"><img src="images/sme_2023.jpg" alt="しめ縄づくり体験　2023"></div>
                         <div class="gallery-card-content">
                             <h3>しめ縄づくり体験 2023</h3>
                             <p><i class="fas fa-calendar-alt"></i> 2023年12月16日</p>
                             <p><i class="fas fa-map-marker-alt"></i> 白山神社</p>
                         </div>
                     </div>
-                    
                     <div class="gallery-card fade-in">
-                        <div class="gallery-card-image">
-                            <img src="images/sum_2023.jpg" alt="サマーフェスタ味美　2023">
-                        </div>
+                        <div class="gallery-card-image"><img src="images/sum_2023.jpg" alt="サマーフェスタ味美　2023"></div>
                         <div class="gallery-card-content">
                             <h3>サマーフェスタ味美 2023</h3>
                             <p><i class="fas fa-calendar-alt"></i> 2023年8月26日</p>
                             <p><i class="fas fa-map-marker-alt"></i> 花長公園</p>
                         </div>
                     </div>
-
                     <div class="gallery-card fade-in">
-                        <div class="gallery-card-image">
-                            <img src="images/sak_2023.jpg" alt="さくらまつり　2023">
-                        </div>
+                        <div class="gallery-card-image"><img src="images/sak_2023.jpg" alt="さくらまつり　2023"></div>
                         <div class="gallery-card-content">
                             <h3>さくらまつり 2023</h3>
                             <p><i class="fas fa-calendar-alt"></i> 2023年4月6日</p>
                             <p><i class="fas fa-map-marker-alt"></i> 白山神社</p>
                         </div>
                     </div>
-
                     <div class="gallery-card fade-in">
-                        <div class="gallery-card-image">
-                            <img src="images/sme_2022.jpg" alt="しめ縄づくり体験　2022">
-                        </div>
+                        <div class="gallery-card-image"><img src="images/sme_2022.jpg" alt="しめ縄づくり体験　2022"></div>
                         <div class="gallery-card-content">
                             <h3>しめ縄づくり体験 2022</h3>
                             <p><i class="fas fa-calendar-alt"></i> 2022年12月3日</p>
                             <p><i class="fas fa-map-marker-alt"></i> 白山神社</p>
                         </div>
                     </div>
-                    
                     <div class="gallery-card fade-in">
-                        <div class="gallery-card-image">
-                            <img src="images/sum_2022.jpg" alt="味美炭ぬり祭　2022">
-                        </div>
+                        <div class="gallery-card-image"><img src="images/sum_2022.jpg" alt="味美炭ぬり祭　2022"></div>
                         <div class="gallery-card-content">
                             <h3>味美炭ぬり祭 2022</h3>
                             <p><i class="fas fa-calendar-alt"></i> 2022年8月20日</p>
                             <p><i class="fas fa-map-marker-alt"></i> 白山神社</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -139,14 +123,10 @@
     <footer class="footer">
         <div class="container">
             <div class="social-links">
-                <a href="https://www.facebook.com/watch/?v=1872150119939498" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
+                <a href="https://www.facebook.com/watch/?v=1872150119939498" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
-            <p> 2024 味美ネットワーク. All Rights Reserved.</p>
+            <p>© 2024 味美ネットワーク. All Rights Reserved.</p>
         </div>
     </footer>
 

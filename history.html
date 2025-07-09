@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <!-- アイコン用のライブラリ -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -22,11 +21,22 @@
             <nav class="header-nav">
                 <ul>
                     <li><a href="index.html">ホーム</a></li>
-                    <li><a href="index.html#intro">味美ネットワークとは</a></li>
-                    <li><a href="index.html#about">私たちについて</a></li>
-                    <li><a href="#">お問い合わせ</a></li>
+                    <li class="dropdown">
+                        <a href="index.html#intro" class="dropdown-toggle">味美ネットワークとは <i class="fas fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="members.html">メンバー紹介</a></li>
+                            <li><a href="history.html">沿革</a></li>
+                            <li><a href="activities.html">活動内容</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
                 </ul>
             </nav>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
@@ -41,9 +51,6 @@
         <section class="section">
             <div class="container">
                 <div class="timeline">
-                    <!-- ============================================= -->
-                    <!-- ▼▼▼ いただいた最新情報を反映しました ▼▼▼ -->
-                    <!-- ============================================= -->
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-flag"></i></div><div class="timeline-content"><h3>平成４年</h3><p>味美ネットワーク発足<br>（16名でスタート）<br>「味美のまちづくり」シンポジウム」開催</p></div></div>
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-train"></i></div><div class="timeline-content right"><h3>平成５年</h3><p>「まちづくりと商店街の活性化」セミナー開催<br>第1回 JR城北線花火電車「味美号」運行</p></div></div>
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-comments"></i></div><div class="timeline-content"><h3>平成６年</h3><p>第2回 JR城北線花火電車「味美号」運行<br>「味美駅周辺再開発について」講演会開催<br>鵜飼春日井市長との座談会開催</p></div></div>
@@ -65,16 +72,13 @@
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-award"></i></div><div class="timeline-content"><h3>平成２４年</h3><p>サマーフェスタ味美再開10周年前夜祭<br>サマーフェスタ味美’11開催<br>新味美塾　贈与・相続税</p></div></div>
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-child"></i></div><div class="timeline-content right"><h3>平成２５年</h3><p>第１回　味美deキッズパーク<br>サマーフェスタ味美’12開催<br>味美簿記塾　10回開催</p></div></div>
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-star"></i></div><div class="timeline-content"><h3>平成２６年</h3><p>第２回　味美deキッズパーク<br>サマーフェスタ味美’13開催</p></div></div>
-                    <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-ticket-alt"></i></div><div class="timeline-content right"><h3>平成２７年</h3><p>第１回　味美スタンプラリー<br>サマーフェスタ味美’14開催<br>味美炭ぬり祭（初めての中止）<br>知多ハンドボール体験教室（3回実施）</p></div></div>
+                    <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-ticket-alt"></i></div><div class="timeline-content right"><h3>平成２７年</h3><p>第１回　味美スタンプラリー<br>サマーフェста味美’14開催<br>味美炭ぬり祭（初めての中止）<br>知多ハンドボール体験教室（3回実施）</p></div></div>
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-star"></i></div><div class="timeline-content"><h3>平成２８年</h3><p>サマーフェスタ味美’15開催<br>味美炭ぬり祭<br>第２回　味美スタンプラリー<br>知多ハンドボール体験教室（3回実施）</p></div></div>
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-star"></i></div><div class="timeline-content right"><h3>平成２９年</h3><p>味美未来塾<br>「県政・施政からみた春日井・味美」<br>サマーフェスタ味美’16開催<br>味美炭ぬり祭<br>第３回　味美スタンプラリー</p></div></div>
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-star"></i></div><div class="timeline-content"><h3>平成３０年</h3><p>サマーフェスタ味美’17開催<br>味美炭ぬり祭</p></div></div>
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-star"></i></div><div class="timeline-content right"><h3>令和元年</h3><p>サマーフェスタ味美’18開催<br>味美炭ぬり祭<br>経営勉強会<br>親子でしめ縄作り体験</p></div></div>
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fab fa-line"></i></div><div class="timeline-content"><h3>令和２年</h3><p>新春講演会<br>味美地域協賛先マスク配布事業<br>経営勉強会<br>親子でしめ縄づくり体験<br>炭ぬり貫太郎LINEスタンプ</p></div></div>
                     <div class="timeline-item fade-in"><div class="timeline-icon"><i class="fas fa-tree"></i></div><div class="timeline-content right"><h3>令和３年</h3><p>講演会「白山神社ミステリーガイド」<br>補助金・助成金勉強会<br>しめ縄作り体験<br>白山神社桜まつり<br>講演会「日本の神々」<br>資産運用勉強会<br>しめ縄づくり体験<br>白山神社桜まつり</p></div></div>
-                    <!-- ============================================= -->
-                    <!-- ▲▲▲ ここまでが最新情報です ▲▲▲ -->
-                    <!-- ============================================= -->
                 </div>
             </div>
         </section>
@@ -83,12 +87,8 @@
     <footer class="footer">
         <div class="container">
             <div class="social-links">
-                <a href="https://www.facebook.com/watch/?v=1872150119939498" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
+                <a href="https://www.facebook.com/watch/?v=1872150119939498" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
             <p>© 2024 味美ネットワーク. All Rights Reserved.</p>
         </div>

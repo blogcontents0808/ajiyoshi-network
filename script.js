@@ -1,21 +1,32 @@
-// スクロールでふわっと表示させるためのコード
-
-// 監視対象の要素をすべて取得
+// --- スクロールでふわっと表示させるコード ---
 const targets = document.querySelectorAll('.fade-in');
-
-// 要素を監視するIntersectionObserverを作成
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
-        // 画面内に入ったら is-visible クラスを追加
         if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
-            // 一度表示されたら監視を停止
             observer.unobserve(entry.target);
         }
     });
 });
-
-// 各要素の監視を開始
 targets.forEach(target => {
     observer.observe(target);
+});
+
+
+// --- ハンバーガーメニュー用のコード ---
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const headerNav = document.querySelector('.header-nav');
+const body = document.body;
+
+hamburgerBtn.addEventListener('click', () => {
+    // is-active クラスを付け外し
+    hamburgerBtn.classList.toggle('is-active');
+    headerNav.classList.toggle('is-active');
+    
+    // 背景のスクロールを制御
+    if (body.style.overflow === 'hidden') {
+        body.style.overflow = '';
+    } else {
+        body.style.overflow = 'hidden';
+    }
 });

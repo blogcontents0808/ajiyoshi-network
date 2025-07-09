@@ -8,25 +8,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <!-- アイコン用のライブラリ -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
     <header class="header">
         <div class="container">
-            <a href="#" class="header-logo">
+            <a href="index.html" class="header-logo">
                 <img src="images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" class="logo-character">
                 <h1>味美ネットワーク</h1>
             </a>
             <nav class="header-nav">
                 <ul>
-                    <li><a href="#">ホーム</a></li>
-                    <li><a href="#intro">味美ネットワークとは</a></li>
-                    <li><a href="#about">私たちについて</a></li>
-                    <li><a href="#">お問い合わせ</a></li>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li class="dropdown">
+                        <a href="index.html#intro" class="dropdown-toggle">味美ネットワークとは <i class="fas fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="members.html">メンバー紹介</a></li>
+                            <li><a href="history.html">沿革</a></li>
+                            <li><a href="activities.html">活動内容</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
                 </ul>
             </nav>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
@@ -53,7 +63,6 @@
             <div class="container">
                 <h2 class="section-title">味美ネットワークについて</h2>
                 <div class="card-grid">
-                    <!-- メンバー紹介カード -->
                     <div class="card fade-in">
                         <div class="card-icon"><i class="fas fa-users"></i></div>
                         <div class="card-content">
@@ -62,7 +71,6 @@
                             <a href="members.html" class="btn">詳しく見る</a>
                         </div>
                     </div>
-                    <!-- 沿革カード -->
                     <div class="card fade-in">
                         <div class="card-icon"><i class="fas fa-landmark"></i></div>
                         <div class="card-content">
@@ -71,12 +79,11 @@
                             <a href="history.html" class="btn">詳しく見る</a>
                         </div>
                     </div>
-                    <!-- 主な活動カード -->
                     <div class="card fade-in">
                         <div class="card-icon"><i class="fas fa-star"></i></div>
                         <div class="card-content">
                             <h3 class="card-title">主な活動内容</h3>
-                            <p class="card-text">お祭りや清掃活動など、私たちが取り組んでいる具体的な活動内容を紹介します。</p>
+                            <p class="card-text">お祭りやイベントなど、私たちが取り組んでいる具体的な活動内容を紹介します。</p>
                             <a href="activities.html" class="btn">詳しく見る</a>
                         </div>
                     </div>
@@ -88,18 +95,13 @@
     <footer class="footer">
         <div class="container">
             <div class="social-links">
-                <a href="https://www.facebook.com/watch/?v=1872150119939498" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
+                <a href="https://www.facebook.com/watch/?v=1872150119939498" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
-            <p> 2024 味美ネットワーク. All Rights Reserved.</p>
+            <p>© 2024 味美ネットワーク. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- 動きの魔法をかけるJavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
