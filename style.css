@@ -846,3 +846,157 @@ h1, h2, h3 {
     50% { transform: scale(1.1); opacity: 0.8; }
     100% { transform: scale(1); opacity: 1; }
 }
+
+/* ===================================
+   ブログページ
+====================================== */
+.page-header {
+    background: var(--blog-gradient);
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px;
+    border-bottom: 5px solid var(--primary-color);
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin: 0 0 15px 0;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.blog-posts {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.blog-post {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    padding: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.blog-post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 35px rgba(0,0,0,0.12);
+}
+
+.blog-post-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.blog-post-meta time {
+    color: #666;
+}
+
+.blog-post-category {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.blog-post-title {
+    font-size: 1.5rem;
+    margin: 0 0 20px 0;
+    color: var(--secondary-color);
+    line-height: 1.4;
+}
+
+.blog-post-content {
+    color: #555;
+    line-height: 1.8;
+}
+
+.blog-post-content p {
+    margin-bottom: 15px;
+}
+
+.blog-post-content p:last-child {
+    margin-bottom: 0;
+}
+
+.blog-placeholder {
+    background: var(--bg-color-light);
+    border: 2px dashed #ddd;
+    border-radius: 12px;
+    padding: 60px 30px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.placeholder-content i {
+    font-size: 3rem;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.placeholder-content h3 {
+    font-size: 1.3rem;
+    margin: 0 0 15px 0;
+    color: #666;
+}
+
+.placeholder-content p {
+    color: #888;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ブログページのスマホ対応 */
+@media screen and (max-width: 900px) {
+    .page-header {
+        padding: 60px 20px;
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .page-header p {
+        font-size: 1rem;
+    }
+    
+    .blog-post {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .blog-post-title {
+        font-size: 1.3rem;
+    }
+    
+    .blog-post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .blog-placeholder {
+        padding: 40px 20px;
+        margin-top: 30px;
+    }
+    
+    .placeholder-content i {
+        font-size: 2.5rem;
+    }
+    
+    .placeholder-content h3 {
+        font-size: 1.2rem;
+    }
+}
