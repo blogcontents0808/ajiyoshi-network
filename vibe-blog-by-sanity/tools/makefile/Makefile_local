@@ -1,0 +1,78 @@
+# プロジェクト固有のMakefile設定
+# vibe-blog-by-sanity用の設定
+
+# プロジェクト固有の変数
+APP_DIR = app
+STUDIO_PORT = 3333
+
+# セットアップコマンド
+define setup_command
+	cd $(APP_DIR) && $(NPM_CMD) install
+	@echo "$(GREEN)✓ 依存関係をインストールしました$(NC)"
+	@echo "$(YELLOW)⚠ Sanityプロジェクトの設定を確認してください:$(NC)"
+	@echo "  1. sanity.config.tsのprojectIdを更新"
+	@echo "  2. 環境変数を設定"
+	@echo "  3. make studio でSanity Studioを起動"
+endef
+
+# プレビューコマンド
+define preview_command
+	cd $(APP_DIR) && $(NPM_CMD) run build && $(NPM_CMD) run start
+endef
+
+# 開発サーバーコマンド
+define dev_command
+	cd $(APP_DIR) && $(NPM_CMD) run dev -- --port $(DEV_PORT)
+endef
+
+# デプロイコマンド
+define deploy_command
+	cd $(APP_DIR) && $(NPM_CMD) run build
+	@echo "$(GREEN)✓ アプリケーションをビルドしました$(NC)"
+	@echo "$(YELLOW)⚠ デプロイ先を選択してください:$(NC)"
+	@echo "  - make deploy-vercel: Vercelにデプロイ"
+	@echo "  - make deploy-firebase: Firebaseにデプロイ"
+	@echo "  - make deploy-studio: Sanity Studioをデプロイ"
+endef
+
+# クリーンアップコマンド
+define clean_command
+	cd $(APP_DIR) && rm -rf .next node_modules dist
+	@echo "$(GREEN)✓ ビルドファイルを削除しました$(NC)"
+endef
+
+# ローカル固有のターゲット
+build: ## プロジェクトをビルド
+	@echo "$(CYAN)▶ ビルド中...$(NC)"
+	cd $(APP_DIR) && $(NPM_CMD) run build
+	@echo "$(GREEN)✓ ビルド完了$(NC)"
+
+studio: ## Sanity Studioを起動
+	@echo "$(CYAN)▶ Sanity Studioを起動中...$(NC)"
+	@echo "$(CYAN)📍 URL: http://localhost:$(STUDIO_PORT)$(NC)"
+	cd $(APP_DIR) && $(NPM_CMD) run studio
+
+import-contents: ## vibe-blogのcontentsをSanityにインポート
+	@echo "$(CYAN)▶ コンテンツをインポート中...$(NC)"
+	cd $(APP_DIR) && $(NPM_CMD) run import-contents
+	@echo "$(GREEN)✓ インポート完了$(NC)"
+
+deploy-studio: ## Sanity Studioをデプロイ
+	@echo "$(CYAN)▶ Sanity Studioをデプロイ中...$(NC)"
+	cd $(APP_DIR) && $(NPM_CMD) run studio:deploy
+	@echo "$(GREEN)✓ Sanity Studioのデプロイ完了$(NC)"
+
+deploy-vercel: ## Vercelにデプロイ
+	@echo "$(CYAN)▶ Vercelにデプロイ中...$(NC)"
+	cd $(APP_DIR) && $(NPSX_CMD) vercel --prod
+	@echo "$(GREEN)✓ Vercelデプロイ完了$(NC)"
+
+deploy-firebase: ## Firebaseにデプロイ
+	@echo "$(CYAN)▶ Firebaseにデプロイ中...$(NC)"
+	cd $(APP_DIR) && $(NPM_CMD) run build && $(NPSX_CMD) firebase deploy
+	@echo "$(GREEN)✓ Firebaseデプロイ完了$(NC)"
+
+deploy-app: ## Next.jsアプリケーションのみデプロイ
+	@echo "$(CYAN)▶ Next.jsアプリケーションをデプロイ中...$(NC)"
+	@$(call deploy_command)
+	@echo "$(GREEN)✓ アプリケーションのデプロイ完了$(NC)"

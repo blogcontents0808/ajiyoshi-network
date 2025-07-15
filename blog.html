@@ -25,7 +25,7 @@
                     <li><a href="members.html">メンバー紹介</a></li>
                     <li><a href="history.html">沿革</a></li>
                     <li><a href="activities.html">活動内容</a></li>
-                    <li><a href="blog.html" class="blog-link">ブログ</a></li>
+                    <li><a href="vibe-blog-by-sanity/app/index.html" class="blog-link">ブログ</a></li>
                     <li><a href="contact.html">お問い合わせ</a></li>
                 </ul>
             </nav>
@@ -74,10 +74,13 @@
 
                     <div class="blog-placeholder">
                         <div class="placeholder-content">
-                            <i class="fas fa-pencil-alt"></i>
-                            <h3>更に多くの記事を準備中</h3>
-                            <p>味美ネットワークの活動についてより詳しい情報を準備しています。<br>
-                            お楽しみにお待ちください。</p>
+                            <i class="fas fa-external-link-alt"></i>
+                            <h3>新しいブログシステムに移行しました</h3>
+                            <p>より使いやすいブログシステムに移行しました。<br>
+                            新しいブログページでは、最新の記事をお楽しみいただけます。</p>
+                            <a href="vibe-blog-by-sanity/app/index.html" class="btn" style="margin-top: 20px;">
+                                新しいブログを見る
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -96,5 +99,11 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // 5秒後に新しいブログページに自動リダイレクト
+        setTimeout(function() {
+            window.location.href = 'vibe-blog-by-sanity/app/index.html';
+        }, 5000);
+    </script>
 </body>
 </html>
