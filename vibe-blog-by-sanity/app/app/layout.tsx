@@ -28,7 +28,7 @@ export default function RootLayout({
           <header className="header">
             <div className="container">
               <a href="../../../index.html" className="header-logo">
-                <img src="../../../images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" className="logo-character" />
+                <img src="/images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" className="logo-character" />
                 <h1>味美ネットワーク</h1>
               </a>
               <nav className="header-nav">

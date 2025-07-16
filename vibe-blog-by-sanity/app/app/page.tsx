@@ -1,10 +1,9 @@
-import { client, postsQuery } from '@/lib/sanity'
-import { urlFor } from '@/lib/sanity'
+import { getPosts, urlFor } from '@/lib/sanity'
 import Link from 'next/link'
 import Image from 'next/image'
 
 export default async function Home() {
-  const posts = await client.fetch(postsQuery)
+  const posts = await getPosts()
 
   return (
     <div>
