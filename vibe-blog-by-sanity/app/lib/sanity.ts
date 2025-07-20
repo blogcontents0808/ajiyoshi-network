@@ -125,12 +125,19 @@ export const settingsQuery = `
   }
 `
 
+// ビルド時や静的生成時の判定ヘルパー関数
+function isBuildTime(): boolean {
+  return !!(
+    process.env.VERCEL && process.env.CI // Vercelビルド環境
+  )
+}
+
 // フォールバック機能付きデータフェッチ関数
 export async function getPosts() {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id'
   
   // ビルド時またはプロジェクトIDが未設定の場合はモックデータを返す
-  if (projectId === 'your-project-id' || process.env.NODE_ENV === 'production') {
+  if (projectId === 'your-project-id' || isBuildTime()) {
     console.warn('Sanityプロジェクトが設定されていないか、ビルド時のため、モックデータを使用します')
     return mockPosts
   }
@@ -147,7 +154,7 @@ export async function getPost(slug: string) {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id'
   
   // ビルド時またはプロジェクトIDが未設定の場合はモックデータを返す
-  if (projectId === 'your-project-id' || process.env.NODE_ENV === 'production') {
+  if (projectId === 'your-project-id' || isBuildTime()) {
     console.warn('Sanityプロジェクトが設定されていないか、ビルド時のため、モックデータを使用します')
     return mockPosts.find(post => post.slug.current === slug) || null
   }
@@ -164,7 +171,7 @@ export async function getCategories() {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id'
   
   // ビルド時またはプロジェクトIDが未設定の場合はモックデータを返す
-  if (projectId === 'your-project-id' || process.env.NODE_ENV === 'production') {
+  if (projectId === 'your-project-id' || isBuildTime()) {
     console.warn('Sanityプロジェクトが設定されていないか、ビルド時のため、モックデータを使用します')
     return mockCategories
   }
@@ -181,7 +188,7 @@ export async function getPostsByCategory(category: string) {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id'
   
   // ビルド時またはプロジェクトIDが未設定の場合はモックデータを返す
-  if (projectId === 'your-project-id' || process.env.NODE_ENV === 'production') {
+  if (projectId === 'your-project-id' || isBuildTime()) {
     console.warn('Sanityプロジェクトが設定されていないか、ビルド時のため、モックデータを使用します')
     return mockPosts.filter(post => post.category.slug.current === category)
   }
@@ -198,7 +205,7 @@ export async function getSettings() {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id'
   
   // ビルド時またはプロジェクトIDが未設定の場合はモックデータを返す
-  if (projectId === 'your-project-id' || process.env.NODE_ENV === 'production') {
+  if (projectId === 'your-project-id' || isBuildTime()) {
     console.warn('Sanityプロジェクトが設定されていないか、ビルド時のため、モックデータを使用します')
     return mockSettings
   }

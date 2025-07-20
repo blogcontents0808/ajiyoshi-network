@@ -1,8 +1,8 @@
 import './globals.css'
-import { client, settingsQuery } from '@/lib/sanity'
+import { getSettings } from '@/lib/sanity'
 
 export async function generateMetadata() {
-  const settings = await client.fetch(settingsQuery)
+  const settings = await getSettings()
   
   return {
     title: settings?.title || '味美ネットワーク ブログ',
