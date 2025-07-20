@@ -7,6 +7,11 @@ export const client = createClient({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2023-05-03',
   useCdn: true,
+  requestTagPrefix: 'ajiyoshi-network',
+  withCredentials: false,
+  timeout: 10000, // 10秒でタイムアウト
+  maxRetries: 2,
+  retryDelay: 1000,
 })
 
 const builder = imageUrlBuilder(client)
@@ -124,8 +129,9 @@ export const settingsQuery = `
 export async function getPosts() {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id'
   
-  if (projectId === 'your-project-id') {
-    console.warn('Sanityプロジェクトが設定されていないため、モックデータを使用します')
+  // ビルド時またはプロジェクトIDが未設定の場合はモックデータを返す
+  if (projectId === 'your-project-id' || process.env.NODE_ENV === 'production') {
+    console.warn('Sanityプロジェクトが設定されていないか、ビルド時のため、モックデータを使用します')
     return mockPosts
   }
   
@@ -140,8 +146,9 @@ export async function getPosts() {
 export async function getPost(slug: string) {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id'
   
-  if (projectId === 'your-project-id') {
-    console.warn('Sanityプロジェクトが設定されていないため、モックデータを使用します')
+  // ビルド時またはプロジェクトIDが未設定の場合はモックデータを返す
+  if (projectId === 'your-project-id' || process.env.NODE_ENV === 'production') {
+    console.warn('Sanityプロジェクトが設定されていないか、ビルド時のため、モックデータを使用します')
     return mockPosts.find(post => post.slug.current === slug) || null
   }
   
@@ -156,8 +163,9 @@ export async function getPost(slug: string) {
 export async function getCategories() {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id'
   
-  if (projectId === 'your-project-id') {
-    console.warn('Sanityプロジェクトが設定されていないため、モックデータを使用します')
+  // ビルド時またはプロジェクトIDが未設定の場合はモックデータを返す
+  if (projectId === 'your-project-id' || process.env.NODE_ENV === 'production') {
+    console.warn('Sanityプロジェクトが設定されていないか、ビルド時のため、モックデータを使用します')
     return mockCategories
   }
   
@@ -172,8 +180,9 @@ export async function getCategories() {
 export async function getPostsByCategory(category: string) {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id'
   
-  if (projectId === 'your-project-id') {
-    console.warn('Sanityプロジェクトが設定されていないため、モックデータを使用します')
+  // ビルド時またはプロジェクトIDが未設定の場合はモックデータを返す
+  if (projectId === 'your-project-id' || process.env.NODE_ENV === 'production') {
+    console.warn('Sanityプロジェクトが設定されていないか、ビルド時のため、モックデータを使用します')
     return mockPosts.filter(post => post.category.slug.current === category)
   }
   
@@ -188,8 +197,9 @@ export async function getPostsByCategory(category: string) {
 export async function getSettings() {
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id'
   
-  if (projectId === 'your-project-id') {
-    console.warn('Sanityプロジェクトが設定されていないため、モックデータを使用します')
+  // ビルド時またはプロジェクトIDが未設定の場合はモックデータを返す
+  if (projectId === 'your-project-id' || process.env.NODE_ENV === 'production') {
+    console.warn('Sanityプロジェクトが設定されていないか、ビルド時のため、モックデータを使用します')
     return mockSettings
   }
   
