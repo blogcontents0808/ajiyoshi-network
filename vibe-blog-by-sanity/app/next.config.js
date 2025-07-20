@@ -3,6 +3,10 @@ const nextConfig = {
   images: {
     domains: ['cdn.sanity.io', 'via.placeholder.com'],
   },
+  transpilePackages: ['framer-motion'],
+  experimental: {
+    esmExternals: 'loose',
+  },
   async rewrites() {
     return [
       {
