@@ -9,7 +9,9 @@
       "Bash(npm install:*)",
       "Bash(npm run studio:*)",
       "Bash(npx sanity dev:*)",
-      "Bash(vercel login:*)"
+      "Bash(vercel login:*)",
+      "Bash(type:*)",
+      "Bash(cat:*)"
     ],
     "deny": []
   }
