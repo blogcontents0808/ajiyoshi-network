@@ -8,7 +8,8 @@
       "Bash(npm run dev:*)",
       "Bash(npm install:*)",
       "Bash(npm run studio:*)",
-      "Bash(npx sanity dev:*)"
+      "Bash(npx sanity dev:*)",
+      "Bash(vercel login:*)"
     ],
     "deny": []
   }
