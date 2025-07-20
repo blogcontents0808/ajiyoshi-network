@@ -221,7 +221,7 @@ export async function testSanityConnection() {
     console.error('Sanity connection error:', error)
     return { 
       success: false, 
-      error: error.message,
+      error: error instanceof Error ? error.message : String(error),
       projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
       message: 'Sanity接続エラー'
     }
