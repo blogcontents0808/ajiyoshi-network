@@ -11,7 +11,7 @@ export const client = createClient({
   withCredentials: false,
   timeout: 10000, // 10秒でタイムアウト
   maxRetries: 2,
-  retryDelay: 1000,
+  retryDelay: (attemptNumber: number) => 1000 * attemptNumber,
 })
 
 const builder = imageUrlBuilder(client)
