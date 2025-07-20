@@ -8,8 +8,7 @@ export async function GET(
 ) {
   try {
     const filename = params.filename
-    const baseDir = path.join(process.cwd(), '../../../')
-    const filePath = path.join(baseDir, filename)
+    const filePath = path.join(process.cwd(), 'public', filename)
     
     const content = await readFile(filePath, 'utf-8')
     

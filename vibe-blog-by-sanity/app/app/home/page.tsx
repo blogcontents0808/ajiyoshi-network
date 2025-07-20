@@ -51,7 +51,7 @@ export default function HomePage() {
                 <div className="card-content">
                   <h3 className="card-title">参加メンバー紹介</h3>
                   <p className="card-text">味美ネットワークで活動する、地域を愛する個性豊かなメンバーを紹介します。</p>
-                  <a href="/members" className="btn">詳しく見る</a>
+                  <a href="/api/static/members.html" className="btn">詳しく見る</a>
                 </div>
               </div>
               <div className="card fade-in">
@@ -59,7 +59,7 @@ export default function HomePage() {
                 <div className="card-content">
                   <h3 className="card-title">これまでの活動（沿革）</h3>
                   <p className="card-text">平成4年の発足から現在までの、私たちの歩みと主な活動の歴史をご紹介します。</p>
-                  <a href="/history" className="btn">詳しく見る</a>
+                  <a href="/api/static/history.html" className="btn">詳しく見る</a>
                 </div>
               </div>
               <div className="card fade-in">
@@ -67,7 +67,7 @@ export default function HomePage() {
                 <div className="card-content">
                   <h3 className="card-title">主な活動内容</h3>
                   <p className="card-text">お祭りやイベントなど、私たちが取り組んでいる具体的な活動内容を紹介します。</p>
-                  <a href="/activities" className="btn">詳しく見る</a>
+                  <a href="/api/static/activities.html" className="btn">詳しく見る</a>
                 </div>
               </div>
             </div>

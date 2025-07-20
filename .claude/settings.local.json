@@ -12,7 +12,8 @@
       "Bash(vercel login:*)",
       "Bash(type:*)",
       "Bash(cat:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }
