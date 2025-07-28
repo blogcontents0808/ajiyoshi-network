@@ -4,6 +4,9 @@ import { sendAdminNotification, sendUserConfirmation } from '@/lib/emailService'
 
 export async function POST(request: NextRequest) {
   try {
+    // テストモードの確認
+    const isTestMode = request.headers.get('X-Test') === 'true';
+    
     // リクエストボディの取得
     const body: ContactData = await request.json();
     
@@ -36,8 +39,24 @@ export async function POST(request: NextRequest) {
       name: sanitizedData.name,
       email: sanitizedData.email,
       subject: sanitizedData.subject,
-      messageLength: sanitizedData.message.length
+      messageLength: sanitizedData.message.length,
+      testMode: isTestMode
     });
+
+    // テストモードの場合はモックレスポンスを返す
+    if (isTestMode) {
+      console.log('テストモード: DB保存・メール送信をスキップ');
+      return NextResponse.json({
+        success: true,
+        message: 'テストモード: お問い合わせを受け付けました（実際の保存・送信は行われません）',
+        details: {
+          sheetSaved: true,
+          adminNotified: true,
+          userConfirmed: true,
+          testMode: true
+        }
+      });
+    }
 
     // 並行処理でGoogle SheetsとEmail送信を実行
     const [sheetResult, adminEmailResult, userEmailResult] = await Promise.allSettled([
