@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブログ記事作成システム｜味美ネットワーク</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-creator {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .image-upload {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            transition: border-color 0.3s;
+            cursor: pointer;
+        }
+
+        .image-upload:hover {
+            border-color: var(--primary-color);
+        }
+
+        .image-upload.drag-over {
+            border-color: var(--primary-color);
+            background-color: rgba(255, 102, 0, 0.05);
+        }
+
+        .image-preview {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .image-preview img {
+            max-width: 300px;
+            max-height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .category-colors {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .category-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .content-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .content-section h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+
+        .add-section-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .remove-section-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            cursor: pointer;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="../../index.html" class="header-logo">
+                <img src="../../images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" class="logo-character">
+                <h1>味美ネットワーク</h1>
+            </a>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="../../index.html">ホーム</a></li>
+                    <li><a href="index.html">ブログ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="blog-creator">
+                <h2 style="text-align: center; color: var(--secondary-color); margin-bottom: 30px;">
+                    <i class="fas fa-edit"></i> ブログ記事作成システム
+                </h2>
+
+                <!-- Sanity接続設定 -->
+                <div class="content-section" style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary-color);">
+                        <i class="fas fa-cog"></i> Sanity CMS接続設定
+                    </h3>
+                    <div class="form-group">
+                        <label for="sanityToken">Sanity Write Token *</label>
+                        <input type="password" id="sanityToken" placeholder="Sanity Write Tokenを入力してください">
+                        <small style="color: #666; display: block; margin-top: 5px;">
+                            <i class="fas fa-info-circle"></i> 
+                            Sanity Studioの設定 → API → Tokens から Write権限のTokenを作成してください
+                        </small>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <button type="button" id="testConnectionBtn" class="btn" style="background: #6c757d; padding: 8px 15px; font-size: 14px;">
+                            <i class="fas fa-wifi"></i> 接続テスト
+                        </button>
+                        <div id="connectionStatus" style="font-size: 14px; font-weight: 700;"></div>
+                    </div>
+                </div>
+
+                <form id="blogForm">
+                    <!-- 基本情報 -->
+                    <div class="form-group">
+                        <label for="title">記事タイトル *</label>
+                        <input type="text" id="title" name="title" required placeholder="例：サマーフェスタ味美2024開催しました！">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">カテゴリ *</label>
+                        <select id="category" name="category" required>
+                            <option value="">カテゴリを選択</option>
+                            <option value="お知らせ">お知らせ</option>
+                            <option value="イベント">イベント</option>
+                            <option value="活動報告">活動報告</option>
+                            <option value="重要">重要</option>
+                        </select>
+                        <div class="category-colors">
+                            <div class="category-color" style="background-color: #FF6600;" title="お知らせ"></div>
+                            <div class="category-color" style="background-color: #3498DB;" title="イベント"></div>
+                            <div class="category-color" style="background-color: #27AE60;" title="活動報告"></div>
+                            <div class="category-color" style="background-color: #E74C3C;" title="重要"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">公開日</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">記事概要 *</label>
+                        <textarea id="description" name="description" required placeholder="記事の内容を簡潔に説明してください（一覧ページに表示されます）"></textarea>
+                    </div>
+
+                    <!-- 画像アップロード -->
+                    <div class="form-group">
+                        <label>メイン画像 *</label>
+                        <div class="image-upload" id="imageUpload">
+                            <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: #ccc; margin-bottom: 15px;"></i>
+                            <p>画像をドラッグ&ドロップするか、クリックして選択</p>
+                            <p style="font-size: 0.9rem; color: #666;">形式: JPG/PNG、最大5MB</p>
+                            <input type="file" id="imageFile" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="image-preview" id="imagePreview"></div>
+                    </div>
+
+                    <!-- 記事内容 -->
+                    <div class="form-group">
+                        <label for="intro">導入文 *</label>
+                        <textarea id="intro" name="intro" required placeholder="記事の導入部分を記入してください"></textarea>
+                    </div>
+
+                    <div id="contentSections">
+                        <div class="content-section">
+                            <h3>セクション 1</h3>
+                            <div class="form-group">
+                                <label>見出し</label>
+                                <input type="text" class="section-title" placeholder="見出しを入力">
+                            </div>
+                            <div class="form-group">
+                                <label>内容</label>
+                                <textarea class="section-content" placeholder="このセクションの内容を入力"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="add-section-btn" onclick="addContentSection()">
+                        <i class="fas fa-plus"></i> セクションを追加
+                    </button>
+
+                    <div class="form-group">
+                        <label for="conclusion">まとめ</label>
+                        <textarea id="conclusion" name="conclusion" placeholder="記事のまとめや今後の予定など"></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 40px;">
+                        <button type="submit" class="btn" id="submitBtn">
+                            <i class="fas fa-rocket"></i> 記事を作成・公開
+                        </button>
+                    </div>
+                </form>
+
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i> 記事が正常に作成・公開されました！
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    <i class="fas fa-exclamation-triangle"></i> エラーが発生しました。もう一度お試しください。
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="sanity-blog-api-v2.js"></script>
+    <script>
+        // 現在の日付を設定
+        document.getElementById('date').valueAsDate = new Date();
+
+        // Sanity接続テスト（修正版）
+        document.getElementById('testConnectionBtn').addEventListener('click', async () => {
+            const token = document.getElementById('sanityToken').value;
+            const statusDiv = document.getElementById('connectionStatus');
+            const testBtn = document.getElementById('testConnectionBtn');
+            
+            if (!token) {
+                statusDiv.innerHTML = '<span style="color: #E74C3C;"><i class="fas fa-times"></i> Tokenが入力されていません</span>';
+                return;
+            }
+            
+            testBtn.disabled = true;
+            testBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 初期化中...';
+            statusDiv.innerHTML = '<span style="color: #6c757d;"><i class="fas fa-clock"></i> Sanity Client初期化中...</span>';
+            
+            try {
+                // デバッグ情報を表示
+                console.log('Debug info before token setting:', window.getSanityDebugInfo());
+                
+                // Tokenを設定（非同期で待機）
+                testBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Token設定中...';
+                await window.setSanityToken(token);
+                
+                // デバッグ情報を表示
+                console.log('Debug info after token setting:', window.getSanityDebugInfo());
+                
+                // 接続テスト
+                testBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 接続テスト中...';
+                statusDiv.innerHTML = '<span style="color: #6c757d;"><i class="fas fa-clock"></i> Sanity API接続テスト中...</span>';
+                
+                const result = await window.testSanityConnection();
+                
+                if (result.success) {
+                    statusDiv.innerHTML = `<span style="color: #27AE60;"><i class="fas fa-check"></i> 接続成功 (Project: ${result.projectId})</span>`;
+                    console.log('Connection test successful:', result);
+                } else {
+                    statusDiv.innerHTML = `<span style="color: #E74C3C;"><i class="fas fa-times"></i> 接続失敗: ${result.message}</span>`;
+                    console.error('Connection test failed:', result);
+                }
+            } catch (error) {
+                console.error('Connection test error:', error);
+                statusDiv.innerHTML = `<span style="color: #E74C3C;"><i class="fas fa-times"></i> エラー: ${error.message}</span>`;
+                
+                // 詳細なデバッグ情報を表示
+                console.log('Debug info on error:', window.getSanityDebugInfo());
+            } finally {
+                testBtn.disabled = false;
+                testBtn.innerHTML = '<i class="fas fa-wifi"></i> 接続テスト';
+            }
+        });
+
+        // 画像アップロード機能
+        const imageUpload = document.getElementById('imageUpload');
+        const imageFile = document.getElementById('imageFile');
+        const imagePreview = document.getElementById('imagePreview');
+        let uploadedImage = null;
+
+        // クリックでファイル選択
+        imageUpload.addEventListener('click', () => {
+            imageFile.click();
+        });
+
+        // ドラッグ&ドロップ
+        imageUpload.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            imageUpload.classList.add('drag-over');
+        });
+
+        imageUpload.addEventListener('dragleave', () => {
+            imageUpload.classList.remove('drag-over');
+        });
+
+        imageUpload.addEventListener('drop', (e) => {
+            e.preventDefault();
+            imageUpload.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleImageFile(files[0]);
+            }
+        });
+
+        // ファイル選択
+        imageFile.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleImageFile(e.target.files[0]);
+            }
+        });
+
+        // 画像ファイル処理
+        function handleImageFile(file) {
+            // ファイルタイプチェック
+            if (!file.type.startsWith('image/')) {
+                alert('画像ファイルを選択してください。対応形式: JPG, PNG, GIF, WebP');
+                return;
+            }
+            
+            // ファイルサイズチェック（5MB = 5 * 1024 * 1024 bytes）
+            const maxSize = 5 * 1024 * 1024;
+            if (file.size > maxSize) {
+                alert(`ファイルサイズが大きすぎます。\n現在: ${(file.size / 1024 / 1024).toFixed(2)}MB\n上限: 5MB\n\n画像を圧縮してから再度お試しください。`);
+                return;
+            }
+            
+            uploadedImage = file;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                imagePreview.innerHTML = `
+                    <img src="${e.target.result}" alt="プレビュー">
+                    <p style="margin-top: 10px; color: #666;">ファイル名: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB)</p>
+                `;
+            };
+            reader.onerror = () => {
+                alert('画像の読み込みに失敗しました。別の画像を選択してください。');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // コンテンツセクション追加
+        let sectionCount = 1;
+        function addContentSection() {
+            sectionCount++;
+            const sectionsContainer = document.getElementById('contentSections');
+            const newSection = document.createElement('div');
+            newSection.className = 'content-section';
+            newSection.innerHTML = `
+                <h3>セクション ${sectionCount}
+                    <button type="button" class="remove-section-btn" onclick="removeSection(this)">削除</button>
+                </h3>
+                <div class="form-group">
+                    <label>見出し</label>
+                    <input type="text" class="section-title" placeholder="見出しを入力">
+                </div>
+                <div class="form-group">
+                    <label>内容</label>
+                    <textarea class="section-content" placeholder="このセクションの内容を入力"></textarea>
+                </div>
+            `;
+            sectionsContainer.appendChild(newSection);
+        }
+
+        // セクション削除
+        function removeSection(btn) {
+            btn.closest('.content-section').remove();
+        }
+
+        // フォーム送信
+        document.getElementById('blogForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const token = document.getElementById('sanityToken').value;
+            
+            // Tokenチェック
+            if (!token) {
+                errorMessage.textContent = 'Sanity Write Tokenを入力してください';
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                return;
+            }
+            
+            // ボタンを無効化
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sanityに投稿中...';
+            
+            try {
+                // Tokenを設定（非同期で待機）
+                await window.setSanityToken(token);
+                
+                // フォームデータ収集
+                const formData = new FormData();
+                
+                // 基本情報
+                formData.append('title', document.getElementById('title').value);
+                formData.append('category', document.getElementById('category').value);
+                formData.append('date', document.getElementById('date').value);
+                formData.append('description', document.getElementById('description').value);
+                formData.append('intro', document.getElementById('intro').value);
+                formData.append('conclusion', document.getElementById('conclusion').value);
+                
+                // 画像
+                if (uploadedImage) {
+                    formData.append('image', uploadedImage);
+                }
+                
+                // セクション内容
+                const sections = [];
+                document.querySelectorAll('.content-section').forEach((section, index) => {
+                    const title = section.querySelector('.section-title').value;
+                    const content = section.querySelector('.section-content').value;
+                    if (title || content) {
+                        sections.push({ title, content });
+                    }
+                });
+                formData.append('sections', JSON.stringify(sections));
+                
+                // Sanity APIに記事投稿
+                const response = await createSanityBlogPost(formData);
+                
+                if (response.success) {
+                    successMessage.innerHTML = `
+                        <i class="fas fa-check-circle"></i> 
+                        記事がSanityに正常に投稿されました！<br>
+                        <small>記事ID: ${response.sanityId}</small><br>
+                        <small>Vercelサイトに反映されるまで数分かかる場合があります</small>
+                    `;
+                    successMessage.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                    
+                    // フォームリセット
+                    document.getElementById('blogForm').reset();
+                    imagePreview.innerHTML = '';
+                    uploadedImage = null;
+                    
+                    // 5秒後にVercelサイトを開く
+                    setTimeout(() => {
+                        window.open('https://ajiyoshi-network.vercel.app/', '_blank');
+                    }, 5000);
+                } else {
+                    throw new Error(response.message || '記事の作成に失敗しました');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                errorMessage.textContent = `エラー: ${error.message}`;
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+            } finally {
+                // ボタンを有効化
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-rocket"></i> 記事を作成・公開';
+            }
+        });
+
+    </script>
+</body>
+</html>

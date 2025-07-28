@@ -52,7 +52,7 @@
                     <p>万が一返信がない場合は、メールアドレスの入力間違いの可能性がございますので、お手数ですが再度お問い合わせください。</p>
                     <p>味美ネットワークの活動に関するご意見や、イベント参加に関するご質問など、どんなことでもお気軽にご連絡ください。</p>
                 </div>
-                <form name="contact" method="POST" data-netlify="true" action="/thanks.html">
+                <form id="contactForm" method="POST">
                     <div class="form-group floating">
                         <input type="text" id="name" name="name" placeholder=" " required>
                         <label for="name">お名前 <span class="required">必須</span></label>
@@ -70,8 +70,11 @@
                         <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
                     </div>
                     <div class="form-submit">
-                        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> 送信する</button>
+                        <button type="submit" class="btn" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i> 送信する
+                        </button>
                     </div>
+                    <div id="formMessage" style="margin-top: 20px; padding: 15px; border-radius: 5px; display: none;"></div>
                 </form>
             </div>
         </section>
@@ -88,5 +91,91 @@
     </footer>
 
     <script src="/script.js"></script>
+    <script>
+        // お問い合わせフォームの処理
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // 送信中の表示
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
+            formMessage.style.display = 'none';
+            
+            try {
+                // フォームデータの収集
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    subject: document.getElementById('subject').value.trim(),
+                    message: document.getElementById('message').value.trim()
+                };
+                
+                // API呼び出し
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // 成功時
+                    formMessage.style.display = 'block';
+                    formMessage.style.background = 'linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%)';
+                    formMessage.style.color = 'white';
+                    formMessage.innerHTML = `
+                        <div style="display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; font-size: 20px;"></i>
+                            <div>
+                                <strong>送信完了！</strong><br>
+                                ${result.message}<br>
+                                <small>確認メールをお送りしましたのでご確認ください。</small>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // フォームをリセット
+                    document.getElementById('contactForm').reset();
+                    
+                    // 3秒後にサンクスページにリダイレクト
+                    setTimeout(() => {
+                        window.location.href = '/api/static/thanks.html';
+                    }, 3000);
+                    
+                } else {
+                    // エラー時
+                    throw new Error(result.error || 'お問い合わせの送信に失敗しました。');
+                }
+                
+            } catch (error) {
+                console.error('送信エラー:', error);
+                
+                formMessage.style.display = 'block';
+                formMessage.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ffa8a8 100%)';
+                formMessage.style.color = 'white';
+                formMessage.innerHTML = `
+                    <div style="display: flex; align-items: center;">
+                        <i class="fas fa-exclamation-triangle" style="margin-right: 10px; font-size: 20px;"></i>
+                        <div>
+                            <strong>送信エラー</strong><br>
+                            ${error.message}<br>
+                            <small>時間をおいて再度お試しください。</small>
+                        </div>
+                    </div>
+                `;
+            } finally {
+                // ボタンを元に戻す
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        });
+    </script>
 </body>
 </html>

@@ -26,7 +26,6 @@ export const setting = defineType({
       name: 'logo',
       title: 'ロゴ',
       type: 'image',
-      options: { hotspot: true },
     }),
     defineField({
       name: 'favicon',
@@ -37,7 +36,6 @@ export const setting = defineType({
       name: 'ogImage',
       title: 'OGP画像',
       type: 'image',
-      options: { hotspot: true },
     }),
     defineField({
       name: 'googleAnalyticsId',
