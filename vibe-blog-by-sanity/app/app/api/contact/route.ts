@@ -85,8 +85,10 @@ export async function POST(request: NextRequest) {
       console.error('ユーザー確認メール送信エラー:', results.userEmail.error);
     }
 
-    // 最低限スプレッドシートへの保存が成功していれば成功とする
-    if (results.sheet.success) {
+    // 成功条件の見直し: メール送信か保存のいずれかが成功していれば成功とする
+    const hasSuccessfulOperation = results.sheet.success || results.adminEmail.success;
+    
+    if (hasSuccessfulOperation) {
       return NextResponse.json({
         success: true,
         message: 'お問い合わせを受け付けました。ご返信まで今しばらくお待ちください。',
@@ -94,14 +96,18 @@ export async function POST(request: NextRequest) {
           sheetSaved: results.sheet.success,
           adminNotified: results.adminEmail.success,
           userConfirmed: results.userEmail.success,
-          testMode: isTestMode
+          testMode: isTestMode,
+          note: !results.sheet.success ? 'スプレッドシート保存に問題がありましたが、メール通知は送信されました。' : undefined
         }
       });
     } else {
       return NextResponse.json(
         { 
-          error: 'お問い合わせの保存に失敗しました。時間をおいて再度お試しください。',
-          details: results.sheet.error
+          error: 'お問い合わせの処理に失敗しました。時間をおいて再度お試しください。',
+          details: {
+            sheetError: results.sheet.error,
+            emailError: results.adminEmail.error
+          }
         },
         { status: 500 }
       );
