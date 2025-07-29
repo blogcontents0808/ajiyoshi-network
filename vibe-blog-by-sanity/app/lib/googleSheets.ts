@@ -58,7 +58,7 @@ export async function addContactToSheet(data: ContactData) {
 
   } catch (error) {
     console.error('Google Sheets エラー:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: (error as Error).message };
   }
 }
 
@@ -83,6 +83,6 @@ export async function getContactList() {
 
   } catch (error) {
     console.error('Google Sheets 読み取りエラー:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: (error as Error).message };
   }
 }
