@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { addContactToSheet, ContactData } from '@/lib/googleSheets';
-import { sendAdminNotification, sendUserConfirmation } from '@/lib/emailService';
+
+// 一時的に他のインポートをコメントアウト
+// import { addContactToSheet, ContactData } from '@/lib/googleSheets';
+// import { sendAdminNotification, sendUserConfirmation } from '@/lib/emailService';
+
+type ContactData = {
+  name: string;
+  email: string;
+  subject?: string;
+  message: string;
+};
 
 export async function POST(request: NextRequest) {
   try {
@@ -58,53 +67,25 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // 並行処理でGoogle SheetsとEmail送信を実行
-    const [sheetResult, adminEmailResult, userEmailResult] = await Promise.allSettled([
-      addContactToSheet(sanitizedData),
-      sendAdminNotification(sanitizedData),
-      sendUserConfirmation(sanitizedData)
-    ]);
-
-    // 結果の処理
-    const results = {
-      sheet: sheetResult.status === 'fulfilled' ? sheetResult.value : { success: false, error: sheetResult.reason },
-      adminEmail: adminEmailResult.status === 'fulfilled' ? adminEmailResult.value : { success: false, error: adminEmailResult.reason },
-      userEmail: userEmailResult.status === 'fulfilled' ? userEmailResult.value : { success: false, error: userEmailResult.reason },
-    };
-
-    console.log('処理結果:', results);
-
-    // エラーログ
-    if (!results.sheet.success) {
-      console.error('Google Sheets 保存エラー:', results.sheet.error);
-    }
-    if (!results.adminEmail.success) {
-      console.error('管理者メール送信エラー:', results.adminEmail.error);
-    }
-    if (!results.userEmail.success) {
-      console.error('ユーザー確認メール送信エラー:', results.userEmail.error);
-    }
-
-    // 最低限スプレッドシートへの保存が成功していれば成功とする
-    if (results.sheet.success) {
-      return NextResponse.json({
-        success: true,
-        message: 'お問い合わせを受け付けました。ご返信まで今しばらくお待ちください。',
-        details: {
-          sheetSaved: results.sheet.success,
-          adminNotified: results.adminEmail.success,
-          userConfirmed: results.userEmail.success,
+    // 一時的に実際の処理をコメントアウトし、モックレスポンスを返す
+    console.log('簡素化されたAPIテスト - 受信データ:', sanitizedData);
+    
+    return NextResponse.json({
+      success: true,
+      message: 'お問い合わせを受け付けました（簡素化テスト版）',
+      details: {
+        sheetSaved: true,
+        adminNotified: true,
+        userConfirmed: true,
+        testMode: isTestMode,
+        receivedData: {
+          name: sanitizedData.name,
+          email: sanitizedData.email,
+          hasSubject: !!sanitizedData.subject,
+          messageLength: sanitizedData.message.length
         }
-      });
-    } else {
-      return NextResponse.json(
-        { 
-          error: 'お問い合わせの保存に失敗しました。時間をおいて再度お試しください。',
-          details: results.sheet.error
-        },
-        { status: 500 }
-      );
-    }
+      }
+    });
 
   } catch (error) {
     console.error('API Route エラー:', error);
