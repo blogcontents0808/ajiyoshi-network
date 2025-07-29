@@ -39,18 +39,42 @@ export async function addContactToSheet(data: ContactData) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
+    // シート情報の取得とシート名の確認
+    let sheetName = 'Sheet1'; // デフォルト
+    try {
+      const sheetInfo = await sheets.spreadsheets.get({
+        spreadsheetId: SPREADSHEET_ID,
+      });
+      
+      const availableSheets = sheetInfo.data.sheets?.map(sheet => sheet.properties?.title) || [];
+      console.log('利用可能なシート:', availableSheets);
+      
+      // 利用可能なシート名を確認
+      if (availableSheets.includes('Sheet1')) {
+        sheetName = 'Sheet1';
+      } else if (availableSheets.includes('シート1')) {
+        sheetName = 'シート1';
+      } else if (availableSheets.length > 0) {
+        sheetName = availableSheets[0] || 'Sheet1';
+      }
+      
+      console.log('使用するシート名:', sheetName);
+    } catch (sheetInfoError) {
+      console.error('シート情報取得エラー:', sheetInfoError);
+    }
+
     // シートの存在確認とヘッダー行の初期化
     try {
       const existingData = await sheets.spreadsheets.values.get({
         spreadsheetId: SPREADSHEET_ID,
-        range: 'Sheet1!A1:F1',
+        range: `${sheetName}!A1:F1`,
       });
 
       // ヘッダー行が存在しない場合は作成
       if (!existingData.data.values || existingData.data.values.length === 0) {
         await sheets.spreadsheets.values.update({
           spreadsheetId: SPREADSHEET_ID,
-          range: 'Sheet1!A1:F1',
+          range: `${sheetName}!A1:F1`,
           valueInputOption: 'RAW',
           requestBody: {
             values: [['日時', '名前', 'メールアドレス', '件名', 'メッセージ', '処理状況']],
@@ -59,7 +83,7 @@ export async function addContactToSheet(data: ContactData) {
         console.log('ヘッダー行を初期化しました');
       }
     } catch (headerError) {
-      console.log('ヘッダー行チェックエラー:', headerError);
+      console.error('ヘッダー行チェックエラー:', headerError);
     }
 
     // 現在の日時を取得
@@ -86,7 +110,7 @@ export async function addContactToSheet(data: ContactData) {
     // シートに行を追加
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'Sheet1!A:F', // A列からF列まで
+      range: `${sheetName}!A:F`, // A列からF列まで
       valueInputOption: 'RAW',
       requestBody: {
         values,
@@ -121,9 +145,25 @@ export async function getContactList() {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
+    // シート名の動的取得
+    let sheetName = 'Sheet1';
+    try {
+      const sheetInfo = await sheets.spreadsheets.get({
+        spreadsheetId: SPREADSHEET_ID,
+      });
+      const availableSheets = sheetInfo.data.sheets?.map(sheet => sheet.properties?.title) || [];
+      if (availableSheets.includes('シート1')) {
+        sheetName = 'シート1';
+      } else if (availableSheets.length > 0) {
+        sheetName = availableSheets[0] || 'Sheet1';
+      }
+    } catch (sheetInfoError) {
+      console.error('シート情報取得エラー:', sheetInfoError);
+    }
+
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'Sheet1!A:F',
+      range: `${sheetName}!A:F`,
     });
 
     return { success: true, data: response.data.values || [] };
