@@ -11,6 +11,23 @@ export interface ContactData {
 
 export async function addContactToSheet(data: ContactData) {
   try {
+    // 環境変数の存在確認
+    if (!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY) {
+      console.warn('Google Sheets認証情報が未設定のため、ローカルログに保存します');
+      console.log('お問い合わせデータ:', {
+        timestamp: new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }),
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message
+      });
+      return { 
+        success: true, 
+        message: 'ローカル環境: お問い合わせをログに記録しました',
+        localMode: true 
+      };
+    }
+
     // Google Sheets APIクライアントの設定
     const auth = new google.auth.GoogleAuth({
       credentials: {

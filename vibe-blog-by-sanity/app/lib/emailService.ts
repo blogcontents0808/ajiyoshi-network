@@ -3,6 +3,21 @@ import { ContactData } from './googleSheets';
 
 export async function sendAdminNotification(data: ContactData) {
   try {
+    // 環境変数の存在確認
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_PASS) {
+      console.warn('Gmail認証情報が未設定のため、ログに記録します');
+      console.log('管理者通知:', {
+        type: 'admin_notification',
+        data: data,
+        timestamp: new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
+      });
+      return { 
+        success: true, 
+        message: 'ローカル環境: 管理者通知をログに記録しました',
+        localMode: true 
+      };
+    }
+
     // Gmail SMTP設定
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -106,6 +121,22 @@ export async function sendAdminNotification(data: ContactData) {
 
 export async function sendUserConfirmation(data: ContactData) {
   try {
+    // 環境変数の存在確認
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_PASS) {
+      console.warn('Gmail認証情報が未設定のため、ログに記録します');
+      console.log('ユーザー確認通知:', {
+        type: 'user_confirmation',
+        email: data.email,
+        name: data.name,
+        timestamp: new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
+      });
+      return { 
+        success: true, 
+        message: 'ローカル環境: ユーザー確認通知をログに記録しました',
+        localMode: true 
+      };
+    }
+
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
