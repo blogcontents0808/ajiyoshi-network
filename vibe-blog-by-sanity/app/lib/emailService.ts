@@ -4,7 +4,7 @@ import { ContactData } from './googleSheets';
 export async function sendAdminNotification(data: ContactData) {
   try {
     // Gmail SMTP設定
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.GMAIL_USER,
@@ -100,13 +100,13 @@ export async function sendAdminNotification(data: ContactData) {
 
   } catch (error) {
     console.error('メール送信エラー:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: (error as Error).message };
   }
 }
 
 export async function sendUserConfirmation(data: ContactData) {
   try {
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.GMAIL_USER,
@@ -175,6 +175,6 @@ export async function sendUserConfirmation(data: ContactData) {
 
   } catch (error) {
     console.error('確認メール送信エラー:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: (error as Error).message };
   }
 }
