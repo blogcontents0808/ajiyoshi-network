@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お問い合わせ｜味美ネットワーク</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -14,19 +14,18 @@
 
     <header class="header">
         <div class="container">
-            <a href="/index.html" class="header-logo">
-                <img src="/images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" class="logo-character">
+            <a href="index.html" class="header-logo">
+                <img src="images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" class="logo-character">
                 <h1>味美ネットワーク</h1>
             </a>
             <nav class="header-nav">
                 <ul>
-                    <li><a href="/home">ホーム</a></li>
-                    <li><a href="/home">味美ネットワークとは</a></li>
-                    <li><a href="/api/static/members.html">メンバー紹介</a></li>
-                    <li><a href="/api/static/history.html">沿革</a></li>
-                    <li><a href="/api/static/activities.html">活動内容</a></li>
-                    <li><a href="/">ブログ</a></li>
-                    <li><a href="/api/static/contact.html">お問い合わせ</a></li>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="index.html#intro">味美ネットワークとは</a></li>
+                    <li><a href="members.html">メンバー紹介</a></li>
+                    <li><a href="history.html">沿革</a></li>
+                    <li><a href="activities.html">活動内容</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
                 </ul>
             </nav>
             <button class="hamburger-btn" id="hamburger-btn" aria-label="メニューを開く">
@@ -52,7 +51,7 @@
                     <p>万が一返信がない場合は、メールアドレスの入力間違いの可能性がございますので、お手数ですが再度お問い合わせください。</p>
                     <p>味美ネットワークの活動に関するご意見や、イベント参加に関するご質問など、どんなことでもお気軽にご連絡ください。</p>
                 </div>
-                <form id="contactForm" method="POST">
+                <form name="contact" method="POST" data-netlify="true" action="/thanks.html">
                     <div class="form-group floating">
                         <input type="text" id="name" name="name" placeholder=" " required>
                         <label for="name">お名前 <span class="required">必須</span></label>
@@ -69,12 +68,23 @@
                         <textarea id="message" name="message" rows="6" placeholder=" " required></textarea>
                         <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
                     </div>
-                    <div class="form-submit">
-                        <button type="submit" class="btn" id="submitBtn">
-                            <i class="fas fa-paper-plane"></i> 送信する
-                        </button>
+                    <div class="form-group privacy-notice" style="margin: 1.5rem 0; padding: 1rem; background-color: #f8f9fa; border-radius: 5px; font-size: 0.9rem;">
+                        <p>個人情報の取り扱いについては、<a href="privacy.html" target="_blank" style="color: #e74c3c; text-decoration: underline;">プライバシーポリシー</a>をご確認ください。</p>
+                        <p>また、本サイトの<a href="terms.html" target="_blank" style="color: #e74c3c; text-decoration: underline;">利用規約</a>もあわせてご確認ください。</p>
+                        <div style="margin-top: 0.8rem;">
+                            <label style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                                <input type="checkbox" name="privacy_agree" required style="margin-right: 0.5rem;">
+                                <span>プライバシーポリシーに同意します</span>
+                            </label>
+                            <label style="display: flex; align-items: center;">
+                                <input type="checkbox" name="terms_agree" required style="margin-right: 0.5rem;">
+                                <span>利用規約に同意します</span>
+                            </label>
+                        </div>
                     </div>
-                    <div id="formMessage" style="margin-top: 20px; padding: 15px; border-radius: 5px; display: none;"></div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> 送信する</button>
+                    </div>
                 </form>
             </div>
         </section>
@@ -87,95 +97,10 @@
                 <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
             <p>© 2024 味美ネットワーク. All Rights Reserved.</p>
+            <p><a href="privacy.html">プライバシーポリシー</a> | <a href="terms.html">利用規約</a></p>
         </div>
     </footer>
 
-    <script src="/script.js"></script>
-    <script>
-        // お問い合わせフォームの処理
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const formMessage = document.getElementById('formMessage');
-            const originalBtnText = submitBtn.innerHTML;
-            
-            // 送信中の表示
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
-            formMessage.style.display = 'none';
-            
-            try {
-                // フォームデータの収集
-                const formData = {
-                    name: document.getElementById('name').value.trim(),
-                    email: document.getElementById('email').value.trim(),
-                    subject: document.getElementById('subject').value.trim(),
-                    message: document.getElementById('message').value.trim()
-                };
-                
-                // API呼び出し
-                const response = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-                
-                const result = await response.json();
-                
-                if (response.ok && result.success) {
-                    // 成功時
-                    formMessage.style.display = 'block';
-                    formMessage.style.background = 'linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%)';
-                    formMessage.style.color = 'white';
-                    formMessage.innerHTML = `
-                        <div style="display: flex; align-items: center;">
-                            <i class="fas fa-check-circle" style="margin-right: 10px; font-size: 20px;"></i>
-                            <div>
-                                <strong>送信完了！</strong><br>
-                                ${result.message}<br>
-                                <small>確認メールをお送りしましたのでご確認ください。</small>
-                            </div>
-                        </div>
-                    `;
-                    
-                    // フォームをリセット
-                    document.getElementById('contactForm').reset();
-                    
-                    // 3秒後にサンクスページにリダイレクト
-                    setTimeout(() => {
-                        window.location.href = '/api/static/thanks.html';
-                    }, 3000);
-                    
-                } else {
-                    // エラー時
-                    throw new Error(result.error || 'お問い合わせの送信に失敗しました。');
-                }
-                
-            } catch (error) {
-                console.error('送信エラー:', error);
-                
-                formMessage.style.display = 'block';
-                formMessage.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ffa8a8 100%)';
-                formMessage.style.color = 'white';
-                formMessage.innerHTML = `
-                    <div style="display: flex; align-items: center;">
-                        <i class="fas fa-exclamation-triangle" style="margin-right: 10px; font-size: 20px;"></i>
-                        <div>
-                            <strong>送信エラー</strong><br>
-                            ${error.message}<br>
-                            <small>時間をおいて再度お試しください。</small>
-                        </div>
-                    </div>
-                `;
-            } finally {
-                // ボタンを元に戻す
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
