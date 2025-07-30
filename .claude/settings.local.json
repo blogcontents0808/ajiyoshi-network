@@ -13,7 +13,19 @@
       "Bash(type:*)",
       "Bash(cat:*)",
       "Bash(npm run build:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "WebFetch(domain:ajiyoshi-network.vercel.app)",
+      "Bash(head:*)",
+      "Bash(vercel logs:*)",
+      "Bash(powershell:*)",
+      "Bash(curl:*)",
+      "Bash(git rm:*)",
+      "Bash(echo:*)",
+      "Bash(pkill:*)",
+      "Bash(true)",
+      "WebFetch(domain:localhost)",
+      "Bash(vercel:*)",
+      "Bash(cp:*)"
     ],
     "deny": []
   }

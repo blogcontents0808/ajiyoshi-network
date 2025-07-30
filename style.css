@@ -55,7 +55,7 @@ h1, h2, h3 {
     align-items: center;
     gap: 15px;
     text-decoration: none;
-    color: #333;
+    color: var(--primary-color);
 }
 .header-logo h1 {
     font-size: 1.5rem;
@@ -561,6 +561,20 @@ h1, h2, h3 {
     background-color: var(--primary-color);
     color: #fff;
     transform: translateY(-3px);
+}
+
+/* フッターのプライバシーポリシー・利用規約リンクのスタイル */
+.footer p a {
+    color: #fff;
+    text-decoration: underline;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    opacity: 0.9;
+}
+
+.footer p a:hover {
+    color: var(--primary-color);
+    opacity: 1;
+    text-decoration: underline;
 }
 
 /* ==================================================
