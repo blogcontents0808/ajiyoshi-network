@@ -25,7 +25,8 @@
       "Bash(true)",
       "WebFetch(domain:localhost)",
       "Bash(vercel:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(python:*)"
     ],
     "deny": []
   }
