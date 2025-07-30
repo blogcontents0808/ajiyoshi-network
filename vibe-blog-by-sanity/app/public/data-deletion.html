@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>データ削除要求｜味美ネットワーク</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .deletion-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.8;
+        }
+        .deletion-notice {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        .deletion-form {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        .form-section {
+            margin-bottom: 2rem;
+        }
+        .form-section h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+        .consent-section {
+            background-color: #e8f4f8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .consent-section label {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .consent-section input[type="checkbox"] {
+            width: auto;
+            margin-top: 0.2rem;
+        }
+        .submit-section {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .deletion-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .deletion-btn:hover {
+            background: #c0392b;
+        }
+        .deletion-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .process-info {
+            background-color: #e8f5e8;
+            border: 1px solid #d4edda;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        .warning-section {
+            background-color: #ffe6e6;
+            border: 1px solid #ffb3b3;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="header-logo">
+                <img src="images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" class="logo-character">
+                <h1>味美ネットワーク</h1>
+            </a>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="index.html#intro">味美ネットワークとは</a></li>
+                    <li><a href="members.html">メンバー紹介</a></li>
+                    <li><a href="history.html">沿革</a></li>
+                    <li><a href="activities.html">活動内容</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h2 class="page-title">データ削除要求</h2>
+                <p>個人情報保護法に基づくデータ削除のご依頼</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container deletion-content">
+                
+                <div class="deletion-notice">
+                    <h3><i class="fas fa-info-circle"></i> データ削除要求について</h3>
+                    <p>個人情報保護法およびGDPRに基づき、お客様の個人データの削除を承ります。以下のフォームにご記入いただき、削除をご依頼ください。</p>
+                    <p><strong>注意：</strong>削除されたデータは復元することができません。慎重にご検討の上、お申し込みください。</p>
+                </div>
+
+                <div class="process-info">
+                    <h3><i class="fas fa-clock"></i> 処理期間について</h3>
+                    <ul>
+                        <li><strong>確認・返信：</strong> 3営業日以内</li>
+                        <li><strong>削除完了：</strong> 1ヶ月以内</li>
+                        <li><strong>完了通知：</strong> 削除完了後3営業日以内</li>
+                    </ul>
+                </div>
+
+                <form id="data-deletion-form" class="deletion-form">
+                    <div class="form-section">
+                        <h3>削除要求内容</h3>
+                        
+                        <div class="form-group">
+                            <label for="target_email">削除を希望するメールアドレス <span style="color: #e74c3c;">*</span></label>
+                            <input type="email" id="target_email" name="target_email" required>
+                            <small>過去にお問い合わせ等で使用されたメールアドレスをご入力ください。</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="verification_info">本人確認情報 <span style="color: #e74c3c;">*</span></label>
+                            <textarea id="verification_info" name="verification_info" rows="4" required placeholder="本人確認のため、過去のお問い合わせ内容の概要や、参加されたイベント名などをお聞かせください。"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="deletion_reason">削除理由</label>
+                            <select id="deletion_reason" name="deletion_reason">
+                                <option value="">選択してください（任意）</option>
+                                <option value="no_longer_needed">個人情報の利用が不要になったため</option>
+                                <option value="withdraw_consent">同意を撤回したいため</option>
+                                <option value="inaccurate_data">データが不正確なため</option>
+                                <option value="other">その他</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="additional_info">その他のご要望（任意）</label>
+                            <textarea id="additional_info" name="additional_info" rows="3" placeholder="削除に関する特別なご要望がございましたら、ご記入ください。"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="warning-section">
+                        <h3><i class="fas fa-exclamation-triangle"></i> 重要な注意事項</h3>
+                        <ul>
+                            <li>削除されたデータは<strong>復元できません</strong></li>
+                            <li>法的義務により保存が必要なデータは削除できない場合があります</li>
+                            <li>匿名化による対応を提案する場合があります</li>
+                            <li>削除完了までに最大1ヶ月かかる場合があります</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>同意事項</h3>
+                        
+                        <div class="consent-section">
+                            <label>
+                                <input type="checkbox" id="understand_irreversible" name="understand_irreversible" required>
+                                <span>削除後はデータの復元ができないことを理解し、同意します</span>
+                            </label>
+                        </div>
+                        
+                        <div class="consent-section">
+                            <label>
+                                <input type="checkbox" id="confirm_identity" name="confirm_identity" required>
+                                <span>提供した情報は正確であり、本人による要求であることを確認します</span>
+                            </label>
+                        </div>
+                        
+                        <div class="consent-section">
+                            <label>
+                                <input type="checkbox" id="processing_time" name="processing_time" required>
+                                <span>処理に最大1ヶ月かかる場合があることを理解しています</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="submit-section">
+                        <button type="submit" class="deletion-btn" id="submit-btn">
+                            <i class="fas fa-trash"></i> データ削除を要求する
+                        </button>
+                    </div>
+                </form>
+
+                <div class="process-info">
+                    <h3><i class="fas fa-question-circle"></i> よくある質問</h3>
+                    <details>
+                        <summary>どのようなデータが削除されますか？</summary>
+                        <p>お問い合わせフォームで送信されたデータ、メール履歴、イベント参加記録などの個人情報が対象となります。</p>
+                    </details>
+                    <details>
+                        <summary>削除できないデータはありますか？</summary>
+                        <p>法的義務により保存が必要なデータや、当団体の正当な利益のために必要なデータは削除できない場合があります。その場合は理由をご説明いたします。</p>
+                    </details>
+                    <details>
+                        <summary>削除完了はどのように確認できますか？</summary>
+                        <p>削除完了後、登録されたメールアドレスに完了通知をお送りいたします。</p>
+                    </details>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.facebook.com/watch/?v=1872150119939498" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2024 味美ネットワーク. All Rights Reserved.</p>
+            <p><a href="privacy.html">プライバシーポリシー</a> | <a href="terms.html">利用規約</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('data-deletion-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            // 送信中の表示
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
+            
+            try {
+                // フォームデータの収集
+                const formData = new FormData(this);
+                const data = {
+                    type: 'data_deletion_request',
+                    target_email: formData.get('target_email'),
+                    verification_info: formData.get('verification_info'),
+                    deletion_reason: formData.get('deletion_reason'),
+                    additional_info: formData.get('additional_info'),
+                    timestamp: new Date().toISOString()
+                };
+                
+                // APIコール（実際のお問い合わせAPIを使用）
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: 'データ削除要求',
+                        email: data.target_email,
+                        subject: 'データ削除要求',
+                        message: `データ削除要求
+
+対象メールアドレス: ${data.target_email}
+削除理由: ${data.deletion_reason || '未選択'}
+本人確認情報: ${data.verification_info}
+追加情報: ${data.additional_info || 'なし'}
+要求日時: ${data.timestamp}
+
+このメールは自動生成されました。`
+                    })
+                });
+                
+                if (response.ok) {
+                    // 成功時の処理
+                    alert('データ削除要求を承りました。確認のメールをお送りいたしますので、今しばらくお待ちください。');
+                    this.reset();
+                } else {
+                    throw new Error('送信に失敗しました');
+                }
+                
+            } catch (error) {
+                console.error('送信エラー:', error);
+                alert('送信に失敗しました。時間をおいて再度お試しいただくか、直接お問い合わせください。');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+        
+        // チェックボックスの状態監視
+        const requiredCheckboxes = document.querySelectorAll('input[type="checkbox"][required]');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        function updateSubmitButton() {
+            const allChecked = Array.from(requiredCheckboxes).every(cb => cb.checked);
+            submitBtn.disabled = !allChecked;
+        }
+        
+        requiredCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateSubmitButton);
+        });
+        
+        // 初期状態の設定
+        updateSubmitButton();
+    </script>
+</body>
+</html>
