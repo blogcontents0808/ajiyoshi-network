@@ -81,8 +81,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     const result = await response.json();
                     console.log('送信成功:', result);
                     console.log('thanks.htmlにリダイレクトします');
-                    // 成功時はサンクスページにリダイレクト
-                    window.location.href = 'thanks.html';
+                    
+                    // 成功メッセージを表示
+                    alert('お問い合わせを送信しました。ありがとうございます！');
+                    
+                    // サンクスページにリダイレクト（複数の方法を試行）
+                    try {
+                        window.location.replace('thanks.html');
+                    } catch (e) {
+                        console.log('replace failed, trying href');
+                        window.location.href = 'thanks.html';
+                    }
                 } else {
                     const errorData = await response.json();
                     console.error('送信エラー:', errorData);
