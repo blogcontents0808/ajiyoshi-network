@@ -1,0 +1,7 @@
+vibe-blog-by-sanity/
+node_modules/
+*.log
+.env
+.env.local
+.env.production.local
+.env.staging.local

@@ -28,7 +28,10 @@
       "Bash(cp:*)",
       "Bash(python:*)",
       "Bash(timeout:*)",
-      "WebFetch(domain:ajiyoshi-network-git-main-blogcontents0808s-projects.vercel.app)"
+      "WebFetch(domain:ajiyoshi-network-git-main-blogcontents0808s-projects.vercel.app)",
+      "Bash(dir:*)",
+      "Bash(copy vercel.json vercel.json.backup)",
+      "Bash(git checkout:*)"
     ],
     "deny": []
   }
