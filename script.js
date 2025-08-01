@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             try {
                 console.log('フォーム送信開始:', data);
+                console.log('API URL:', 'https://ajiyoshi-network-git-main-blogcontents0808s-projects.vercel.app/api/contact');
                 
                 const response = await fetch('https://ajiyoshi-network-git-main-blogcontents0808s-projects.vercel.app/api/contact', {
                     method: 'POST',
@@ -79,8 +80,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok) {
                     const result = await response.json();
                     console.log('送信成功:', result);
+                    console.log('thanks.htmlにリダイレクトします');
                     // 成功時はサンクスページにリダイレクト
-                    window.location.href = '/thanks.html';
+                    window.location.href = 'thanks.html';
                 } else {
                     const errorData = await response.json();
                     console.error('送信エラー:', errorData);
