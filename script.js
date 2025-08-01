@@ -66,29 +66,15 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 console.log('フォーム送信開始:', data);
                 
-                const response = await fetch('https://ajiyoshi-network-git-main-blogcontents0808s-projects.vercel.app/api/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
+                // 一時的：静的サイトのため、メール送信は行わずサンクスページに遷移
+                alert('お問い合わせを受け付けました。ありがとうございます。');
                 
-                console.log('レスポンス受信:', response.status);
+                // サンクスページにリダイレクト
+                window.location.href = 'thanks.html';
                 
-                if (response.ok) {
-                    const result = await response.json();
-                    console.log('送信成功:', result);
-                    // 成功時はサンクスページにリダイレクト
-                    window.location.href = '/thanks.html';
-                } else {
-                    const errorData = await response.json();
-                    console.error('送信エラー:', errorData);
-                    alert('エラーが発生しました: ' + (errorData.error || 'サーバーエラー'));
-                }
             } catch (error) {
-                console.error('ネットワークエラー:', error);
-                alert('送信に失敗しました。ネットワーク接続を確認して再度お試しください。');
+                console.error('エラー:', error);
+                alert('送信に失敗しました。再度お試しください。');
             } finally {
                 // 送信ボタンを復元
                 submitBtn.disabled = false;
