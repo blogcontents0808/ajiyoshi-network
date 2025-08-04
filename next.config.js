@@ -3,7 +3,7 @@ const nextConfig = {
   // 静的ファイル優先設定
   useFileSystemPublicRoutes: true,
   
-  // APIルートのみ有効化
+  // ページとAPIルートを有効化
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   
   // 静的アセット配信設定
@@ -14,19 +14,21 @@ const nextConfig = {
     unoptimized: true
   },
   
-  // カスタムルーティング: 静的HTMLを優先
+  // トレーリングスラッシュを無効化
+  trailingSlash: false,
+  
+  // カスタムルーティング: 静的HTMLファイルへのアクセスを許可
   async rewrites() {
     return {
       beforeFiles: [
-        // 静的ファイルを優先
+        // 静的HTMLファイルを直接配信
         {
-          source: '/:path*',
-          destination: '/:path*',
+          source: '/:path*.html',
+          destination: '/:path*.html',
         },
       ],
-      afterFiles: [
-        // APIルートは正常に動作
-      ],
+      afterFiles: [],
+      fallback: [],
     }
   },
 }
