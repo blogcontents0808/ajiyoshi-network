@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
       "Bash(git add:*)",
@@ -27,7 +28,10 @@
       "Bash(vercel:*)",
       "Bash(cp:*)",
       "Bash(python:*)",
-      "Bash(timeout:*)"
+      "Bash(timeout:*)",
+      "Bash(git checkout:*)",
+      "Bash(git merge:*)",
+      "Bash(mv:*)"
     ],
     "deny": []
   }

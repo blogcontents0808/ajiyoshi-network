@@ -1,3 +1,4 @@
+import { VercelRequest, VercelResponse } from '@vercel/node';
 import { google } from 'googleapis';
 import nodemailer from 'nodemailer';
 
@@ -339,7 +340,7 @@ async function sendUserConfirmation(data) {
 }
 
 // Main API handler
-export default async function handler(req, res) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS設定
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');

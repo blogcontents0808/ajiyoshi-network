@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/contact.js": {
+    "api/contact.ts": {
       "runtime": "nodejs18.x"
     }
   },
