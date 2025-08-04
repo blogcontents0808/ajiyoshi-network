@@ -4,14 +4,17 @@
   "description": "味美ネットワーク公式サイト",
   "main": "index.js",
   "scripts": {
-    "dev": "vercel dev",
-    "build": "echo 'Static site with Next.js API routes'",
-    "start": "vercel dev"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "@vercel/node": "^3.0.0",
     "googleapis": "^128.0.0",
-    "nodemailer": "^6.9.7"
+    "nodemailer": "^6.9.7",
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "engines": {
     "node": ">=18.0.0"
