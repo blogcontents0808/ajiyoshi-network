@@ -32,7 +32,9 @@
       "Bash(git checkout:*)",
       "Bash(git merge:*)",
       "Bash(mv:*)",
-      "Bash(npx vercel:*)"
+      "Bash(npx vercel:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)"
     ],
     "deny": []
   }
