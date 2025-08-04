@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo 'Static site - no build required'",
+    "build": "echo 'Static site with Next.js API routes'",
     "start": "vercel dev"
   },
   "dependencies": {
