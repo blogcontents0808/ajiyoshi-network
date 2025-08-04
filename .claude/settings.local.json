@@ -31,7 +31,8 @@
       "Bash(timeout:*)",
       "Bash(git checkout:*)",
       "Bash(git merge:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(npx vercel:*)"
     ],
     "deny": []
   }

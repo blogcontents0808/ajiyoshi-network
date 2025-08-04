@@ -1,0 +1,8 @@
+node_modules
+.git
+.env.local
+.claude
+vibe-blog-by-sanity/app/node_modules
+vibe-blog-by-sanity/app/.next
+vibe-blog-by-sanity/app/.sanity
+*.log
