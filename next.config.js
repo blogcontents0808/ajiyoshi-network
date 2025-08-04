@@ -7,6 +7,20 @@ const nextConfig = {
   
   // トレーリングスラッシュを無効化
   trailingSlash: false,
+  
+  // 静的ファイルへのリライト設定
+  async rewrites() {
+    return [
+      {
+        source: '/',
+        destination: '/index.html'
+      },
+      {
+        source: '/index.html',
+        destination: '/index.html'
+      }
+    ]
+  }
 }
 
 module.exports = nextConfig
