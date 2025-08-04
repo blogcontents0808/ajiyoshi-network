@@ -1,12 +1,14 @@
-import { client, postQuery } from '@/lib/sanity'
-import { urlFor } from '@/lib/sanity'
+import { getPost, urlFor } from '@/lib/sanity'
 import { PortableText } from '@portabletext/react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
+// 動的レンダリングを強制してビルド時エラーを回避
+export const dynamic = 'force-dynamic'
+
 export default async function Post({ params }: { params: { slug: string } }) {
-  const post = await client.fetch(postQuery, { slug: params.slug })
+  const post = await getPost(params.slug)
   
   if (!post) {
     notFound()

@@ -1,10 +1,12 @@
-import { client, postsQuery } from '@/lib/sanity'
-import { urlFor } from '@/lib/sanity'
+import { getPosts, urlFor } from '@/lib/sanity'
 import Link from 'next/link'
 import Image from 'next/image'
 
+// 動的レンダリングを強制してビルド時エラーを回避
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
-  const posts = await client.fetch(postsQuery)
+  const posts = await getPosts()
 
   return (
     <div>

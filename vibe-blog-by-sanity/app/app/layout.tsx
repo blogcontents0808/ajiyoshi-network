@@ -1,8 +1,8 @@
 import './globals.css'
-import { client, settingsQuery } from '@/lib/sanity'
+import { getSettings } from '@/lib/sanity'
 
 export async function generateMetadata() {
-  const settings = await client.fetch(settingsQuery)
+  const settings = await getSettings()
   
   return {
     title: settings?.title || '味美ネットワーク ブログ',
@@ -27,19 +27,19 @@ export default function RootLayout({
         <div className="min-h-screen bg-white">
           <header className="header">
             <div className="container">
-              <a href="../../../index.html" className="header-logo">
-                <img src="../../../images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" className="logo-character" />
+              <a href="/home" className="header-logo">
+                <img src="/images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" className="logo-character" />
                 <h1>味美ネットワーク</h1>
               </a>
               <nav className="header-nav">
                 <ul>
-                  <li><a href="../../../index.html">ホーム</a></li>
-                  <li><a href="../../../index.html#intro">味美ネットワークとは</a></li>
-                  <li><a href="../../../members.html">メンバー紹介</a></li>
-                  <li><a href="../../../history.html">沿革</a></li>
-                  <li><a href="../../../activities.html">活動内容</a></li>
+                  <li><a href="/home">ホーム</a></li>
+                  <li><a href="/home">味美ネットワークとは</a></li>
+                  <li><a href="/members.html">メンバー紹介</a></li>
+                  <li><a href="/history.html">沿革</a></li>
+                  <li><a href="/activities.html">活動内容</a></li>
                   <li><a href="/" className="blog-link">ブログ</a></li>
-                  <li><a href="../../../contact.html">お問い合わせ</a></li>
+                  <li><a href="/contact.html">お問い合わせ</a></li>
                 </ul>
               </nav>
               <button className="hamburger-btn" id="hamburger-btn" aria-label="メニューを開く">
@@ -64,7 +64,7 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
-        <script src="../../../script.js"></script>
+        <script src="/script.js"></script>
       </body>
     </html>
   )

@@ -30,3 +30,56 @@ hamburgerBtn.addEventListener('click', () => {
         body.style.overflow = 'hidden';
     }
 });
+
+// === コンタクトフォーム処理 ===
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // フォームデータを取得
+            const formData = new FormData(contactForm);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject') || '',
+                message: formData.get('message')
+            };
+            
+            // プライバシーポリシーと利用規約の同意確認
+            const privacyAgree = formData.get('privacy_agree');
+            const termsAgree = formData.get('terms_agree');
+            
+            if (!privacyAgree || !termsAgree) {
+                alert('プライバシーポリシーと利用規約への同意が必要です。');
+                return;
+            }
+            
+            // 送信ボタンを無効化
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
+            
+            try {
+                console.log('フォーム送信開始:', data);
+                
+                // 一時的：静的サイトのため、メール送信は行わずサンクスページに遷移
+                alert('お問い合わせを受け付けました。ありがとうございます。');
+                
+                // サンクスページにリダイレクト
+                window.location.href = 'thanks.html';
+                
+            } catch (error) {
+                console.error('エラー:', error);
+                alert('送信に失敗しました。再度お試しください。');
+            } finally {
+                // 送信ボタンを復元
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+    }
+});

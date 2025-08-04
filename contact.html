@@ -25,6 +25,7 @@
                     <li><a href="members.html">メンバー紹介</a></li>
                     <li><a href="history.html">沿革</a></li>
                     <li><a href="activities.html">活動内容</a></li>
+                    <li><a href="http://localhost:3000" class="blog-link" target="_blank">ブログ</a></li>
                     <li><a href="contact.html">お問い合わせ</a></li>
                 </ul>
             </nav>
@@ -51,7 +52,7 @@
                     <p>万が一返信がない場合は、メールアドレスの入力間違いの可能性がございますので、お手数ですが再度お問い合わせください。</p>
                     <p>味美ネットワークの活動に関するご意見や、イベント参加に関するご質問など、どんなことでもお気軽にご連絡ください。</p>
                 </div>
-                <form name="contact" method="POST" data-netlify="true" action="/thanks.html">
+                <form name="contact" id="contact-form">
                     <div class="form-group floating">
                         <input type="text" id="name" name="name" placeholder=" " required>
                         <label for="name">お名前 <span class="required">必須</span></label>
@@ -68,6 +69,20 @@
                         <textarea id="message" name="message" rows="6" placeholder=" " required></textarea>
                         <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
                     </div>
+                    <div class="form-group privacy-notice" style="margin: 1.5rem 0; padding: 1rem; background-color: #f8f9fa; border-radius: 5px; font-size: 0.9rem;">
+                        <p>個人情報の取り扱いについては、<a href="privacy.html" target="_blank" style="color: #e74c3c; text-decoration: underline;">プライバシーポリシー</a>をご確認ください。</p>
+                        <p>また、本サイトの<a href="terms.html" target="_blank" style="color: #e74c3c; text-decoration: underline;">利用規約</a>もあわせてご確認ください。</p>
+                        <div style="margin-top: 0.8rem;">
+                            <label style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                                <input type="checkbox" name="privacy_agree" required style="margin-right: 0.5rem;">
+                                <span>プライバシーポリシーに同意します</span>
+                            </label>
+                            <label style="display: flex; align-items: center;">
+                                <input type="checkbox" name="terms_agree" required style="margin-right: 0.5rem;">
+                                <span>利用規約に同意します</span>
+                            </label>
+                        </div>
+                    </div>
                     <div class="form-submit">
                         <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> 送信する</button>
                     </div>
@@ -83,9 +98,11 @@
                 <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
             <p>© 2024 味美ネットワーク. All Rights Reserved.</p>
+            <p><a href="privacy.html">プライバシーポリシー</a> | <a href="terms.html">利用規約</a></p>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="cookie-consent.js"></script>
 </body>
 </html>

@@ -69,7 +69,6 @@ export const post = defineType({
         },
         {
           type: 'image',
-          options: { hotspot: true },
         },
       ],
     }),
@@ -77,7 +76,6 @@ export const post = defineType({
       name: 'thumbnail',
       title: 'サムネイル画像',
       type: 'image',
-      options: { hotspot: true },
     }),
     defineField({
       name: 'category',
