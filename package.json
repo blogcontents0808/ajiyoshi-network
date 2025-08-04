@@ -1,0 +1,21 @@
+{
+  "name": "ajiyoshi-network",
+  "version": "1.0.0",
+  "description": "味美ネットワーク公式サイト",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build required'",
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "googleapis": "^128.0.0",
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "@vercel/node": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
