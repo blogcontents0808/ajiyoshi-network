@@ -66,11 +66,25 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 console.log('フォーム送信開始:', data);
                 
-                // 一時的：静的サイトのため、メール送信は行わずサンクスページに遷移
-                alert('お問い合わせを受け付けました。ありがとうございます。');
+                // APIエンドポイントにPOST送信（テストモード）
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Test': 'true'  // テストモードで実行
+                    },
+                    body: JSON.stringify(data)
+                });
                 
-                // サンクスページにリダイレクト
-                window.location.href = 'thanks.html';
+                const result = await response.json();
+                console.log('API応答:', result);
+                
+                if (response.ok && result.success) {
+                    alert('お問い合わせを受け付けました。ありがとうございます。');
+                    window.location.href = 'thanks.html';
+                } else {
+                    throw new Error(result.error || 'APIエラーが発生しました');
+                }
                 
             } catch (error) {
                 console.error('エラー:', error);
