@@ -12,7 +12,7 @@ const client = createClient({
 })
 
 // contentsディレクトリのパス
-const contentsDir = path.join(__dirname, '../../../contents')
+const contentsDir = path.join(__dirname, '../../contents')
 
 // 記事をインポートする関数
 async function importPosts() {
