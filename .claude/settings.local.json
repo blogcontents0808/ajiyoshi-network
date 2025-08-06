@@ -35,7 +35,21 @@
       "Bash(npx vercel:*)",
       "Bash(find:*)",
       "Bash(ls:*)",
-      "Bash(copy:*)"
+      "Bash(copy:*)",
+      "Bash(npx sanity:*)",
+      "Bash(npm run import-contents:*)",
+      "Bash(for file in history.html blog.html contact.html index.html thanks.html privacy.html members.html terms.html)",
+      "Bash(do echo \"Processing $file\")",
+      "Bash(sed:*)",
+      "Bash(done)",
+      "WebFetch(domain:app-8ywqngg8s-blogcontents0808s-projects.vercel.app)",
+      "WebFetch(domain:i9ox06do.api.sanity.io)",
+      "WebFetch(domain:04siiuuf.api.sanity.io)",
+      "WebFetch(domain:04siiuuf.api.sanity.io)",
+      "WebFetch(domain:qier3tei.api.sanity.io)",
+      "WebFetch(domain:qier3tei.api.sanity.io)",
+      "WebFetch(domain:app-2f8ar7wqa-blogcontents0808s-projects.vercel.app)",
+      "WebFetch(domain:app-8d8llvisx-blogcontents0808s-projects.vercel.app)"
     ],
     "deny": []
   }
