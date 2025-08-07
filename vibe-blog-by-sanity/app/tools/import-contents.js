@@ -2,9 +2,33 @@ const fs = require('fs')
 const path = require('path')
 const { createClient } = require('@sanity/client')
 
+// Simple .env.local parser for this script
+function loadEnvFile(filePath) {
+  if (!fs.existsSync(filePath)) return
+  
+  const content = fs.readFileSync(filePath, 'utf8')
+  content.split('\n').forEach(line => {
+    line = line.trim()
+    if (line && !line.startsWith('#')) {
+      const [key, ...values] = line.split('=')
+      if (key && values.length > 0) {
+        process.env[key] = values.join('=').replace(/^"|"$/g, '')
+      }
+    }
+  })
+}
+
+// Load environment variables from .env.local
+loadEnvFile(path.join(__dirname, '../.env.local'))
+
+// Debug: Check loaded environment variables
+console.log('Loaded Sanity config:')
+console.log('Project ID:', process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'qier3tei')
+console.log('Dataset:', process.env.NEXT_PUBLIC_SANITY_DATASET || 'production')
+
 // Sanity client configuration
 const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'qier3tei',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2023-05-03',
   token: process.env.SANITY_API_TOKEN,

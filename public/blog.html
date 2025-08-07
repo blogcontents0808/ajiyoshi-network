@@ -462,19 +462,21 @@
         <section class="section">
             <div class="container">
                 <div class="blog-posts-grid">
-                    <!-- ブログ記事1 -->
+                    <!-- ブログ記事1: ウェブサイトをリニューアルしました -->
                     <article class="blog-post-card">
-                        <img src="images/20250405sakura05.png" alt="2025　さくらまつりのお礼" class="blog-post-image">
+                        <div class="blog-post-image" style="background: var(--blog-gradient); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
                         <div class="blog-post-content">
                             <div class="blog-post-meta">
-                                <time class="blog-post-date">2025年4月13日</time>
-                                <span class="blog-post-category">活動報告</span>
+                                <time class="blog-post-date">2025年7月16日</time>
+                                <span class="blog-post-category">お知らせ</span>
                             </div>
                             <h2 class="blog-post-title">
-                                <a href="#" onclick="showFullPost('post1'); return false;">2025　さくらまつりのお礼</a>
+                                <a href="#" onclick="showFullPost('post1'); return false;">ウェブサイトをリニューアルしました</a>
                             </h2>
                             <p class="blog-post-excerpt">
-                                令和７年４月５日（土）二子山公園で桜まつりが開催されました！当日は満開の桜と天気に恵まれ、とても多くの方で賑わいました。
+                                味美ネットワークのウェブサイトをリニューアルしました。新しいデザインで、より分かりやすく情報をお伝えできるようになりました。
                             </p>
                             <div class="blog-post-footer">
                                 <div class="blog-post-author">
@@ -487,21 +489,19 @@
                         </div>
                     </article>
 
-                    <!-- ブログ記事2 -->
+                    <!-- ブログ記事2: 2025　さくらまつりのお礼 -->
                     <article class="blog-post-card">
-                        <div class="blog-post-image" style="background: var(--blog-gradient); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                            <i class="fas fa-globe-asia"></i>
-                        </div>
+                        <img src="images/20250405sakura05.png" alt="2025　さくらまつりのお礼" class="blog-post-image">
                         <div class="blog-post-content">
                             <div class="blog-post-meta">
-                                <time class="blog-post-date">2025年7月16日</time>
-                                <span class="blog-post-category">お知らせ</span>
+                                <time class="blog-post-date">2025年4月13日</time>
+                                <span class="blog-post-category">活動報告</span>
                             </div>
                             <h2 class="blog-post-title">
-                                <a href="#" onclick="showFullPost('post2'); return false;">ウェブサイトをリニューアルしました</a>
+                                <a href="#" onclick="showFullPost('post2'); return false;">2025　さくらまつりのお礼</a>
                             </h2>
                             <p class="blog-post-excerpt">
-                                味美ネットワークのウェブサイトをリニューアルしました。新しいデザインで、より分かりやすく情報をお伝えできるようになりました。
+                                令和７年４月５日（土）二子山公園で桜まつりが開催されました！当日は満開の桜と天気に恵まれ、とても多くの方で賑わいました。
                             </p>
                             <div class="blog-post-footer">
                                 <div class="blog-post-author">
@@ -514,7 +514,7 @@
                         </div>
                     </article>
 
-                    <!-- ブログ記事3 -->
+                    <!-- ブログ記事3: 2024味美推しフェス -->
                     <article class="blog-post-card">
                         <img src="images/20241117oshi-01.png" alt="2024味美推しフェス" class="blog-post-image">
                         <div class="blog-post-content">
@@ -539,7 +539,7 @@
                         </div>
                     </article>
 
-                    <!-- ブログ記事4 -->
+                    <!-- ブログ記事4: ハンドーボール知多中学校に寄贈 -->
                     <article class="blog-post-card">
                         <img src="images/20231021-01.png" alt="ハンドーボール知多中学校に寄贈" class="blog-post-image">
                         <div class="blog-post-content">
@@ -564,7 +564,7 @@
                         </div>
                     </article>
 
-                    <!-- ブログ記事5 -->
+                    <!-- ブログ記事5: 白山神社で桜まつりを開催予定 -->
                     <article class="blog-post-card">
                         <img src="images/sak_2025.jpg" alt="白山神社で桜まつりを開催予定" class="blog-post-image">
                         <div class="blog-post-content">
@@ -589,9 +589,9 @@
                         </div>
                     </article>
 
-                    <!-- ブログ記事6 -->
+                    <!-- ブログ記事6: 令和3年度　しめ縄作り体験 -->
                     <article class="blog-post-card">
-                        <img src="images/20211204shimenawa01.png" alt="令和3年度　しめ縄作り体験" class="blog-post-image">
+                        <img src="images/sme_2022.jpg" alt="令和3年度　しめ縄作り体験" class="blog-post-image">
                         <div class="blog-post-content">
                             <div class="blog-post-meta">
                                 <time class="blog-post-date">2021年12月6日</time>
@@ -634,44 +634,6 @@
         function showFullPost(postId) {
             const posts = {
                 post1: {
-                    title: '2025　さくらまつりのお礼',
-                    date: '2025年4月13日',
-                    category: '活動報告',
-                    content: `
-                        <p>令和７年４月５日（土）二子山公園で桜まつりが開催されました！</p>
-                        
-                        <p>当日は満開の桜と天気に恵まれ、とても多くの方で賑わいました。</p>
-                        
-                        <p>午前中は白山小音楽部や春日井ジュニアウインドウエスト、ＫＣジャズオーケストラの皆さんのすてきな演奏がありました。</p>
-                        
-                        <p>さらに石黒直樹春日井市長がオカリナを演奏してくださり、驚きました！</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20250405sakura05.png" alt="春日井市長オカリナ演奏" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                        
-                        <p>また一日を通して味美にちなんだワークショップや地元企業による販売ブース、キッチンカーなどで楽しい時間が続きました。</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20250405sakura06.png" alt="ワークショップの様子" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
-                            <br>
-                            <img src="images/20250405sakura07.png" alt="イベントの様子" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                        
-                        <p>当日、運営の準備にご協力頂きました皆様、ありがとうございました。</p>
-                        
-                        <p><strong>味美ネットワーク　主催者一同</strong></p>
-                        
-                        <h3>2025　さくらまつり</h3>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20250405sakura08.png" alt="2025さくらまつり1" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
-                            <br>
-                            <img src="images/20250405sakura09.png" alt="2025さくらまつり2" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                    `
-                },
-                post2: {
                     title: 'ウェブサイトをリニューアルしました',
                     date: '2025年7月16日',
                     category: 'お知らせ',
@@ -711,6 +673,44 @@
                         </ul>
                         
                         <p>お楽しみにお待ちください！</p>
+                    `
+                },
+                post2: {
+                    title: '2025　さくらまつりのお礼',
+                    date: '2025年4月13日',
+                    category: '活動報告',
+                    content: `
+                        <p>令和７年４月５日（土）二子山公園で桜まつりが開催されました！</p>
+                        
+                        <p>当日は満開の桜と天気に恵まれ、とても多くの方で賑わいました。</p>
+                        
+                        <p>午前中は白山小音楽部や春日井ジュニアウインドウエスト、ＫＣジャズオーケストラの皆さんのすてきな演奏がありました。</p>
+                        
+                        <p>さらに石黒直樹春日井市長がオカリナを演奏してくださり、驚きました！</p>
+                        
+                        <p style="text-align: center; margin: 2rem 0;">
+                            <img src="images/20250405sakura05.png" alt="春日井市長オカリナ演奏" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        </p>
+                        
+                        <p>また一日を通して味美にちなんだワークショップや地元企業による販売ブース、キッチンカーなどで楽しい時間が続きました。</p>
+                        
+                        <p style="text-align: center; margin: 2rem 0;">
+                            <img src="images/20250405sakura06.png" alt="ワークショップの様子" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
+                            <br>
+                            <img src="images/20250405sakura07.png" alt="イベントの様子" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        </p>
+                        
+                        <p>当日、運営の準備にご協力頂きました皆様、ありがとうございました。</p>
+                        
+                        <p><strong>味美ネットワーク　主催者一同</strong></p>
+                        
+                        <h3>2025　さくらまつり</h3>
+                        
+                        <p style="text-align: center; margin: 2rem 0;">
+                            <img src="images/20250405sakura08.png" alt="2025さくらまつり1" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
+                            <br>
+                            <img src="images/20250405sakura09.png" alt="2025さくらまつり2" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                        </p>
                     `
                 },
                 post3: {
@@ -810,26 +810,16 @@
                         <p>去る12月4日(土)に白山神社においてしめ縄作り体験が開催されました。少し肌寒いくらいの気候ではありましたが、お天気にも恵まれ、無事にしめ縄を作り上げることが出来ました。</p>
                         
                         <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20211204shimenawa01.png" alt="しめ縄作り体験1" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
-                            <br>
-                            <img src="images/20211204shimenawa02.png" alt="しめ縄作り体験2" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <img src="images/sme_2022.jpg" alt="しめ縄作り体験1" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
                         </p>
                         
                         <h3>体験の様子</h3>
                         <p>参加者の皆様は、講師の指導の下、熱心にしめ縄作りに取り組まれていました。初めての方も多くいらっしゃいましたが、お互いに教え合いながら、和気あいあいとした雰囲気で進められました。</p>
                         
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20211204shimenawa03.png" alt="しめ縄作り体験3" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                        
                         <h3>完成したしめ縄</h3>
                         <p>皆様が丹精込めて作られたしめ縄は、どれも立派な出来栄えでした。新年を迎える準備として、各ご家庭で飾っていただけることと思います。</p>
                         
                         <p>ご参加いただいた皆様、また準備にご協力いただいた関係者の皆様、ありがとうございました。来年も開催予定ですので、ぜひご参加ください。</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20211204shimenawa04.png" alt="完成したしめ縄" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
                     `
                 }
             };
