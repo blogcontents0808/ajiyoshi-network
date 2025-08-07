@@ -39,33 +39,32 @@
         
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-bottom: 3rem;
         }
         
         .modern-blog-card {
             background: white;
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
         }
         
         .modern-blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
         }
         
         .blog-card-image {
             height: 200px;
-            background: linear-gradient(45deg, #f0f8ff, #e6f3ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #4A90E2;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         
         .blog-card-content {
@@ -177,9 +176,7 @@
             <div class="blog-grid">
                 <!-- ブログ記事1 -->
                 <article class="modern-blog-card">
-                    <div class="blog-card-image">
-                        <i class="fas fa-cherry-blossom"></i>
-                    </div>
+                    <div class="blog-card-image" style="background-image: url('images/20250405sakura05.png');"></div>
                     <div class="blog-card-content">
                         <div class="blog-card-meta">
                             <time datetime="2025-04-13">2025年4月13日</time>
@@ -197,7 +194,7 @@
 
                 <!-- ブログ記事2 -->
                 <article class="modern-blog-card">
-                    <div class="blog-card-image">
+                    <div class="blog-card-image" style="background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
                         <i class="fas fa-globe-asia"></i>
                     </div>
                     <div class="blog-card-content">
@@ -217,9 +214,7 @@
 
                 <!-- ブログ記事3 -->
                 <article class="modern-blog-card">
-                    <div class="blog-card-image">
-                        <i class="fas fa-star"></i>
-                    </div>
+                    <div class="blog-card-image" style="background-image: url('images/20241117oshi-01.png');"></div>
                     <div class="blog-card-content">
                         <div class="blog-card-meta">
                             <time datetime="2024-11-18">2024年11月18日</time>
@@ -237,9 +232,7 @@
 
                 <!-- ブログ記事4 -->
                 <article class="modern-blog-card">
-                    <div class="blog-card-image">
-                        <i class="fas fa-volleyball-ball"></i>
-                    </div>
+                    <div class="blog-card-image" style="background-image: url('images/20231021-01.png');"></div>
                     <div class="blog-card-content">
                         <div class="blog-card-meta">
                             <time datetime="2023-10-21">2023年10月21日</time>
@@ -257,9 +250,7 @@
 
                 <!-- ブログ記事5 -->
                 <article class="modern-blog-card">
-                    <div class="blog-card-image">
-                        <i class="fas fa-torii-gate"></i>
-                    </div>
+                    <div class="blog-card-image" style="background-image: url('images/sak_2025.jpg');"></div>
                     <div class="blog-card-content">
                         <div class="blog-card-meta">
                             <time datetime="2022-03-05">2022年3月5日</time>
@@ -277,9 +268,7 @@
 
                 <!-- ブログ記事6 -->
                 <article class="modern-blog-card">
-                    <div class="blog-card-image">
-                        <i class="fas fa-hands"></i>
-                    </div>
+                    <div class="blog-card-image" style="background-image: url('images/20211204shimenawa01.png');"></div>
                     <div class="blog-card-content">
                         <div class="blog-card-meta">
                             <time datetime="2021-12-06">2021年12月6日</time>
