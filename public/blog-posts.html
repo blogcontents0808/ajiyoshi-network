@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブログ記事一覧｜味美ネットワーク</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .modern-blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .blog-hero {
+            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(74, 144, 226, 0.3);
+        }
+        
+        .blog-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .blog-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .modern-blog-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .modern-blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .blog-card-image {
+            height: 200px;
+            background: linear-gradient(45deg, #f0f8ff, #e6f3ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #4A90E2;
+        }
+        
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .blog-card-category {
+            background: #4A90E2;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .blog-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .blog-card-excerpt {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-card-readmore {
+            color: #4A90E2;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card-readmore:hover {
+            color: #357ABD;
+        }
+        
+        .back-to-blog {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .back-to-blog a {
+            display: inline-block;
+            background: #f8f9fa;
+            color: #666;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-blog a:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .modern-blog-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="header-logo">
+                <img src="images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" class="logo-character">
+                <h1>味美ネットワーク</h1>
+            </a>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="index.html#intro">味美ネットワークとは</a></li>
+                    <li><a href="members.html">メンバー紹介</a></li>
+                    <li><a href="history.html">沿革</a></li>
+                    <li><a href="activities.html">活動内容</a></li>
+                    <li><a href="blog.html" class="blog-link">ブログ</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="modern-blog-container">
+            <div class="blog-hero">
+                <h1><i class="fas fa-newspaper" style="margin-right: 0.5rem;"></i>活動記録・お知らせ</h1>
+                <p>味美ネットワークの最新情報と活動の記録をお届けします</p>
+            </div>
+
+            <div class="blog-grid">
+                <!-- ブログ記事1 -->
+                <article class="modern-blog-card">
+                    <div class="blog-card-image">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <time datetime="2024-07-15">2024年7月15日</time>
+                            <span class="blog-card-category">お知らせ</span>
+                        </div>
+                        <h2 class="blog-card-title">ウェブサイトをリニューアルしました</h2>
+                        <div class="blog-card-excerpt">
+                            味美ネットワークのウェブサイトをリニューアルしました。新しいデザインで、より分かりやすく情報をお伝えできるようになりました。今後もこちらのブログで活動報告やお知らせを発信していきます。
+                        </div>
+                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post1'); return false;">
+                            続きを読む <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ブログ記事2 -->
+                <article class="modern-blog-card">
+                    <div class="blog-card-image">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <time datetime="2024-07-01">2024年7月1日</time>
+                            <span class="blog-card-category">活動報告</span>
+                        </div>
+                        <h2 class="blog-card-title">サマーフェスタ味美2024の準備が始まりました</h2>
+                        <div class="blog-card-excerpt">
+                            今年もサマーフェスタ味美（味美炭ぬりまつり）の開催に向けて準備が始まりました。地域の皆様に楽しんでいただけるよう、スタッフ一同頑張っています。
+                        </div>
+                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post2'); return false;">
+                            続きを読む <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ブログ記事3 -->
+                <article class="modern-blog-card">
+                    <div class="blog-card-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <time datetime="2024-06-15">2024年6月15日</time>
+                            <span class="blog-card-category">活動報告</span>
+                        </div>
+                        <h2 class="blog-card-title">6月定例会を開催しました</h2>
+                        <div class="blog-card-excerpt">
+                            味美ネットワークの6月定例会を開催しました。今後の活動計画や地域の課題について活発な意見交換が行われました。
+                        </div>
+                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post3'); return false;">
+                            続きを読む <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ブログ記事4 -->
+                <article class="modern-blog-card">
+                    <div class="blog-card-image">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <time datetime="2024-05-20">2024年5月20日</time>
+                            <span class="blog-card-category">活動報告</span>
+                        </div>
+                        <h2 class="blog-card-title">地域清掃活動を実施しました</h2>
+                        <div class="blog-card-excerpt">
+                            春の地域清掃活動を実施しました。多くの住民の皆様にご参加いただき、味美地区がより美しくなりました。
+                        </div>
+                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post4'); return false;">
+                            続きを読む <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ブログ記事5 -->
+                <article class="modern-blog-card">
+                    <div class="blog-card-image">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <time datetime="2024-04-10">2024年4月10日</time>
+                            <span class="blog-card-category">お知らせ</span>
+                        </div>
+                        <h2 class="blog-card-title">新年度がスタートしました</h2>
+                        <div class="blog-card-excerpt">
+                            2024年度の活動がスタートしました。今年度も地域の皆様とともに、より良い味美地区を目指して活動してまいります。
+                        </div>
+                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post5'); return false;">
+                            続きを読む <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- ブログ記事6 -->
+                <article class="modern-blog-card">
+                    <div class="blog-card-image">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <time datetime="2024-03-25">2024年3月25日</time>
+                            <span class="blog-card-category">活動報告</span>
+                        </div>
+                        <h2 class="blog-card-title">2023年度活動報告会を開催</h2>
+                        <div class="blog-card-excerpt">
+                            2023年度の活動をまとめた報告会を開催しました。一年間の成果と今後の課題について共有しました。
+                        </div>
+                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post6'); return false;">
+                            続きを読む <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="back-to-blog">
+                <a href="blog.html">
+                    <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i>
+                    ブログトップに戻る
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>味美ネットワーク</h3>
+                    <p>地域のつながりを大切にし、みんなで支えあう街づくりを目指しています。</p>
+                </div>
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="members.html">メンバー紹介</a></li>
+                        <li><a href="activities.html">活動内容</a></li>
+                        <li><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>お問い合わせ</h4>
+                    <p>ご質問やご相談がございましたら、<br>お気軽にお問い合わせください。</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 味美ネットワーク All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function showFullPost(postId) {
+            const posts = {
+                post1: {
+                    title: 'ウェブサイトをリニューアルしました',
+                    date: '2024年7月15日',
+                    category: 'お知らせ',
+                    content: `
+                        <h3>主な変更点</h3>
+                        <h4>新しいブログシステム</h4>
+                        <ul>
+                            <li>SanityをベースとしたヘッドレスCMSを導入</li>
+                            <li>リアルタイムでの記事更新が可能</li>
+                            <li>画像の自動最適化でページ表示速度が向上</li>
+                        </ul>
+                        
+                        <h4>レスポンシブデザイン</h4>
+                        <ul>
+                            <li>スマートフォンでも見やすいデザインに最適化</li>
+                            <li>タブレットでも快適に閲覧可能</li>
+                        </ul>
+                        
+                        <h4>SEO対策</h4>
+                        <ul>
+                            <li>検索エンジンで見つけやすくなりました</li>
+                            <li>SNSでのシェア機能を強化</li>
+                        </ul>
+                        
+                        <h3>今後の予定</h3>
+                        <p>今後もこちらのブログで活動報告やお知らせを発信していきますので、ぜひご覧ください。</p>
+                        
+                        <p>定期的に更新予定のコンテンツ：</p>
+                        <ul>
+                            <li>イベントの開催報告</li>
+                            <li>地域の情報</li>
+                            <li>メンバーの活動紹介</li>
+                            <li>季節のお知らせ</li>
+                        </ul>
+                        
+                        <p>お楽しみにお待ちください！</p>
+                    `
+                },
+                post2: {
+                    title: 'サマーフェスタ味美2024の準備が始まりました',
+                    date: '2024年7月1日',
+                    category: '活動報告',
+                    content: `
+                        <p>今年もサマーフェスタ味美（味美炭ぬりまつり）の開催に向けて準備が始まりました。</p>
+                        
+                        <h3>今年の特徴</h3>
+                        
+                        <h4>新しい企画を検討中</h4>
+                        <ul>
+                            <li>地域の子どもたちが参加できる新しいコーナー</li>
+                            <li>地元の食材を活用した屋台メニュー</li>
+                            <li>環境に配慮した運営方法</li>
+                        </ul>
+                        
+                        <h4>安全対策の強化</h4>
+                        <ul>
+                            <li>会場内の安全確保</li>
+                            <li>衛生管理の徹底</li>
+                            <li>緊急時の対応体制</li>
+                        </ul>
+                        
+                        <h3>開催概要</h3>
+                        <p>詳細な日程や内容については、決まり次第お知らせいたします。</p>
+                        
+                        <h4>予定している内容</h4>
+                        <ul>
+                            <li>炭ぬり体験コーナー</li>
+                            <li>地域グルメの屋台</li>
+                            <li>ステージイベント</li>
+                            <li>子ども向けアクティビティ</li>
+                        </ul>
+                        
+                        <h3>ボランティア募集</h3>
+                        <p>イベントを一緒に盛り上げてくださるボランティアの方を募集しています。</p>
+                        
+                        <p><strong>募集内容：</strong></p>
+                        <ul>
+                            <li>会場設営・撤収</li>
+                            <li>受付・案内</li>
+                            <li>炭ぬり体験のサポート</li>
+                            <li>清掃活動</li>
+                        </ul>
+                        
+                        <p>ご興味のある方は、お気軽にお問い合わせください。</p>
+                        <p>地域の皆様のご協力をお願いいたします！</p>
+                    `
+                },
+                post3: {
+                    title: '6月定例会を開催しました',
+                    date: '2024年6月15日',
+                    category: '活動報告',
+                    content: `
+                        <p>6月15日に味美ネットワークの定例会を開催いたしました。</p>
+                        
+                        <h3>主な議題</h3>
+                        <ul>
+                            <li>サマーフェスタ味美2024の準備状況報告</li>
+                            <li>地域の安全対策について</li>
+                            <li>新メンバーの紹介</li>
+                            <li>今後の活動計画の検討</li>
+                        </ul>
+                        
+                        <h3>活発な議論</h3>
+                        <p>今回の定例会では、特に地域の交通安全について活発な意見交換が行われました。横断歩道の設置要望や、通学路の安全確保について、具体的な対策を検討しました。</p>
+                        
+                        <h3>新メンバー加入</h3>
+                        <p>新たに2名の方が味美ネットワークに加入されました。多様な視点からのご意見をいただき、活動がより充実することが期待されます。</p>
+                        
+                        <h3>次回予定</h3>
+                        <p>次回の定例会は7月20日（土）午後2時より開催予定です。</p>
+                    `
+                },
+                post4: {
+                    title: '地域清掃活動を実施しました',
+                    date: '2024年5月20日',
+                    category: '活動報告',
+                    content: `
+                        <p>5月20日（日）に春の地域清掃活動を実施しました。</p>
+                        
+                        <h3>参加状況</h3>
+                        <ul>
+                            <li>参加者: 約50名（大人32名、子ども18名）</li>
+                            <li>清掃エリア: 味美地区全域</li>
+                            <li>回収ゴミ量: 可燃ゴミ約25kg、不燃ゴミ約15kg</li>
+                        </ul>
+                        
+                        <h3>活動内容</h3>
+                        <p>朝9時に集合し、各班に分かれて清掃活動を行いました。公園、歩道、河川敷など、普段なかなか手が届かない場所も重点的に清掃しました。</p>
+                        
+                        <h3>子どもたちの参加</h3>
+                        <p>今回は多くの子どもたちにもご参加いただきました。環境美化の大切さを実感する良い機会となりました。</p>
+                        
+                        <h3>お疲れ様でした</h3>
+                        <p>参加者の皆様、本当にお疲れ様でした。次回の清掃活動は秋頃を予定しています。</p>
+                    `
+                },
+                post5: {
+                    title: '新年度がスタートしました',
+                    date: '2024年4月10日',
+                    category: 'お知らせ',
+                    content: `
+                        <p>2024年度の味美ネットワークの活動がスタートしました。</p>
+                        
+                        <h3>今年度の重点目標</h3>
+                        <ul>
+                            <li>地域コミュニティの活性化</li>
+                            <li>安全・安心な街づくり</li>
+                            <li>環境保全活動の推進</li>
+                            <li>世代を超えた交流の促進</li>
+                        </ul>
+                        
+                        <h3>主要イベント予定</h3>
+                        <ul>
+                            <li>5月: 春の地域清掃活動</li>
+                            <li>7月: サマーフェスタ味美2024</li>
+                            <li>10月: 秋の地域清掃活動</li>
+                            <li>12月: 年末懇親会</li>
+                        </ul>
+                        
+                        <h3>新規プロジェクト</h3>
+                        <p>今年度は新たに「デジタル化推進プロジェクト」を立ち上げ、地域情報の発信力強化に取り組みます。</p>
+                        
+                        <h3>皆様のご協力を</h3>
+                        <p>今年度も地域の皆様とともに、より良い味美地区を目指して活動してまいります。ご協力をお願いいたします。</p>
+                    `
+                },
+                post6: {
+                    title: '2023年度活動報告会を開催',
+                    date: '2024年3月25日',
+                    category: '活動報告',
+                    content: `
+                        <p>3月25日に2023年度の活動報告会を開催しました。</p>
+                        
+                        <h3>2023年度の主な成果</h3>
+                        <ul>
+                            <li>定例会: 12回開催（参加者平均25名）</li>
+                            <li>地域清掃活動: 4回実施（延べ参加者200名）</li>
+                            <li>サマーフェスタ味美2023: 来場者約800名</li>
+                            <li>防犯パトロール: 月2回実施</li>
+                        </ul>
+                        
+                        <h3>課題と改善点</h3>
+                        <p>報告会では、活動の成果だけでなく、課題についても率直に話し合いました。特に若い世代の参加促進が今後の重要な課題として挙げられました。</p>
+                        
+                        <h3>2024年度に向けて</h3>
+                        <p>2023年度の経験を活かし、2024年度はより多くの地域住民の皆様に参加いただけるような活動を企画してまいります。</p>
+                        
+                        <h3>感謝の気持ち</h3>
+                        <p>2023年度の活動にご協力いただいた皆様、本当にありがとうございました。2024年度もどうぞよろしくお願いいたします。</p>
+                    `
+                }
+            };
+
+            const post = posts[postId];
+            if (post) {
+                const modalHtml = `
+                    <div id="postModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                         background: rgba(0, 0, 0, 0.8); z-index: 1000; display: flex; align-items: center; justify-content: center; 
+                         padding: 2rem; box-sizing: border-box;" onclick="closeModal()">
+                        <div style="background: white; max-width: 800px; max-height: 90vh; overflow-y: auto; 
+                             border-radius: 16px; position: relative;" onclick="event.stopPropagation()">
+                            <div style="position: sticky; top: 0; background: white; padding: 1.5rem; border-bottom: 1px solid #eee; 
+                                 display: flex; justify-content: between; align-items: center; border-radius: 16px 16px 0 0;">
+                                <div>
+                                    <h2 style="margin: 0; color: #333; font-size: 1.5rem;">${post.title}</h2>
+                                    <div style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
+                                        <span>${post.date}</span>
+                                        <span style="margin-left: 1rem; background: #4A90E2; color: white; 
+                                              padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem;">${post.category}</span>
+                                    </div>
+                                </div>
+                                <button onclick="closeModal()" style="background: none; border: none; font-size: 1.5rem; 
+                                        color: #999; cursor: pointer; padding: 0.5rem; margin-left: 1rem;" 
+                                        onmouseover="this.style.color='#333'" onmouseout="this.style.color='#999'">×</button>
+                            </div>
+                            <div style="padding: 2rem; line-height: 1.7; color: #444;">
+                                ${post.content}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('postModal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // ESCキーでモーダルを閉じる
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
