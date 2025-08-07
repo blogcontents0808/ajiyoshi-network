@@ -4,136 +4,426 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ブログ｜味美ネットワーク</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-        .modern-blog-container {
-            max-width: 1200px;
+        /* ===================================
+           基本設定
+        ====================================== */
+        :root {
+            --primary-color: #E67E22; /* 温かみのあるオレンジ */
+            --secondary-color: #2C3E50; /* 信頼感のある濃いネイビー */
+            --text-color: #333;
+            --bg-color-light: #f8f9fa;
+            --blog-gradient: linear-gradient(135deg, #E67E22 0%, #F39C12 100%);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            color: var(--text-color);
+            background-color: #fff;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 20px;
         }
-        
-        .blog-hero {
-            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
-            color: white;
-            padding: 3rem 2rem;
-            border-radius: 16px;
-            text-align: center;
-            margin-bottom: 3rem;
-            box-shadow: 0 8px 32px rgba(74, 144, 226, 0.3);
-        }
-        
-        .blog-hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+
+        h1, h2, h3 {
             font-weight: 700;
         }
-        
-        .blog-hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+
+        /* ===================================
+           ヘッダーとナビゲーション
+        ====================================== */
+        .header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .modern-blog-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.08);
+
+        .header .container {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
         }
-        
-        .modern-blog-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
-        }
-        
-        .blog-card-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        
-        .blog-card-content {
-            padding: 1.5rem;
-        }
-        
-        .blog-card-meta {
+
+        .header-logo {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 15px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .header-logo h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            white-space: nowrap;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .logo-character {
+            height: 50px;
+            transition: transform 0.3s;
+        }
+
+        .header-logo:hover .logo-character {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .header-nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-nav ul li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 700;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .header-nav ul li a:not(.dropdown-toggle)::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 15px;
+            width: calc(100% - 30px);
+            height: 2px;
+            background-color: var(--primary-color);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .header-nav ul li a:not(.dropdown-toggle):hover::after {
+            transform: scaleX(1);
+        }
+
+        .hamburger-btn { 
+            display: none; 
+        }
+
+        /* ===================================
+           ブログヒーローセクション
+        ====================================== */
+        .blog-hero {
+            background: var(--blog-gradient);
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 100px 100px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .blog-hero h1 {
+            font-size: 2.5rem;
+            margin: 0 0 15px 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .blog-hero p {
+            font-size: 1.2rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* ===================================
+           ブログポストグリッド
+        ====================================== */
+        .section {
+            padding: 80px 0;
+        }
+
+        .blog-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .blog-post-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .blog-post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 35px rgba(0,0,0,0.12);
+        }
+
+        .blog-post-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-post-content {
+            padding: 25px;
+        }
+
+        .blog-post-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .blog-post-date {
+            color: #666;
+        }
+
+        .blog-post-category {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .blog-post-title {
+            font-size: 1.3rem;
+            margin: 0 0 15px 0;
+            line-height: 1.4;
+        }
+
+        .blog-post-title a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .blog-post-title a:hover {
+            color: var(--primary-color);
+        }
+
+        .blog-post-excerpt {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .blog-post-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .blog-post-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .blog-post-author img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .blog-post-author span {
             font-size: 0.9rem;
             color: #666;
         }
-        
-        .blog-card-category {
-            background: #4A90E2;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
-        .blog-card-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #333;
-            line-height: 1.4;
-        }
-        
-        .blog-card-excerpt {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .blog-card-readmore {
-            color: #4A90E2;
+
+        .blog-post-readmore {
+            color: var(--primary-color);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .blog-post-readmore:hover {
+            color: #d35400;
+        }
+
+        /* ===================================
+           フッター
+        ====================================== */
+        .footer {
+            background-color: var(--secondary-color);
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
             display: inline-flex;
+            justify-content: center;
             align-items: center;
-            gap: 0.5rem;
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            background-color: #fff;
+            color: var(--secondary-color);
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
         }
-        
-        .blog-card-readmore:hover {
-            color: #357ABD;
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            transform: translateY(-3px);
         }
-        
-        @media (max-width: 768px) {
-            .blog-grid {
-                grid-template-columns: 1fr;
+
+        /* ===================================
+           スマホ対応
+        ====================================== */
+        @media screen and (max-width: 900px) {
+            .header-nav {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: #fff;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 100px;
+                text-align: left;
+                transform: translateX(100%);
+                transition: transform 0.4s ease-in-out;
+                z-index: 100;
+            }
+            
+            .header-nav.is-active {
+                transform: translateX(0);
+            }
+            
+            .header-nav ul {
+                flex-direction: column;
+                gap: 0;
+                align-items: flex-start;
+            }
+            
+            .header-nav ul li a {
+                font-size: 1.1rem;
+                padding: 15px 30px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .hamburger-btn {
+                display: block;
+                cursor: pointer;
+                background: none;
+                border: none;
+                width: 30px;
+                height: 21px;
+                position: relative;
+                z-index: 110;
+            }
+            
+            .hamburger-btn span {
+                display: block;
+                width: 100%;
+                height: 3px;
+                background-color: var(--secondary-color);
+                border-radius: 2px;
+                position: absolute;
+                transition: all 0.4s;
+            }
+            
+            .hamburger-btn span:nth-child(1) { top: 0; }
+            .hamburger-btn span:nth-child(2) { top: 9px; }
+            .hamburger-btn span:nth-child(3) { bottom: 0; }
+            
+            .hamburger-btn.is-active span {
+                background-color: var(--secondary-color);
+            }
+            
+            .hamburger-btn.is-active span:nth-child(1) {
+                top: 9px;
+                transform: rotate(45deg);
+            }
+            
+            .hamburger-btn.is-active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger-btn.is-active span:nth-child(3) {
+                top: 9px;
+                transform: rotate(-45deg);
+            }
+            
+            .blog-hero {
+                padding: 60px 20px;
             }
             
             .blog-hero h1 {
                 font-size: 2rem;
             }
             
-            .modern-blog-container {
-                padding: 1rem;
+            .blog-hero p {
+                font-size: 1rem;
+            }
+            
+            .blog-posts-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
-
     <header class="header">
         <div class="container">
             <a href="index.html" class="header-logo">
@@ -160,131 +450,172 @@
     </header>
 
     <main>
-        <section class="page-header">
-            <div class="container">
-                <h1>活動報告・お知らせ</h1>
-                <p>味美ネットワークの最新情報をお伝えします</p>
+        <section class="blog-hero">
+            <div class="blog-hero-content">
+                <div class="container">
+                    <h1>活動記録・お知らせ</h1>
+                    <p>味美ネットワークの最新情報と活動の記録をお届けします</p>
+                </div>
             </div>
         </section>
 
-        <div class="modern-blog-container">
-            <div class="blog-hero">
-                <h1><i class="fas fa-newspaper" style="margin-right: 0.5rem;"></i>活動記録・お知らせ</h1>
-                <p>味美ネットワークの最新情報と活動の記録をお届けします</p>
+        <section class="section">
+            <div class="container">
+                <div class="blog-posts-grid">
+                    <!-- ブログ記事1 -->
+                    <article class="blog-post-card">
+                        <img src="images/20250405sakura05.png" alt="2025　さくらまつりのお礼" class="blog-post-image">
+                        <div class="blog-post-content">
+                            <div class="blog-post-meta">
+                                <time class="blog-post-date">2025年4月13日</time>
+                                <span class="blog-post-category">活動報告</span>
+                            </div>
+                            <h2 class="blog-post-title">
+                                <a href="#" onclick="showFullPost('post1'); return false;">2025　さくらまつりのお礼</a>
+                            </h2>
+                            <p class="blog-post-excerpt">
+                                令和７年４月５日（土）二子山公園で桜まつりが開催されました！当日は満開の桜と天気に恵まれ、とても多くの方で賑わいました。
+                            </p>
+                            <div class="blog-post-footer">
+                                <div class="blog-post-author">
+                                    <span>味美ネットワーク</span>
+                                </div>
+                                <a href="#" class="blog-post-readmore" onclick="showFullPost('post1'); return false;">
+                                    続きを読む →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ブログ記事2 -->
+                    <article class="blog-post-card">
+                        <div class="blog-post-image" style="background: var(--blog-gradient); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <div class="blog-post-content">
+                            <div class="blog-post-meta">
+                                <time class="blog-post-date">2025年7月16日</time>
+                                <span class="blog-post-category">お知らせ</span>
+                            </div>
+                            <h2 class="blog-post-title">
+                                <a href="#" onclick="showFullPost('post2'); return false;">ウェブサイトをリニューアルしました</a>
+                            </h2>
+                            <p class="blog-post-excerpt">
+                                味美ネットワークのウェブサイトをリニューアルしました。新しいデザインで、より分かりやすく情報をお伝えできるようになりました。
+                            </p>
+                            <div class="blog-post-footer">
+                                <div class="blog-post-author">
+                                    <span>味美ネットワーク</span>
+                                </div>
+                                <a href="#" class="blog-post-readmore" onclick="showFullPost('post2'); return false;">
+                                    続きを読む →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ブログ記事3 -->
+                    <article class="blog-post-card">
+                        <img src="images/20241117oshi-01.png" alt="2024味美推しフェス" class="blog-post-image">
+                        <div class="blog-post-content">
+                            <div class="blog-post-meta">
+                                <time class="blog-post-date">2024年11月18日</time>
+                                <span class="blog-post-category">活動報告</span>
+                            </div>
+                            <h2 class="blog-post-title">
+                                <a href="#" onclick="showFullPost('post3'); return false;">2024味美推しフェス</a>
+                            </h2>
+                            <p class="blog-post-excerpt">
+                                2024年11月17日に東春信用金庫味美支店駐車場で2024味美推しフェスが開催されました。
+                            </p>
+                            <div class="blog-post-footer">
+                                <div class="blog-post-author">
+                                    <span>味美ネットワーク</span>
+                                </div>
+                                <a href="#" class="blog-post-readmore" onclick="showFullPost('post3'); return false;">
+                                    続きを読む →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ブログ記事4 -->
+                    <article class="blog-post-card">
+                        <img src="images/20231021-01.png" alt="ハンドーボール知多中学校に寄贈" class="blog-post-image">
+                        <div class="blog-post-content">
+                            <div class="blog-post-meta">
+                                <time class="blog-post-date">2023年10月21日</time>
+                                <span class="blog-post-category">活動報告</span>
+                            </div>
+                            <h2 class="blog-post-title">
+                                <a href="#" onclick="showFullPost('post4'); return false;">ハンドーボール知多中学校に寄贈</a>
+                            </h2>
+                            <p class="blog-post-excerpt">
+                                平成 26 年～28 年（2014～2016）の 3 年間、味美未来事業の文化スポーツ交流事業として知多中学校の男女ハンドーボール部の協力のもと小学生ハンドボール体験教室を開催しました。
+                            </p>
+                            <div class="blog-post-footer">
+                                <div class="blog-post-author">
+                                    <span>味美ネットワーク</span>
+                                </div>
+                                <a href="#" class="blog-post-readmore" onclick="showFullPost('post4'); return false;">
+                                    続きを読む →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ブログ記事5 -->
+                    <article class="blog-post-card">
+                        <img src="images/sak_2025.jpg" alt="白山神社で桜まつりを開催予定" class="blog-post-image">
+                        <div class="blog-post-content">
+                            <div class="blog-post-meta">
+                                <time class="blog-post-date">2022年3月5日</time>
+                                <span class="blog-post-category">お知らせ</span>
+                            </div>
+                            <h2 class="blog-post-title">
+                                <a href="#" onclick="showFullPost('post5'); return false;">白山神社で桜まつりを開催予定</a>
+                            </h2>
+                            <p class="blog-post-excerpt">
+                                今年も白山神社で桜まつりを開催予定です。日時は令和4年4月2日(土) 午前9時～午後3時、場所は白山神社境内です。
+                            </p>
+                            <div class="blog-post-footer">
+                                <div class="blog-post-author">
+                                    <span>味美ネットワーク</span>
+                                </div>
+                                <a href="#" class="blog-post-readmore" onclick="showFullPost('post5'); return false;">
+                                    続きを読む →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- ブログ記事6 -->
+                    <article class="blog-post-card">
+                        <img src="images/20211204shimenawa01.png" alt="令和3年度　しめ縄作り体験" class="blog-post-image">
+                        <div class="blog-post-content">
+                            <div class="blog-post-meta">
+                                <time class="blog-post-date">2021年12月6日</time>
+                                <span class="blog-post-category">活動報告</span>
+                            </div>
+                            <h2 class="blog-post-title">
+                                <a href="#" onclick="showFullPost('post6'); return false;">令和3年度　しめ縄作り体験</a>
+                            </h2>
+                            <p class="blog-post-excerpt">
+                                去る12月4日(土)に白山神社においてしめ縄作り体験が開催されました。少し肌寒いくらいの気候ではありましたが、お天気にも恵まれ、無事にしめ縄を作り上げることが出来ました。
+                            </p>
+                            <div class="blog-post-footer">
+                                <div class="blog-post-author">
+                                    <span>味美ネットワーク</span>
+                                </div>
+                                <a href="#" class="blog-post-readmore" onclick="showFullPost('post6'); return false;">
+                                    続きを読む →
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
-
-            <div class="blog-grid">
-                <!-- ブログ記事1 -->
-                <article class="modern-blog-card">
-                    <div class="blog-card-image" style="background-image: url('images/20250405sakura05.png');"></div>
-                    <div class="blog-card-content">
-                        <div class="blog-card-meta">
-                            <time datetime="2025-04-13">2025年4月13日</time>
-                            <span class="blog-card-category">活動報告</span>
-                        </div>
-                        <h2 class="blog-card-title">2025　さくらまつりのお礼</h2>
-                        <div class="blog-card-excerpt">
-                            令和７年４月５日（土）二子山公園で桜まつりが開催されました！当日は満開の桜と天気に恵まれ、とても多くの方で賑わいました。
-                        </div>
-                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post1'); return false;">
-                            続きを読む <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- ブログ記事2 -->
-                <article class="modern-blog-card">
-                    <div class="blog-card-image" style="background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
-                        <i class="fas fa-globe-asia"></i>
-                    </div>
-                    <div class="blog-card-content">
-                        <div class="blog-card-meta">
-                            <time datetime="2025-07-16">2025年7月16日</time>
-                            <span class="blog-card-category">お知らせ</span>
-                        </div>
-                        <h2 class="blog-card-title">ウェブサイトをリニューアルしました</h2>
-                        <div class="blog-card-excerpt">
-                            味美ネットワークのウェブサイトをリニューアルしました。新しいデザインで、より分かりやすく情報をお伝えできるようになりました。
-                        </div>
-                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post2'); return false;">
-                            続きを読む <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- ブログ記事3 -->
-                <article class="modern-blog-card">
-                    <div class="blog-card-image" style="background-image: url('images/20241117oshi-01.png');"></div>
-                    <div class="blog-card-content">
-                        <div class="blog-card-meta">
-                            <time datetime="2024-11-18">2024年11月18日</time>
-                            <span class="blog-card-category">活動報告</span>
-                        </div>
-                        <h2 class="blog-card-title">2024味美推しフェス</h2>
-                        <div class="blog-card-excerpt">
-                            2024年11月17日に東春信用金庫味美支店駐車場で2024味美推しフェスが開催されました。
-                        </div>
-                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post3'); return false;">
-                            続きを読む <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- ブログ記事4 -->
-                <article class="modern-blog-card">
-                    <div class="blog-card-image" style="background-image: url('images/20231021-01.png');"></div>
-                    <div class="blog-card-content">
-                        <div class="blog-card-meta">
-                            <time datetime="2023-10-21">2023年10月21日</time>
-                            <span class="blog-card-category">活動報告</span>
-                        </div>
-                        <h2 class="blog-card-title">ハンドーボール知多中学校に寄贈</h2>
-                        <div class="blog-card-excerpt">
-                            平成 26 年～28 年（2014～2016）の 3 年間、味美未来事業の文化スポーツ交流事業として知多中学校の男女ハンドーボール部の協力のもと小学生ハンドボール体験教室を開催しました。
-                        </div>
-                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post4'); return false;">
-                            続きを読む <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- ブログ記事5 -->
-                <article class="modern-blog-card">
-                    <div class="blog-card-image" style="background-image: url('images/sak_2025.jpg');"></div>
-                    <div class="blog-card-content">
-                        <div class="blog-card-meta">
-                            <time datetime="2022-03-05">2022年3月5日</time>
-                            <span class="blog-card-category">お知らせ</span>
-                        </div>
-                        <h2 class="blog-card-title">白山神社で桜まつりを開催予定</h2>
-                        <div class="blog-card-excerpt">
-                            今年も白山神社で桜まつりを開催予定です。日時は令和4年4月2日(土) 午前9時～午後3時、場所は白山神社境内です。
-                        </div>
-                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post5'); return false;">
-                            続きを読む <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- ブログ記事6 -->
-                <article class="modern-blog-card">
-                    <div class="blog-card-image" style="background-image: url('images/20211204shimenawa01.png');"></div>
-                    <div class="blog-card-content">
-                        <div class="blog-card-meta">
-                            <time datetime="2021-12-06">2021年12月6日</time>
-                            <span class="blog-card-category">活動報告</span>
-                        </div>
-                        <h2 class="blog-card-title">令和3年度　しめ縄作り体験</h2>
-                        <div class="blog-card-excerpt">
-                            去る12月4日(土)に白山神社においてしめ縄作り体験が開催されました。少し肌寒いくらいの気候ではありましたが、お天気にも恵まれ、無事にしめ縄を作り上げることが出来ました。
-                        </div>
-                        <a href="#" class="blog-card-readmore" onclick="showFullPost('post6'); return false;">
-                            続きを読む <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-            </div>
-        </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -299,7 +630,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="cookie-consent.js"></script>
     <script>
         function showFullPost(postId) {
             const posts = {
@@ -513,12 +843,12 @@
                         <div style="background: white; max-width: 800px; max-height: 90vh; overflow-y: auto; 
                              border-radius: 16px; position: relative;" onclick="event.stopPropagation()">
                             <div style="position: sticky; top: 0; background: white; padding: 1.5rem; border-bottom: 1px solid #eee; 
-                                 display: flex; justify-content: between; align-items: center; border-radius: 16px 16px 0 0;">
+                                 display: flex; justify-content: space-between; align-items: center; border-radius: 16px 16px 0 0;">
                                 <div>
                                     <h2 style="margin: 0; color: #333; font-size: 1.5rem;">${post.title}</h2>
                                     <div style="margin-top: 0.5rem; color: #666; font-size: 0.9rem;">
                                         <span>${post.date}</span>
-                                        <span style="margin-left: 1rem; background: #4A90E2; color: white; 
+                                        <span style="margin-left: 1rem; background: #E67E22; color: white; 
                                               padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem;">${post.category}</span>
                                     </div>
                                 </div>
