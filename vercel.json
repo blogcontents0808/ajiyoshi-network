@@ -4,7 +4,7 @@
     { "source": "/index.html", "destination": "/index.html" }
   ],
   "functions": {
-    "pages/api/**/*.js": {
+    "api/**/*.js": {
       "runtime": "nodejs18.x"
     }
   },
