@@ -3,6 +3,11 @@
     { "source": "/", "destination": "/index.html" },
     { "source": "/index.html", "destination": "/index.html" }
   ],
+  "functions": {
+    "pages/api/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
@@ -10,6 +15,23 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods", 
+          "value": "GET, POST, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
         }
       ]
     }
