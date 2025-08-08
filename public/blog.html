@@ -731,200 +731,88 @@
 
     <script src="script.js"></script>
     <script>
-        function showFullPost(postId) {
-            const posts = {
-                post1: {
-                    title: 'ウェブサイトをリニューアルしました',
-                    date: '2025年7月16日',
-                    category: 'お知らせ',
-                    content: `
-                        <p>味美ネットワークのウェブサイトをリニューアルしました。新しいデザインで、より分かりやすく情報をお伝えできるようになりました。</p>
-                        
-                        <p>今後もこちらのブログで活動報告やお知らせを発信していきますので、ぜひご覧ください。</p>
-                        
-                        <h3>主な変更点</h3>
-                        
-                        <h4>新しいブログシステム</h4>
-                        <ul>
-                            <li>SanityをベースとしたヘッドレスCMSを導入</li>
-                            <li>リアルタイムでの記事更新が可能</li>
-                            <li>画像の自動最適化でページ表示速度が向上</li>
-                        </ul>
-                        
-                        <h4>レスポンシブデザイン</h4>
-                        <ul>
-                            <li>スマートフォンでも見やすいデザインに最適化</li>
-                            <li>タブレットでも快適に閲覧可能</li>
-                        </ul>
-                        
-                        <h4>SEO対策</h4>
-                        <ul>
-                            <li>検索エンジンで見つけやすくなりました</li>
-                            <li>SNSでのシェア機能を強化</li>
-                        </ul>
-                        
-                        <h3>今後の予定</h3>
-                        <p>定期的に更新予定のコンテンツ：</p>
-                        <ul>
-                            <li>イベントの開催報告</li>
-                            <li>地域の情報</li>
-                            <li>メンバーの活動紹介</li>
-                            <li>季節のお知らせ</li>
-                        </ul>
-                        
-                        <p>お楽しみにお待ちください！</p>
-                    `
-                },
-                post2: {
-                    title: '2025　さくらまつりのお礼',
-                    date: '2025年4月13日',
-                    category: '活動報告',
-                    content: `
-                        <p>令和７年４月５日（土）二子山公園で桜まつりが開催されました！</p>
-                        
-                        <p>当日は満開の桜と天気に恵まれ、とても多くの方で賑わいました。</p>
-                        
-                        <p>午前中は白山小音楽部や春日井ジュニアウインドウエスト、ＫＣジャズオーケストラの皆さんのすてきな演奏がありました。</p>
-                        
-                        <p>さらに石黒直樹春日井市長がオカリナを演奏してくださり、驚きました！</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20250405sakura05.png" alt="春日井市長オカリナ演奏" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                        
-                        <p>また一日を通して味美にちなんだワークショップや地元企業による販売ブース、キッチンカーなどで楽しい時間が続きました。</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20250405sakura06.png" alt="ワークショップの様子" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
-                            <br>
-                            <img src="images/20250405sakura07.png" alt="イベントの様子" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                        
-                        <p>当日、運営の準備にご協力頂きました皆様、ありがとうございました。</p>
-                        
-                        <p><strong>味美ネットワーク　主催者一同</strong></p>
-                        
-                        <h3>2025　さくらまつり</h3>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20250405sakura08.png" alt="2025さくらまつり1" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
-                            <br>
-                            <img src="images/20250405sakura09.png" alt="2025さくらまつり2" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                    `
-                },
-                post3: {
-                    title: '2024味美推しフェス',
-                    date: '2024年11月18日',
-                    category: '活動報告',
-                    content: `
-                        <p>2024年11月17日に東春信用金庫味美支店駐車場で2024味美推しフェスが開催されました。</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20241117oshi-01.png" alt="2024味美推しフェス1" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
-                            <br>
-                            <img src="images/20241117oshi-02.png" alt="2024味美推しフェス2" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                        
-                        <h3>イベントの様子</h3>
-                        <p>地域の皆様にご来場いただき、とても盛り上がりました。様々な催し物や地元の特産品の販売など、味美の魅力を存分に感じられるイベントとなりました。</p>
-                        
-                        <p>ご来場いただきました皆様、またイベント運営にご協力いただきました関係者の皆様、誠にありがとうございました。</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20241117oshi-03.png" alt="2024味美推しフェス3" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                    `
-                },
-                post4: {
-                    title: 'ハンドーボール知多中学校に寄贈',
-                    date: '2023年10月21日',
-                    category: '活動報告',
-                    content: `
-                        <p>平成 26 年～28 年（2014～2016）の 3 年間、味美未来事業の文化スポーツ交流事業として知多中学校の男女ハンドーボール部の協力のもと小学生ハンドボール体験教室を開催しました。</p>
-                        
-                        <p>事業予算より小学生用のハンドボール 1 号球を購入し 3 年間使用しましたがその後ハンドボール教室が再開されることはありませんでした。</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20231021-01.png" alt="ハンドボール寄贈1" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                        
-                        <p>当時、中学生女子のハンドボールは 2 号球を使用していましたが 2019 年ボール規定変更により中学生女子のボールサイズが１号球に変更になりました。</p>
-                        
-                        <p>先般、知多中ハンド部の関係者より女子のボールサイズが変更になっていることを聞いて使われなくなったハンドボール 1 号球を寄贈をすることを提案いたしました。</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20231021-02.png" alt="ハンドボール寄贈2" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                        
-                        <p>知多中学校にお話を持っていったところ喜んで頂戴しますということで 10 月 18 日の部活動中に知多中女子ハンドボール部にボールとボールバッグを直接お渡しすることが出来ました。</p>
-                        
-                        <p>知多中女子ハンドボール部は県大会出場以上を目指せるチームで今後の活躍に期待したいと思います。</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20231021-03.png" alt="ハンドボール寄贈3" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                        
-                        <p>今回寄贈したボールは 20 数個です。当時の購入価格は 1 個 2800 円でしたが、現在は 1 個 3800 円くらいです。ボールバッグは 6600 円くらいです。眠っていた備品が有効活用されることになって良かったと思います。</p>
-                        
-                        <p>味美ネットワークはいろいろな活動をしてまいりましたが今後も地域貢献として皆様に喜んでいただける事業を計画していきたいと思います。</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/20231021-04.png" alt="ハンドボール寄贈4" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                    `
-                },
-                post5: {
-                    title: '白山神社で桜まつりを開催予定',
-                    date: '2022年3月5日',
-                    category: 'お知らせ',
-                    content: `
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/sak_2025.jpg" alt="桜まつりポスター" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                        
-                        <p>今年も白山神社で桜まつりを開催予定です。</p>
-                        
-                        <p>日時は令和4年4月2日(土) 午前9時～午後3時、場所は白山神社境内です。</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/sak_2023.jpg" alt="桜まつりの様子" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </p>
-                        
-                        <p>今年は昨年好評だったガイドツアー、たくさんの楽しいワークショップに加えて、白山小学校音楽部ミニコンサートも開催いたします！</p>
-                        
-                        <p>さらに名古屋大学謎解き制作サークル　リデルタさんの『調査隊出動！謎を解いて地域の魅力を知ろう！』も行います。</p>
-                        
-                        <p>低学年と高学年向けの2コースあるので楽しみです。</p>
-                        
-                        <p>味美の氏神様である白山神社の歴史に触れて 家族みんなで楽しい時間を過ごしましょう！</p>
-                        
-                        <p><strong>追伸：</strong>日輪寺の境内でも花まつりを同時開催しています。</p>
-                    `
-                },
-                post6: {
-                    title: '令和3年度　しめ縄作り体験',
-                    date: '2021年12月6日',
-                    category: '活動報告',
-                    content: `
-                        <p>去る12月4日(土)に白山神社においてしめ縄作り体験が開催されました。少し肌寒いくらいの気候ではありましたが、お天気にも恵まれ、無事にしめ縄を作り上げることが出来ました。</p>
-                        
-                        <p style="text-align: center; margin: 2rem 0;">
-                            <img src="images/sme_2022.jpg" alt="しめ縄作り体験1" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1rem;">
-                        </p>
-                        
-                        <h3>体験の様子</h3>
-                        <p>参加者の皆様は、講師の指導の下、熱心にしめ縄作りに取り組まれていました。初めての方も多くいらっしゃいましたが、お互いに教え合いながら、和気あいあいとした雰囲気で進められました。</p>
-                        
-                        <h3>完成したしめ縄</h3>
-                        <p>皆様が丹精込めて作られたしめ縄は、どれも立派な出来栄えでした。新年を迎える準備として、各ご家庭で飾っていただけることと思います。</p>
-                        
-                        <p>ご参加いただいた皆様、また準備にご協力いただいた関係者の皆様、ありがとうございました。来年も開催予定ですので、ぜひご参加ください。</p>
-                    `
-                }
-            };
+        // グローバル変数でブログ投稿データを保持
+        let blogPosts = {};
+        let isLoading = true;
 
-            const post = posts[postId];
+        // ブログデータをAPIから取得
+        async function loadBlogPosts() {
+            try {
+                console.log('ブログデータを読み込み中...');
+                const response = await fetch('/api/blog');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.success && data.posts) {
+                    blogPosts = data.posts;
+                    console.log(`${data.total}件の記事を読み込みました`);
+                    updateBlogGrid();
+                } else {
+                    throw new Error(data.message || 'ブログデータの取得に失敗しました');
+                }
+            } catch (error) {
+                console.error('ブログデータ読み込みエラー:', error.message);
+                showErrorMessage('ブログデータの読み込みに失敗しました。しばらくしてから再度お試しください。');
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        // エラーメッセージ表示
+        function showErrorMessage(message) {
+            const blogGrid = document.querySelector('.blog-grid');
+            if (blogGrid) {
+                blogGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #666;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem; color: #E67E22;"></i>
+                        <p>${message}</p>
+                        <button onclick="loadBlogPosts()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #E67E22; color: white; border: none; border-radius: 4px; cursor: pointer;">再読み込み</button>
+                    </div>
+                `;
+            }
+        }
+
+        // ブログ一覧の更新
+        function updateBlogGrid() {
+            const blogGrid = document.querySelector('.blog-grid');
+            if (!blogGrid || Object.keys(blogPosts).length === 0) return;
+
+            const postCards = Object.keys(blogPosts).map(postId => {
+                const post = blogPosts[postId];
+                const excerpt = post.excerpt || post.content.replace(/<[^>]*>/g, '').substring(0, 100) + '...';
+                
+                return `
+                    <article class="blog-card" onclick="showFullPost('${postId}')">
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span class="blog-date"><i class="fas fa-calendar"></i>${post.date}</span>
+                                <span class="blog-category">${post.category}</span>
+                            </div>
+                            <h2 class="blog-card-title">${post.title}</h2>
+                            <p class="blog-card-excerpt">${excerpt}</p>
+                            <div class="blog-card-link">
+                                <span>記事を読む</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            blogGrid.innerHTML = postCards;
+        }
+
+        // ページ読み込み時にブログデータを取得
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBlogPosts();
+        });
+
+        function showFullPost(postId) {
+            const post = blogPosts[postId];
             if (post) {
                 const modalHtml = `
                     <div id="postModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
