@@ -15,7 +15,7 @@ const client = createClient({
 });
 
 /**
- * 📋 Sanityから最新のブログ記事を取得
+ * 📋 Sanityから最新のブログ記事を取得（サムネイル保護付き）
  */
 async function fetchLatestBlogPosts() {
   try {
@@ -27,19 +27,70 @@ async function fetchLatestBlogPosts() {
       slug,
       publishedAt,
       excerpt,
-      "thumbnail": mainImage.asset->url,
+      "thumbnailRef": thumbnail.asset._ref,
+      "mainImageRef": mainImage.asset._ref,
       "category": categories[0]->title,
-      body,
-      "imageRefs": body[_type == "image"].asset._ref
+      content,
+      "imageRefs": content[_type == "image"].asset._ref
     }`;
     
     const posts = await client.fetch(query);
     console.log(`✅ ${posts.length}件の記事を取得しました`);
+    
+    // サムネイル情報を保護・生成
+    posts.forEach(post => {
+      let thumbnailUrl = 'images/default-blog.jpg';
+      
+      // サムネイル優先、なければメイン画像を使用
+      if (post.thumbnailRef) {
+        thumbnailUrl = `https://cdn.sanity.io/images/qier3tei/production/${post.thumbnailRef.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png')}`;
+      } else if (post.mainImageRef) {
+        thumbnailUrl = `https://cdn.sanity.io/images/qier3tei/production/${post.mainImageRef.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png')}`;
+      }
+      
+      post.protectedThumbnail = thumbnailUrl;
+      console.log(`🖼️ ${post.title}: サムネイル保護 ${thumbnailUrl}`);
+    });
+    
     return posts;
     
   } catch (error) {
     console.error('❌ Sanity記事取得エラー:', error);
     throw error;
+  }
+}
+
+/**
+ * 🛡️ 既存HTMLからサムネイル情報を抽出（保護用）
+ */
+function extractExistingThumbnails(htmlContent) {
+  const existingThumbnails = {};
+  
+  try {
+    // blogDataオブジェクトから既存のサムネイル情報を抽出
+    const blogDataMatch = htmlContent.match(/const blogData = (\{[\s\S]*?\});/);
+    if (blogDataMatch) {
+      const blogDataStr = blogDataMatch[1];
+      const postsMatches = blogDataStr.match(/"post\d+":\s*\{[\s\S]*?\}/g);
+      
+      if (postsMatches) {
+        postsMatches.forEach(postMatch => {
+          const slugMatch = postMatch.match(/"slug":\s*"([^"]+)"/);
+          const thumbnailMatch = postMatch.match(/"thumbnail":\s*"([^"]+)"/);
+          
+          if (slugMatch && thumbnailMatch) {
+            existingThumbnails[slugMatch[1]] = thumbnailMatch[1];
+          }
+        });
+      }
+    }
+    
+    console.log(`🔍 既存サムネイル ${Object.keys(existingThumbnails).length}件を抽出`);
+    return existingThumbnails;
+    
+  } catch (error) {
+    console.warn('⚠️ 既存サムネイル抽出エラー:', error);
+    return {};
   }
 }
 
@@ -54,8 +105,14 @@ function convertPortableTextToHTML(portableText) {
       if (!block.children || block.children.length === 0) return '';
       
       const textContent = block.children.map(child => {
-        if (child._type === 'span') return child.text || '';
-        return child.text || '';
+        let content = child.text || '';
+        if (child.marks && child.marks.includes('strong')) {
+          content = `<strong>${content}</strong>`;
+        }
+        if (child.marks && child.marks.includes('em')) {
+          content = `<em>${content}</em>`;
+        }
+        return content;
       }).join('');
       
       if (!textContent.trim()) return '';
@@ -64,6 +121,10 @@ function convertPortableTextToHTML(portableText) {
       if (block.style === 'h2') return `<h2>${textContent}</h2>`;
       if (block.style === 'h3') return `<h3>${textContent}</h3>`;
       if (block.style === 'h4') return `<h4>${textContent}</h4>`;
+      
+      if (block.listItem === 'bullet') {
+        return `<li>${textContent}</li>`;
+      }
       
       return `<p>${textContent}</p>`;
     }
@@ -82,7 +143,7 @@ function convertPortableTextToHTML(portableText) {
 }
 
 /**
- * 📝 ブログHTML更新
+ * 📝 ブログHTML更新（サムネイル保護機能付き）
  */
 async function updateBlogHTML(posts) {
   const fs = require('fs').promises;
@@ -92,6 +153,9 @@ async function updateBlogHTML(posts) {
     const blogHtmlPath = path.join(__dirname, 'public', 'blog.html');
     let htmlContent = await fs.readFile(blogHtmlPath, 'utf8');
     
+    // 既存のblogDataから現在のサムネイルを抽出して保護
+    const existingThumbnails = extractExistingThumbnails(htmlContent);
+    
     // JavaScript内のblogDataオブジェクトを動的生成
     const blogData = {
       success: true,
@@ -100,9 +164,18 @@ async function updateBlogHTML(posts) {
       timestamp: new Date().toISOString()
     };
     
-    // 記事データを変換
+    // 記事データを変換（サムネイル保護適用）
     posts.forEach((post, index) => {
       const postId = `post${index + 1}`;
+      const slug = post.slug.current;
+      
+      // サムネイル保護: 既存の有効なサムネイルがあれば保持
+      let finalThumbnail = post.protectedThumbnail;
+      if (existingThumbnails[slug] && !existingThumbnails[slug].includes('default-blog.jpg')) {
+        finalThumbnail = existingThumbnails[slug];
+        console.log(`🛡️ サムネイル保護適用: ${post.title} → ${finalThumbnail}`);
+      }
+      
       blogData.posts[postId] = {
         title: post.title,
         date: new Date(post.publishedAt).toLocaleDateString('ja-JP', {
@@ -111,20 +184,30 @@ async function updateBlogHTML(posts) {
           day: 'numeric'
         }),
         category: post.category || '活動報告',
-        content: convertPortableTextToHTML(post.body),
+        content: convertPortableTextToHTML(post.content),
         excerpt: post.excerpt || post.content?.substring(0, 100) + '...',
-        slug: post.slug.current,
-        thumbnail: post.thumbnail || 'images/default-blog.jpg'
+        slug: slug,
+        thumbnail: finalThumbnail
       };
     });
     
-    // 現在のデータと新しいデータをマージ（既存データを保持）
-    console.log('📋 既存データを保持しつつ新記事を同期...');
-    console.log(`⚠️  自動同期は新記事追加時のみ動作します。既存記事の手動データを保持します。`);
+    // HTMLにblogDataを埋め込み
+    const blogDataString = JSON.stringify(blogData, null, 2)
+      .split('\n')
+      .map((line, index) => index === 0 ? line : '          ' + line)
+      .join('\n');
+    
+    const blogDataRegex = /const blogData = \{[\s\S]*?\};/;
+    if (blogDataRegex.test(htmlContent)) {
+      htmlContent = htmlContent.replace(blogDataRegex, `const blogData = ${blogDataString};`);
+    }
+    
+    console.log('🛡️ サムネイル保護システム適用済み');
+    console.log('📋 全記事のサムネイル情報を保護・更新');
     
     // HTMLファイルを更新
     await fs.writeFile(blogHtmlPath, htmlContent);
-    console.log('✅ blog.html更新完了');
+    console.log('✅ blog.html更新完了（サムネイル保護適用）');
     
     return blogData;
     
