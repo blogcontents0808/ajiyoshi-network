@@ -735,11 +735,11 @@
         let blogPosts = {};
         let isLoading = true;
 
-        // ブログデータをAPIから取得
+        // ブログデータを静的JSONファイルから取得
         async function loadBlogPosts() {
             try {
                 console.log('ブログデータを読み込み中...');
-                const response = await fetch('/api/blog');
+                const response = await fetch('/blog-data.json');
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -750,6 +750,7 @@
                 if (data.success && data.posts) {
                     blogPosts = data.posts;
                     console.log(`${data.total}件の記事を読み込みました`);
+                    console.log(`最終更新: ${data.timestamp}`);
                     updateBlogGrid();
                 } else {
                     throw new Error(data.message || 'ブログデータの取得に失敗しました');
