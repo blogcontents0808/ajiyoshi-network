@@ -703,7 +703,24 @@
             const blogGrid = document.querySelector('.blog-posts-grid');
             if (!blogGrid || Object.keys(blogPosts).length === 0) return;
 
-            const postCards = Object.keys(blogPosts).map(postId => {
+            // 日付順で記事をソート（新しい順）
+            const sortedPostIds = Object.keys(blogPosts).sort((a, b) => {
+                // 日本語形式の日付を解析 (例: "2025年7月16日" -> "2025-07-16")
+                const parseJapaneseDate = (dateStr) => {
+                    const match = dateStr.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+                    if (match) {
+                        const [, year, month, day] = match;
+                        return new Date(year, parseInt(month) - 1, parseInt(day));
+                    }
+                    return new Date(dateStr); // フォールバック
+                };
+                
+                const dateA = parseJapaneseDate(blogPosts[a].date);
+                const dateB = parseJapaneseDate(blogPosts[b].date);
+                return dateB - dateA; // 新しい日付が先頭
+            });
+
+            const postCards = sortedPostIds.map(postId => {
                 const post = blogPosts[postId];
                 const excerpt = post.excerpt || post.content.replace(/<[^>]*>/g, '').substring(0, 100) + '...';
                 
