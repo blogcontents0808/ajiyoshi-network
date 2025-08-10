@@ -168,15 +168,22 @@ async function updateBlogHTML() {
       timestamp: new Date().toISOString()
     };
     
-    // 既存のblogDataを置換
-    const blogDataRegex = /(const blogData = )\\{[\\s\\S]*?\\};/;
-    const newBlogDataString = `const blogData = ${JSON.stringify(blogDataObject, null, 2)};`;
+    // 既存のblogDataを置換（より柔軟な正規表現）
+    const blogDataRegex = /(const blogData = )\\{[\\s\\S]*?\\n\\s*\\};/;
     
     if (blogDataRegex.test(htmlContent)) {
       htmlContent = htmlContent.replace(blogDataRegex, `$1${JSON.stringify(blogDataObject, null, 2)};`);
       console.log('✅ 既存のblogDataを更新しました');
     } else {
-      console.warn('⚠️ blogDataオブジェクトが見つかりません');
+      console.warn('⚠️ blogDataオブジェクトが見つかりません - パターンマッチングに失敗');
+      
+      // デバッグ用: blogDataの開始位置を探す
+      const startIndex = htmlContent.indexOf('const blogData = {');
+      if (startIndex !== -1) {
+        console.log(`📍 blogDataの開始位置: ${startIndex}`);
+        const preview = htmlContent.substring(startIndex, startIndex + 200);
+        console.log(`📋 Preview: ${preview}...`);
+      }
     }
     
     // ファイルに書き込み
