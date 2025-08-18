@@ -1,11 +1,15 @@
 {
   "name": "ajiyoshi-network",
   "version": "1.0.0",
-  "description": "味美ネットワーク公式サイト - 静的サイト + 自動同期システム",
+  "description": "味美ネットワーク公式サイト",
+  "main": "index.js",
   "scripts": {
-    "studio": "cd vibe-blog-by-sanity/app && sanity dev --port 3333",
-    "studio:build": "cd vibe-blog-by-sanity/app && sanity build",
-    "studio:deploy": "cd vibe-blog-by-sanity/app && sanity deploy",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "studio": "sanity dev --port 3333",
+    "studio:build": "sanity build",
+    "studio:deploy": "sanity deploy",
     "sync:new": "node sync-new-posts.js",
     "sync:blog": "node auto-sync-system.js",
     "sync:schedule": "node -e \"require('./auto-sync-system').setupScheduledSync(); console.log('定期同期開始...'); process.stdin.resume();\""
@@ -14,7 +18,18 @@
     "@sanity/client": "^6.4.11",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.15.1",
+    "@vercel/node": "^3.0.0",
+    "googleapis": "^128.0.0",
+    "next": "^14.0.0",
+    "next-sanity": "^6.0.4",
+    "nodemailer": "^6.9.7",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "sanity": "^3.15.1",
+    "styled-components": "^6.1.19",
     "node-cron": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

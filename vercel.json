@@ -3,9 +3,17 @@
     {
       "src": "public/**",
       "use": "@vercel/static"
+    },
+    {
+      "src": "pages/api/**/*.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/pages/api/$1"
+    },
     {
       "src": "/(.*)",
       "dest": "/public/$1"
