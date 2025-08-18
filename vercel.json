@@ -1,14 +1,9 @@
 {
-  "builds": [
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "pages/api/**/*.js",
-      "use": "@vercel/node"
+  "functions": {
+    "pages/api/**/*.js": {
+      "runtime": "@vercel/node@18.x"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/api/(.*)",
