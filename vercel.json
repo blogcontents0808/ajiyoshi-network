@@ -1,7 +1,1 @@
-{
-  "functions": {
-    "pages/api/**/*.js": {
-      "runtime": "@vercel/node@20.x"
-    }
-  }
-}
+{}
