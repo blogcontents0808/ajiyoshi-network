@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
                 
                 // セキュアなAPIリクエスト
-                const response = await fetch('/api/contact', {
+                const response = await fetch('/api/contact/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
