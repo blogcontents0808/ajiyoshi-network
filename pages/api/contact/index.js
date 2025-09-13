@@ -184,7 +184,8 @@ function configureCORS(req, res) {
     'https://ajiyoshi-network-gxq78rn5m-blogcontents0808s-projects.vercel.app',
     'http://localhost:3000',  // 開発環境用
     'http://localhost:3001',  // 開発環境用
-    'http://localhost:3002'   // 開発環境用
+    'http://localhost:3002',  // 開発環境用
+    'http://localhost:3003'   // 開発環境用
   ];
   
   const origin = req.headers.origin;
@@ -484,16 +485,20 @@ export default async function handler(req, res) {
 
     logger.logSuccess(results);
 
-    // 成功条件の見直し: メール送信か保存のいずれかが成功していれば成功とする
+    // ローカル環境での成功判定: localModeがtrueの場合は成功とする
+    const isLocalMode = results.sheet.localMode || results.adminEmail.localMode;
     const hasSuccessfulOperation = results.sheet.success || results.adminEmail.success;
     
     if (hasSuccessfulOperation) {
       return res.status(200).json({
         success: true,
-        message: 'お問い合わせを受け付けました。ご返信まで今しばらくお待ちください。',
+        message: isLocalMode 
+          ? 'ローカル環境: お問い合わせを受け付けました（ログに記録されました）。' 
+          : 'お問い合わせを受け付けました。ご返信まで今しばらくお待ちください。',
         details: {
           sheetSaved: results.sheet.success,
           adminNotified: results.adminEmail.success,
+          localMode: isLocalMode,
           testMode: isTestMode
         }
       });
