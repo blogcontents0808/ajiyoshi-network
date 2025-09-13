@@ -12,7 +12,8 @@
       "dest": "/index.html",
       "headers": {
         "cache-control": "s-maxage=86400"
-      }
+      },
+      "continue": false
     },
     {
       "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|ico|svg|json))$", 
