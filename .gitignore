@@ -50,3 +50,40 @@ next-env.d.ts
 .git/
 .vercel
 .env*.local
+
+# 機密情報 - APIキー・認証情報（追加保護）
+**/config/secrets.*
+**/config/production.*
+**/*secret*
+**/*credential*
+**/*key*.json
+**/*private*.pem
+**/*.p12
+**/*.pfx
+
+# Claude Code設定（ローカル専用）
+**/.claude/settings.local.json
+**/.claude/cache/
+
+# 開発・デバッグファイル
+**/debug.log
+**/error.log
+**/access.log
+**/.env.backup
+**/config.local.*
+
+# バックアップファイル（機密情報含む可能性）
+**/*.backup
+**/*.bak
+**/*.orig
+**/backup_*
+
+# データベースファイル
+**/*.db
+**/*.sqlite
+**/*.sqlite3
+
+# 一時作業ファイル
+**/TODO_PRIVATE.md
+**/NOTES_PRIVATE.md
+**/WORK_IN_PROGRESS_*
