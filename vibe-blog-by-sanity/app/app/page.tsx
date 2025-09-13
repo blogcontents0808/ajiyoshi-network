@@ -1,4 +1,5 @@
-import { getPosts, urlFor } from '@/lib/sanity'
+import { getPosts } from '@/lib/sanity'
+import { urlForImage } from '@/lib/urlForImage'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -27,7 +28,7 @@ export default async function Home() {
                 <article key={post._id} className="blog-post-card">
                   {post.thumbnail && (
                     <Image
-                      src={urlFor(post.thumbnail).width(600).height(400).url()}
+                      src={urlForImage(post.thumbnail, 600)}
                       alt={post.title}
                       width={600}
                       height={400}
@@ -62,7 +63,7 @@ export default async function Home() {
                       <div className="blog-post-author">
                         {post.author?.avatar && (
                           <Image
-                            src={urlFor(post.author.avatar).width(40).height(40).url()}
+                            src={urlForImage(post.author.avatar, 40)}
                             alt={post.author.name}
                             width={40}
                             height={40}

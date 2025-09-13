@@ -1,4 +1,5 @@
-import { getPost, urlFor } from '@/lib/sanity'
+import { getPost } from '@/lib/sanity'
+import { urlForImage } from '@/lib/urlForImage'
 import { PortableText } from '@portabletext/react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -43,7 +44,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
             {post.thumbnail && (
               <div className="blog-post-thumbnail">
                 <Image
-                  src={urlFor(post.thumbnail).width(1200).height(600).url()}
+                  src={urlForImage(post.thumbnail, 1200)}
                   alt={post.title}
                   width={1200}
                   height={600}
@@ -62,7 +63,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
                       image: ({ value }) => (
                         <div style={{ margin: '30px 0' }}>
                           <Image
-                            src={urlFor(value).width(800).height(600).url()}
+                            src={urlForImage(value, 800)}
                             alt={value.alt || ''}
                             width={800}
                             height={600}
@@ -112,7 +113,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
                 <div className="blog-post-author">
                   {post.author?.avatar && (
                     <Image
-                      src={urlFor(post.author.avatar).width(80).height(80).url()}
+                      src={urlForImage(post.author.avatar, 80)}
                       alt={post.author.name}
                       width={80}
                       height={80}
