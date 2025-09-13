@@ -2,23 +2,5 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "npm install",
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/index.html(#.*)?$",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/(blog|activities|members|history|contact|privacy|terms|thanks|data-deletion)\\.html$",
-      "dest": "/$1.html"
-    },
-    {
-      "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|ico|svg))$",
-      "dest": "/$1"
-    }
-  ]
+  "installCommand": "npm install"
 }
