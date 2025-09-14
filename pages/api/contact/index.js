@@ -176,20 +176,14 @@ function validateAndSanitizeInput(body) {
 
 // セキュアなCORS設定
 function configureCORS(req, res) {
-  // 許可するドメインリスト
-  const allowedOrigins = [
-    'https://ajiyoshi-network.vercel.app',
-    'https://ajiyoshi-network-g7srlx4j7-blogcontents0808s-projects.vercel.app',
-    'https://ajiyoshi-network-jx2d2hsx9-blogcontents0808s-projects.vercel.app',
-    'https://ajiyoshi-network-gxq78rn5m-blogcontents0808s-projects.vercel.app',
-    'http://localhost:3000',  // 開発環境用
-    'http://localhost:3001',  // 開発環境用
-    'http://localhost:3002',  // 開発環境用
-    'http://localhost:3003'   // 開発環境用
-  ];
-  
   const origin = req.headers.origin;
-  const isAllowed = allowedOrigins.includes(origin);
+  
+  // 許可するパターン
+  const isProductionVercel = origin && origin.match(/^https:\/\/ajiyoshi-network(-clean)?-[\w-]+-blogcontents0808s-projects\.vercel\.app$/);
+  const isMainDomain = origin === 'https://ajiyoshi-network.vercel.app' || origin === 'https://ajiyoshi-network-clean.vercel.app';
+  const isLocalDev = origin && origin.match(/^http:\/\/localhost:(3000|3001|3002|3003)$/);
+  
+  const isAllowed = isProductionVercel || isMainDomain || isLocalDev;
   
   if (isAllowed) {
     res.setHeader('Access-Control-Allow-Origin', origin);
