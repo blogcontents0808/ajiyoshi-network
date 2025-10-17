@@ -23,12 +23,13 @@
     "googleapis": "^128.0.0",
     "next": "^14.0.0",
     "next-sanity": "^9.0.0",
+    "node-cron": "^3.0.3",
     "nodemailer": "^6.9.7",
+    "path-to-regexp": "^8.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "sanity": "^3.15.1",
-    "styled-components": "^6.1.19",
-    "node-cron": "^3.0.3"
+    "styled-components": "^6.1.19"
   },
   "overrides": {
     "@sanity/icons": "^3.0.0"
