@@ -1,0 +1,640 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@portabletext/block-tools": {
+      "name": "@portabletext/block-tools",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "get-random-values-esm"
+      ],
+      "effects": [
+        "@portabletext/editor",
+        "sanity"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@portabletext/block-tools"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "@portabletext/editor": {
+      "name": "@portabletext/editor",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@portabletext/block-tools",
+        "get-random-values-esm"
+      ],
+      "effects": [
+        "sanity"
+      ],
+      "range": ">=1.7.0",
+      "nodes": [
+        "node_modules/@portabletext/editor"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "@sanity/cli": {
+      "name": "@sanity/cli",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@sanity/util"
+      ],
+      "effects": [
+        "sanity"
+      ],
+      "range": "0.101.5-next - 0.101.6-next || 3.29.2-cds-unstable.89 - 4.6.1-next.40 || >=4.10.4-next.1",
+      "nodes": [
+        "node_modules/@sanity/cli"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "@sanity/export": {
+      "name": "@sanity/export",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@sanity/util"
+      ],
+      "effects": [
+        "sanity"
+      ],
+      "range": ">=3.26.2-canary.47",
+      "nodes": [
+        "node_modules/@sanity/export"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "@sanity/insert-menu": {
+      "name": "@sanity/insert-menu",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@sanity/ui"
+      ],
+      "effects": [
+        "sanity"
+      ],
+      "range": "<=1.1.13",
+      "nodes": [
+        "node_modules/@sanity/insert-menu"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "@sanity/migrate": {
+      "name": "@sanity/migrate",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@sanity/util"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@sanity/migrate"
+      ],
+      "fixAvailable": true
+    },
+    "@sanity/ui": {
+      "name": "@sanity/ui",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "react-refractor"
+      ],
+      "effects": [
+        "@sanity/insert-menu",
+        "@sanity/vision",
+        "@sanity/visual-editing",
+        "next-sanity"
+      ],
+      "range": "<=2.16.21",
+      "nodes": [
+        "node_modules/@sanity/ui"
+      ],
+      "fixAvailable": {
+        "name": "next-sanity",
+        "version": "11.5.5",
+        "isSemVerMajor": true
+      }
+    },
+    "@sanity/util": {
+      "name": "@sanity/util",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "get-random-values-esm"
+      ],
+      "effects": [
+        "@sanity/cli",
+        "@sanity/export",
+        "@sanity/migrate"
+      ],
+      "range": ">=3.0.0-definetype.62",
+      "nodes": [
+        "node_modules/@sanity/export/node_modules/@sanity/util",
+        "node_modules/@sanity/util"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "@sanity/vision": {
+      "name": "@sanity/vision",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@sanity/ui"
+      ],
+      "effects": [],
+      "range": "2.3.5-canary.17 - 4.2.0-next.0-fd837aba64-202507240922 || >=4.10.4-next.1",
+      "nodes": [
+        "node_modules/@sanity/vision"
+      ],
+      "fixAvailable": {
+        "name": "@sanity/vision",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "@sanity/visual-editing": {
+      "name": "@sanity/visual-editing",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@sanity/insert-menu",
+        "@sanity/ui",
+        "get-random-values-esm"
+      ],
+      "effects": [
+        "next-sanity"
+      ],
+      "range": ">=2.4.2",
+      "nodes": [
+        "node_modules/next-sanity/node_modules/@sanity/visual-editing"
+      ],
+      "fixAvailable": {
+        "name": "next-sanity",
+        "version": "11.5.5",
+        "isSemVerMajor": true
+      }
+    },
+    "@vercel/node": {
+      "name": "@vercel/node",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "esbuild",
+        "path-to-regexp",
+        "undici"
+      ],
+      "effects": [],
+      "range": ">=2.3.1",
+      "nodes": [
+        "node_modules/@vercel/node"
+      ],
+      "fixAvailable": true
+    },
+    "esbuild": {
+      "name": "esbuild",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1102341,
+          "name": "esbuild",
+          "dependency": "esbuild",
+          "title": "esbuild enables any website to send any requests to the development server and read the response",
+          "url": "https://github.com/advisories/GHSA-67mh-4wv8-2f99",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-346"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N"
+          },
+          "range": "<=0.24.2"
+        }
+      ],
+      "effects": [
+        "@vercel/node"
+      ],
+      "range": "<=0.24.2",
+      "nodes": [
+        "node_modules/esbuild"
+      ],
+      "fixAvailable": true
+    },
+    "get-random-values": {
+      "name": "get-random-values",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "global"
+      ],
+      "effects": [
+        "get-random-values-esm"
+      ],
+      "range": "<=4.0.0",
+      "nodes": [
+        "node_modules/get-random-values"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "get-random-values-esm": {
+      "name": "get-random-values-esm",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "get-random-values"
+      ],
+      "effects": [
+        "@portabletext/block-tools",
+        "@portabletext/editor",
+        "@sanity/util",
+        "@sanity/visual-editing",
+        "sanity"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/get-random-values-esm"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "global": {
+      "name": "global",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "min-document"
+      ],
+      "effects": [
+        "get-random-values"
+      ],
+      "range": ">=2.0.3",
+      "nodes": [
+        "node_modules/global"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "min-document": {
+      "name": "min-document",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1108264,
+          "name": "min-document",
+          "dependency": "min-document",
+          "title": "min-document vulnerable to prototype pollution",
+          "url": "https://github.com/advisories/GHSA-rx8g-88g5-qh64",
+          "severity": "low",
+          "cwe": [
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<=2.19.0"
+        }
+      ],
+      "effects": [
+        "global"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/min-document"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "next-sanity": {
+      "name": "next-sanity",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@sanity/ui",
+        "@sanity/visual-editing",
+        "sanity"
+      ],
+      "effects": [],
+      "range": "<=0.0.0-dev.24 || 0.6.7 || >=0.9.0-new-preview-mode.1",
+      "nodes": [
+        "node_modules/next-sanity"
+      ],
+      "fixAvailable": {
+        "name": "next-sanity",
+        "version": "11.5.5",
+        "isSemVerMajor": true
+      }
+    },
+    "nodemailer": {
+      "name": "nodemailer",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        {
+          "source": 1108571,
+          "name": "nodemailer",
+          "dependency": "nodemailer",
+          "title": "Nodemailer: Email to an unintended domain can occur due to Interpretation Conflict",
+          "url": "https://github.com/advisories/GHSA-mm7p-fcc7-pg87",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-20",
+            "CWE-436"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<7.0.7"
+        }
+      ],
+      "effects": [],
+      "range": "<7.0.7",
+      "nodes": [
+        "node_modules/nodemailer"
+      ],
+      "fixAvailable": {
+        "name": "nodemailer",
+        "version": "7.0.9",
+        "isSemVerMajor": true
+      }
+    },
+    "path-to-regexp": {
+      "name": "path-to-regexp",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1101846,
+          "name": "path-to-regexp",
+          "dependency": "path-to-regexp",
+          "title": "path-to-regexp outputs backtracking regular expressions",
+          "url": "https://github.com/advisories/GHSA-9wv6-86v2-598j",
+          "severity": "high",
+          "cwe": [
+            "CWE-1333"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": ">=4.0.0 <6.3.0"
+        }
+      ],
+      "effects": [
+        "@vercel/node"
+      ],
+      "range": "4.0.0 - 6.2.2",
+      "nodes": [
+        "node_modules/path-to-regexp"
+      ],
+      "fixAvailable": true
+    },
+    "prismjs": {
+      "name": "prismjs",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1105770,
+          "name": "prismjs",
+          "dependency": "prismjs",
+          "title": "PrismJS DOM Clobbering vulnerability",
+          "url": "https://github.com/advisories/GHSA-x7hr-w5r2-h6wg",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-79",
+            "CWE-94"
+          ],
+          "cvss": {
+            "score": 4.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:L/A:N"
+          },
+          "range": "<1.30.0"
+        }
+      ],
+      "effects": [
+        "refractor"
+      ],
+      "range": "<1.30.0",
+      "nodes": [
+        "node_modules/prismjs"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "react-refractor": {
+      "name": "react-refractor",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "refractor"
+      ],
+      "effects": [
+        "@sanity/ui"
+      ],
+      "range": "<=2.2.0",
+      "nodes": [
+        "node_modules/react-refractor"
+      ],
+      "fixAvailable": {
+        "name": "next-sanity",
+        "version": "11.5.5",
+        "isSemVerMajor": true
+      }
+    },
+    "refractor": {
+      "name": "refractor",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "prismjs"
+      ],
+      "effects": [
+        "react-refractor",
+        "sanity"
+      ],
+      "range": "<=4.6.0",
+      "nodes": [
+        "node_modules/refractor"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "sanity": {
+      "name": "sanity",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "@portabletext/block-tools",
+        "@portabletext/editor",
+        "@sanity/cli",
+        "@sanity/export",
+        "@sanity/insert-menu",
+        "@sanity/migrate",
+        "@sanity/ui",
+        "@sanity/util",
+        "get-random-values-esm",
+        "react-refractor",
+        "refractor"
+      ],
+      "effects": [
+        "next-sanity"
+      ],
+      "range": "2.29.4-purple-unicorn.509 - 2.30.1-purple-unicorn.964 || >=3.0.0-definetype.62",
+      "nodes": [
+        "node_modules/sanity"
+      ],
+      "fixAvailable": {
+        "name": "sanity",
+        "version": "4.10.3",
+        "isSemVerMajor": true
+      }
+    },
+    "tar-fs": {
+      "name": "tar-fs",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1108293,
+          "name": "tar-fs",
+          "dependency": "tar-fs",
+          "title": "tar-fs has a symlink validation bypass if destination directory is predictable with a specific tarball",
+          "url": "https://github.com/advisories/GHSA-vj76-c3g6-qr5v",
+          "severity": "high",
+          "cwe": [
+            "CWE-22",
+            "CWE-61"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=2.0.0 <2.1.4"
+        }
+      ],
+      "effects": [],
+      "range": "2.0.0 - 2.1.3",
+      "nodes": [
+        "node_modules/tar-fs"
+      ],
+      "fixAvailable": true
+    },
+    "undici": {
+      "name": "undici",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1101610,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "Use of Insufficiently Random Values in undici",
+          "url": "https://github.com/advisories/GHSA-c76h-2ccp-4975",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-330"
+          ],
+          "cvss": {
+            "score": 6.8,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N"
+          },
+          "range": ">=4.5.0 <5.28.5"
+        },
+        {
+          "source": 1104501,
+          "name": "undici",
+          "dependency": "undici",
+          "title": "undici Denial of Service attack via bad certificate data",
+          "url": "https://github.com/advisories/GHSA-cxrh-j4jr-qwg3",
+          "severity": "low",
+          "cwe": [
+            "CWE-401"
+          ],
+          "cvss": {
+            "score": 3.1,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:L"
+          },
+          "range": "<5.29.0"
+        }
+      ],
+      "effects": [
+        "@vercel/node"
+      ],
+      "range": "<=5.28.5",
+      "nodes": [
+        "node_modules/undici"
+      ],
+      "fixAvailable": true
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 10,
+      "moderate": 12,
+      "high": 3,
+      "critical": 0,
+      "total": 25
+    },
+    "dependencies": {
+      "prod": 1278,
+      "dev": 0,
+      "optional": 111,
+      "peer": 6,
+      "peerOptional": 0,
+      "total": 1389
+    }
+  }
+}

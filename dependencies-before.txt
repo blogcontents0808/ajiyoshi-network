@@ -1,0 +1,15 @@
+ajiyoshi-network@1.0.0 D:\AI-SANDBOX\ajiyoshi-network-clean
+├── @sanity/client@6.29.1
+├── @sanity/image-url@1.2.0
+├── @sanity/vision@3.99.0
+├── @vercel/node@3.2.29
+├── googleapis@128.0.0
+├── next-sanity@9.12.3
+├── next@14.2.32
+├── node-cron@3.0.3
+├── nodemailer@6.10.1
+├── react-dom@18.3.1
+├── react@18.3.1
+├── sanity@3.99.0
+└── styled-components@6.1.19
+
