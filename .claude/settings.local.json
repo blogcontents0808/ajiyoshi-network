@@ -50,7 +50,8 @@
       "WebFetch(domain:qier3tei.api.sanity.io)",
       "WebFetch(domain:app-2f8ar7wqa-blogcontents0808s-projects.vercel.app)",
       "WebFetch(domain:app-8d8llvisx-blogcontents0808s-projects.vercel.app)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(tar:*)"
     ],
     "deny": []
   }
