@@ -2,18 +2,5 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "npm install",
-  "redirects": [
-    {
-      "source": "/maintenance.html",
-      "destination": "/maintenance.html",
-      "permanent": false
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/((?!maintenance\\.html$).*)",
-      "destination": "/maintenance.html"
-    }
-  ]
+  "installCommand": "npm install"
 }
