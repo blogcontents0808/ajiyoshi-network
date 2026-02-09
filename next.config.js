@@ -70,23 +70,58 @@ const nextConfig = {
       }
     ];
   },
-  // 静的HTMLファイルとの共存のため、rewritesとredirectsを追加
+  // メンテナンスモード: 全てのページをメンテナンスページにリダイレクト
   async redirects() {
     return [
-      // index.htmlへのアクセスはルートにリダイレクト
+      // メンテナンスページ以外の全てのHTMLページをリダイレクト
+      {
+        source: '/blog.html',
+        destination: '/maintenance.html',
+        permanent: false,
+      },
+      {
+        source: '/contact.html',
+        destination: '/maintenance.html',
+        permanent: false,
+      },
+      {
+        source: '/members.html',
+        destination: '/maintenance.html',
+        permanent: false,
+      },
+      {
+        source: '/history.html',
+        destination: '/maintenance.html',
+        permanent: false,
+      },
+      {
+        source: '/activities.html',
+        destination: '/maintenance.html',
+        permanent: false,
+      },
+      {
+        source: '/privacy.html',
+        destination: '/maintenance.html',
+        permanent: false,
+      },
+      {
+        source: '/terms.html',
+        destination: '/maintenance.html',
+        permanent: false,
+      },
       {
         source: '/index.html',
-        destination: '/',
-        permanent: true,
+        destination: '/maintenance.html',
+        permanent: false,
       },
     ];
   },
   async rewrites() {
     return [
-      // 静的HTMLファイルは直接配信
+      // ルートパスをメンテナンスページに書き換え
       {
-        source: '/:path*.html',
-        destination: '/:path*.html',
+        source: '/',
+        destination: '/maintenance.html',
       },
     ];
   },
