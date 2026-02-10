@@ -93,13 +93,7 @@ export default function Home() {
           サイトの改善作業を行っております。<br />
           ご不便をおかけして申し訳ございません。
         </p>
-        <p className="message">
-          しばらく経ってから再度アクセスしてください。<br />
-          お急ぎの場合は、SNSからお問い合わせください。
-        </p>
-        <div className="logo">
-          <p>味美ネットワーク</p>
-        </div>
+
       </div>
     </>
   )
