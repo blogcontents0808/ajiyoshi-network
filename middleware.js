@@ -1,35 +1,35 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  // メンテナンスモードが有効な場合
-  const isMaintenanceMode = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true';
+  const { pathname } = request.nextUrl;
 
   // メンテナンスページ自体へのアクセスは許可
-  if (request.nextUrl.pathname === '/maintenance.html') {
+  if (pathname === '/maintenance.html') {
     return NextResponse.next();
   }
 
   // 静的アセット（CSS、JS、画像、フォント）へのアクセスは許可
   if (
-    request.nextUrl.pathname.startsWith('/_next') ||
-    request.nextUrl.pathname.startsWith('/images') ||
-    request.nextUrl.pathname.endsWith('.css') ||
-    request.nextUrl.pathname.endsWith('.js') ||
-    request.nextUrl.pathname.endsWith('.png') ||
-    request.nextUrl.pathname.endsWith('.jpg') ||
-    request.nextUrl.pathname.endsWith('.ico') ||
-    request.nextUrl.pathname.endsWith('.woff') ||
-    request.nextUrl.pathname.endsWith('.woff2')
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/images') ||
+    pathname.endsWith('.css') ||
+    pathname.endsWith('.js') ||
+    pathname.endsWith('.json') ||
+    pathname.endsWith('.png') ||
+    pathname.endsWith('.jpg') ||
+    pathname.endsWith('.jpeg') ||
+    pathname.endsWith('.gif') ||
+    pathname.endsWith('.svg') ||
+    pathname.endsWith('.ico') ||
+    pathname.endsWith('.woff') ||
+    pathname.endsWith('.woff2')
   ) {
     return NextResponse.next();
   }
 
-  // メンテナンスモードが有効なら、メンテナンスページにリダイレクト
-  if (isMaintenanceMode) {
-    return NextResponse.rewrite(new URL('/maintenance.html', request.url));
-  }
-
-  return NextResponse.next();
+  // メンテナンスモード: すべてのページリクエストをメンテナンスページにリライト
+  // （環境変数チェックなし - 常にメンテナンスモード）
+  return NextResponse.rewrite(new URL('/maintenance.html', request.url));
 }
 
 export const config = {
