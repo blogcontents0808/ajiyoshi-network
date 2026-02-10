@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ｜味美ネットワーク</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="header-logo">
+                <img src="images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" class="logo-character">
+                <h1>味美ネットワーク</h1>
+            </a>
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="index.html#intro">味美ネットワークとは</a></li>
+                    <li><a href="members.html">メンバー紹介</a></li>
+                    <li><a href="history.html">沿革</a></li>
+                    <li><a href="activities.html">活動内容</a></li>
+                    <li><a href="blog.html" class="blog-link">ブログ</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h2 class="page-title">お問い合わせ</h2>
+                <p>ご意見・ご質問など、お気軽にお問い合わせください。</p>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container modern-form-wrapper">
+                <div class="form-info">
+                    <h3>お問い合わせについて</h3>
+                    <p>いただいたお問い合わせには、原則として3営業日以内にご返信いたします。</p>
+                    <p>万が一返信がない場合は、メールアドレスの入力間違いの可能性がございますので、お手数ですが再度お問い合わせください。</p>
+                    <p>味美ネットワークの活動に関するご意見や、イベント参加に関するご質問など、どんなことでもお気軽にご連絡ください。</p>
+                    <div class="membership-info" style="margin-top: 1.5rem; padding: 1rem; background-color: #fff3cd; border-left: 4px solid #f0ad4e; border-radius: 5px;">
+                        <h4 style="color: #8a6d3b; margin-bottom: 0.5rem;"><i class="fas fa-users"></i> 入会をご希望の方へ</h4>
+                        <p style="color: #8a6d3b; margin: 0;">入会希望の場合は、件名に「入会希望」と入力してください。詳しい活動内容や入会手続きについてご案内いたします。</p>
+                    </div>
+                </div>
+                <form name="contact" id="contact-form">
+                    <div class="form-group floating">
+                        <input type="text" id="name" name="name" placeholder=" " required>
+                        <label for="name">お名前 <span class="required">必須</span></label>
+                    </div>
+                    <div class="form-group floating">
+                        <input type="email" id="email" name="email" placeholder=" " required>
+                        <label for="email">メールアドレス <span class="required">必須</span></label>
+                    </div>
+                    <div class="form-group floating">
+                        <input type="text" id="subject" name="subject" placeholder=" ">
+                        <label for="subject">件名</label>
+                    </div>
+                    <div class="form-group floating">
+                        <textarea id="message" name="message" rows="6" placeholder=" " required></textarea>
+                        <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
+                    </div>
+                    <div class="form-group privacy-notice" style="margin: 1.5rem 0; padding: 1rem; background-color: #f8f9fa; border-radius: 5px; font-size: 0.9rem;">
+                        <p>個人情報の取り扱いについては、<a href="privacy.html" target="_blank" style="color: #e74c3c; text-decoration: underline;">プライバシーポリシー</a>をご確認ください。</p>
+                        <p>また、本サイトの<a href="terms.html" target="_blank" style="color: #e74c3c; text-decoration: underline;">利用規約</a>もあわせてご確認ください。</p>
+                        <div style="margin-top: 0.8rem;">
+                            <label style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                                <input type="checkbox" name="privacy_agree" required style="margin-right: 0.5rem;">
+                                <span>プライバシーポリシーに同意します</span>
+                            </label>
+                            <label style="display: flex; align-items: center;">
+                                <input type="checkbox" name="terms_agree" required style="margin-right: 0.5rem;">
+                                <span>利用規約に同意します</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> 送信する</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.facebook.com/watch/?v=1872150119939498" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2024 味美ネットワーク. All Rights Reserved.</p>
+            <p><a href="privacy.html">プライバシーポリシー</a> | <a href="terms.html">利用規約</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="cookie-consent.js"></script>
+</body>
+</html>

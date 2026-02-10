@@ -1,139 +1,121 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>参加メンバー紹介｜味美ネットワーク</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メンテナンス中 | 味美ネットワーク</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .maintenance-container {
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 50px 40px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .icon {
+      font-size: 80px;
+      margin-bottom: 30px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    
+    .subtitle {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .message {
+      font-size: 14px;
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+    
+    .logo {
+      margin-top: 40px;
+      font-size: 16px;
+      opacity: 0.8;
+    }
+    
+    .logo img {
+      width: 60px;
+      height: auto;
+      margin-bottom: 10px;
+      filter: brightness(0) invert(1);
+    }
+    
+    @media (max-width: 480px) {
+      .maintenance-container {
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 22px;
+      }
+      
+      .subtitle {
+        font-size: 16px;
+      }
+      
+      .icon {
+        font-size: 60px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="header-logo">
-                <img src="images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" class="logo-character">
-                <h1>味美ネットワーク</h1>
-            </a>
-            <nav class="header-nav">
-                <ul>
-                    <li><a href="index.html">ホーム</a></li>
-                    <li><a href="index.html#intro">味美ネットワークとは</a></li>
-                    <li><a href="members.html">メンバー紹介</a></li>
-                    <li><a href="history.html">沿革</a></li>
-                    <li><a href="activities.html">活動内容</a></li>
-                    <li><a href="blog.html" class="blog-link">ブログ</a></li>
-                    <li><a href="contact.html">お問い合わせ</a></li>
-                </ul>
-            </nav>
-            <button class="hamburger-btn" id="hamburger-btn" aria-label="メニューを開く">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
-    <main>
-        <section class="page-hero">
-            <div class="container">
-                <h2 class="page-title">参加メンバー紹介</h2>
-                <p>※令和7年4月1日現在</p>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="container">
-                <div class="table-container">
-                    <table class="member-table">
-                        <thead>
-                            <tr>
-                                <th>役職</th>
-                                <th>氏名</th>
-                                <th>勤務先</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>会員</td><td>安達　浩二</td><td>（株）夢　屋</td></tr>
-                            <tr><td>会員</td><td>安藤　亮輔</td><td>DOUCE</td></tr>
-                            <tr><td>新会員</td><td>榎谷　俊太</td><td>もぐのキッチンカー</td></tr>
-                            <tr><td>会員</td><td>大久保　冨啓</td><td>（株）大興技建</td></tr>
-                            <tr><td>会員</td><td>大見　幸司</td><td>（株）ハートサポート</td></tr>
-                            <tr><td>会員</td><td>大森　建治</td><td>（株）ケベック</td></tr>
-                            <tr><td>会員</td><td>小川　耕平</td><td>きもの山喜</td></tr>
-                            <tr><td>会員</td><td>吉田　雅孝</td><td>東春信用金庫味美支店</td></tr>
-                            <tr><td>会員</td><td>河合  孝治</td><td>（有）オートネットワールド</td></tr>
-                            <tr><td>会員</td><td>河村　勇祐</td><td>河村不動産（有）</td></tr>
-                            <tr><td>会員</td><td>河村　佳生</td><td>白山神社</td></tr>
-                            <tr><td>会員</td><td>木野瀬　将大</td><td>木野瀬印刷（株）</td></tr>
-                            <tr><td>会員</td><td>佐竹　拓実</td><td>張替工房　佐竹</td></tr>
-                            <tr><td>会員</td><td>佐津川　弘行</td><td>（株）ＳＡＴＳＵＫＡＷＡ</td></tr>
-                            <tr><td>会員</td><td>篠塚　典幸</td><td>行政書士篠塚事務所/ＦＰワークス</td></tr>
-                            <tr><td>新会員</td><td>芝田　正伸</td><td>（有）藤栄建設</td></tr>
-                            <tr><td>会員</td><td>高木　美恵</td><td>黒ひょうさんcafé.</td></tr>
-                            <tr><td>会員</td><td>田口　雄介</td><td>（有）田口商店</td></tr>
-                            <tr><td>会員</td><td>角田　晃一</td><td>（有）花　萬</td></tr>
-                            <tr><td>会員</td><td>中森  旭彦</td><td>（有）住マイルナカホーム</td></tr>
-                            <tr><td>会員</td><td>西尾　まみ</td><td>（一社）春日井観光コンベンション</td></tr>
-                            <tr><td>会員</td><td>西野　 太</td><td></td></tr>
-                            <tr><td>会員</td><td>丹羽　  清</td><td>（株）ジョイフル設備</td></tr>
-                            <tr><td>会員</td><td>丹羽　健太</td><td>（有）丹羽グランド</td></tr>
-                            <tr><td>会員</td><td>野村　幸司</td><td>東洋電機（株）</td></tr>
-                            <tr><td>会員</td><td>橋本　佳津枝</td><td>名古屋空港ビルディング㈱</td></tr>
-                            <tr><td>会員</td><td>林　 秀樹</td><td>（学）芳陵学園　味美幼稚園</td></tr>
-                            <tr><td>会員</td><td>藤川　誠二</td><td>市川・藤川法律事務所</td></tr>
-                            <tr><td>会員</td><td>古田　篤史</td><td>（株）古田鈑金工芸</td></tr>
-                            <tr><td>会員</td><td>堀井　佳季</td><td>（有）エイペックス</td></tr>
-                            <tr><td>会員</td><td>牧野　加帆里</td><td>凜香</td></tr>
-                            <tr><td>会員</td><td>宮﨑　真以子</td><td>（株）えむえむ</td></tr>
-                            <tr><td>会員</td><td>森　 友宏</td><td>森ＦＰ事務所</td></tr>
-                            <tr><td>会員</td><td>山口　愛子</td><td>味美駅前郵便局</td></tr>
-                            <tr><td>会員</td><td>山田　　純</td><td>名空ハウス工業（株）</td></tr>
-                            <tr><td>会員</td><td>山田　慎二</td><td>（有）アド・フューチャー</td></tr>
-                            <tr><td>会員</td><td>輪田　友博</td><td>日輪寺</td></tr>
-                            <tr><td>会員</td><td>渡邉　佳朗</td><td>ワタナベ自動車（株）ワタナベ</td></tr>
-                            <tr><td>賛助会員</td><td>朝倉　充俊</td><td>あさくら会計事務所</td></tr>
-                            <tr><td>賛助会員</td><td>岡田　克己</td><td>（株）岡田商店</td></tr>
-                            <tr><td>賛助会員</td><td>木野瀬　吉孝</td><td>木野瀬印刷（株）</td></tr>
-                            <tr><td>賛助会員</td><td>近藤　修二</td><td>（有）中日味美販売</td></tr>
-                            <tr><td>賛助会員</td><td>林　 晃市</td><td>（有）東岐電気商会</td></tr>
-                            <tr><td>賛助会員</td><td>渡部　彰人</td><td></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 入会希望セクション -->
-    <section class="membership-section">
-        <div class="membership-content">
-            <div class="container">
-                <h2 class="membership-title">私たちと一緒に活動しませんか</h2>
-                <p class="membership-subtitle">味美ネットワークでは、地域の発展と住民の皆さまの豊かな暮らしのために、様々な活動を行っています。あなたも私たちの仲間になって、一緒に地域を盛り上げていきませんか？</p>
-                <a href="contact.html" class="membership-btn">
-                    <i class="fas fa-envelope"></i>
-                    入会希望はこちら
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="social-links">
-                <a href="https://www.facebook.com/watch/?v=1872150119939498" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p>© 2024 味美ネットワーク. All Rights Reserved.</p>
-            <p><a href="privacy.html">プライバシーポリシー</a> | <a href="terms.html">利用規約</a></p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script src="cookie-consent.js"></script>
+  <div class="maintenance-container">
+    <div class="icon">
+      <i class="fas fa-tools"></i>
+    </div>
+    <h1>ただいまメンテナンス中です</h1>
+    <p class="subtitle">
+      サイトの改善作業を行っております。<br>
+      ご不便をおかけして申し訳ございません。
+    </p>
+    <p class="message">
+      しばらく経ってから再度アクセスしてください。<br>
+      お急ぎの場合は、SNSからお問い合わせください。
+    </p>
+    <div class="logo">
+      <p>味美ネットワーク</p>
+    </div>
+  </div>
 </body>
 </html>

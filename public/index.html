@@ -1,141 +1,121 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>味美ネットワーク｜春日井市味美地区の地域コミュニティ</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メンテナンス中 | 味美ネットワーク</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .maintenance-container {
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 50px 40px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .icon {
+      font-size: 80px;
+      margin-bottom: 30px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    
+    .subtitle {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .message {
+      font-size: 14px;
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+    
+    .logo {
+      margin-top: 40px;
+      font-size: 16px;
+      opacity: 0.8;
+    }
+    
+    .logo img {
+      width: 60px;
+      height: auto;
+      margin-bottom: 10px;
+      filter: brightness(0) invert(1);
+    }
+    
+    @media (max-width: 480px) {
+      .maintenance-container {
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 22px;
+      }
+      
+      .subtitle {
+        font-size: 16px;
+      }
+      
+      .icon {
+        font-size: 60px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="header-logo">
-                <img src="images/kantaro_yoroshiku.png" alt="炭ぬり貫太郎" class="logo-character">
-                <h1>味美ネットワーク</h1>
-            </a>
-            <nav class="header-nav">
-                <ul>
-                    <li><a href="index.html">ホーム</a></li>
-                    <li><a href="index.html#intro">味美ネットワークとは</a></li>
-                    <li><a href="members.html">メンバー紹介</a></li>
-                    <li><a href="history.html">沿革</a></li>
-                    <li><a href="activities.html">活動内容</a></li>
-                    <li><a href="blog.html" class="blog-link">ブログ</a></li>
-                    <li><a href="contact.html">お問い合わせ</a></li>
-                </ul>
-            </nav>
-            <button class="hamburger-btn" id="hamburger-btn" aria-label="メニューを開く">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h2 class="hero-title">この街が、もっと好きになる。</h2>
-                <p class="hero-subtitle">自分たちが関わる街が、もっと住みよく愛される街になるように。</p>
-            </div>
-        </section>
-
-        <section id="intro" class="section fade-in">
-            <div class="container">
-                <h2 class="section-title">味美ネットワークとは？</h2>
-                <div class="intro-text">
-                    <p>私たち味美ネットワークは、自分たちが関わる街が住みよく愛される街になるように、春日井市南部の味美地区を中心に、平成４年より活動しています。</p>
-                    <p>味美の夏夜を彩るサマーフェスタ味美（味美炭ぬりまつり）をはじめ、春は白山神社さくらまつりと地域の皆様に楽しんでいただける事業を中心に取り組んでいます。</p>
-                    <p>街作りは行政や大企業だけの力ではどうにもなりません。地域に住む人々の想いにこそ大きな可能性があります。そんな想いを発信していく団体が味美ネットワークです。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ブログ誘導セクション -->
-        <section id="blog-section" class="section blog-highlight fade-in">
-            <div class="container">
-                <div class="blog-banner">
-                    <div class="blog-banner-content">
-                        <div class="blog-banner-text">
-                            <h2 class="blog-banner-title">活動報告・お知らせ</h2>
-                            <p class="blog-banner-subtitle">味美ネットワークの最新情報をブログで発信中！</p>
-                            <p class="blog-banner-description">イベントの開催報告や地域の情報、メンバーの活動など、味美ネットワークの「今」をお伝えします。</p>
-                        </div>
-                        <div class="blog-banner-action">
-                            <a href="blog.html" class="blog-btn">
-                                <i class="fas fa-external-link-alt"></i>
-                                ブログを見る
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="section section-bg fade-in">
-            <div class="container">
-                <h2 class="section-title">味美ネットワークについて</h2>
-                <div class="card-grid">
-                    <div class="card fade-in">
-                        <div class="card-icon"><i class="fas fa-users"></i></div>
-                        <div class="card-content">
-                            <h3 class="card-title">参加メンバー紹介</h3>
-                            <p class="card-text">味美ネットワークで活動する、地域を愛する個性豊かなメンバーを紹介します。</p>
-                            <a href="members.html" class="btn">詳しく見る</a>
-                        </div>
-                    </div>
-                    <div class="card fade-in">
-                        <div class="card-icon"><i class="fas fa-landmark"></i></div>
-                        <div class="card-content">
-                            <h3 class="card-title">これまでの活動（沿革）</h3>
-                            <p class="card-text">平成4年の発足から現在までの、私たちの歩みと主な活動の歴史をご紹介します。</p>
-                            <a href="history.html" class="btn">詳しく見る</a>
-                        </div>
-                    </div>
-                    <div class="card fade-in">
-                        <div class="card-icon"><i class="fas fa-star"></i></div>
-                        <div class="card-content">
-                            <h3 class="card-title">主な活動内容</h3>
-                            <p class="card-text">お祭りやイベントなど、私たちが取り組んでいる具体的な活動内容を紹介します。</p>
-                            <a href="activities.html" class="btn">詳しく見る</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 入会希望セクション -->
-    <section class="membership-section">
-        <div class="membership-content">
-            <div class="container">
-                <h2 class="membership-title">私たちと一緒に活動しませんか</h2>
-                <p class="membership-subtitle">味美ネットワークでは、地域の発展と住民の皆さまの豊かな暮らしのために、様々な活動を行っています。あなたも私たちの仲間になって、一緒に地域を盛り上げていきませんか？</p>
-                <a href="contact.html" class="membership-btn">
-                    <i class="fas fa-envelope"></i>
-                    入会希望はこちら
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="social-links">
-                <a href="https://www.facebook.com/watch/?v=1872150119939498" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/ajiyoshi.net.work/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p>© 2024 味美ネットワーク. All Rights Reserved.</p>
-            <p><a href="privacy.html">プライバシーポリシー</a> | <a href="terms.html">利用規約</a></p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script src="cookie-consent.js"></script>
+  <div class="maintenance-container">
+    <div class="icon">
+      <i class="fas fa-tools"></i>
+    </div>
+    <h1>ただいまメンテナンス中です</h1>
+    <p class="subtitle">
+      サイトの改善作業を行っております。<br>
+      ご不便をおかけして申し訳ございません。
+    </p>
+    <p class="message">
+      しばらく経ってから再度アクセスしてください。<br>
+      お急ぎの場合は、SNSからお問い合わせください。
+    </p>
+    <div class="logo">
+      <p>味美ネットワーク</p>
+    </div>
+  </div>
 </body>
 </html>
